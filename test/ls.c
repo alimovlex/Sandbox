@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 {
 	preprocessor();
 	//file();
-	//listFiles();
+	listFiles();
 	system("pause");
 	return 0;
 }
