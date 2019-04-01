@@ -3,9 +3,13 @@
 #include <string.h>
 #include <stdbool.h>
 #include <errno.h>
+#include <math.h>
 #include "dirent.h"
 #define MIN(a,b) (((a)<(b)) ? a : b)
 #define MAX(a,b) (((a)>(b)) ? a : b)
+#define MULTIPLY(a, b) a*b 
+#define merge(a, b) a##b 
+#define get(a) #a 
 #define MKSTR( x ) #x
 volatile int opt = 1;
 typedef char string;
@@ -26,11 +30,17 @@ union Data
 	float f;
 	char str[20];
 };
-int number(struct numbers *a)
+typedef struct
 {
-	return (a->dec + a->bin);
-}
+	int x;
+	int y;
+} point;
 
+typedef struct
+{
+	float radius;
+	point center;
+} circle;
 static char *ErrorNames[] = 
 {
 	"Index Out Of Bounds",
@@ -45,7 +55,14 @@ enum Errors {
 	STACK_UNDERFLOW,
 	OUT_OF_MEMORY
 };
-
+int number(struct numbers *a)
+{
+	return (a->dec + a->bin);
+}
+inline int square(int x)
+{
+	return x*x;
+}
 void Fn(void) {
 start:
 	if (opt == 1)
@@ -61,8 +78,9 @@ void test()
 	struct numbers *a;
 	a = malloc(sizeof(struct numbers));
 	int sixteen = 0xFFF;
-	int ten = 30;
+	int ten = 0;
 	int bin = 1;
+	ten = square(16);
 	a->hex = sixteen;
 	a->dec = ten;
 	a->bin = bin;
@@ -121,17 +139,7 @@ void error()
 	else if (errno == ERANGE) // Result too large
 		fprintf(stderr, "%s\n", strerror(errno));
 }
-typedef struct 
-{
-	int x;
-	int y;
-} point;
 
-typedef struct 
-{
-	float radius;
-	point center;
-} circle;
 
 
 void listFiles()
@@ -149,6 +157,7 @@ void listFiles()
 	else
 		perror("Couldn't open the directory");
 }
+//add proposals
 void file()
 {
 	string str[16] = "Hello ";
@@ -165,5 +174,9 @@ void preprocessor()
 	printf("Value of __FILE__ : %s\n", __FILE__);
 	printf("\nValue of __DATE__ : %s\n", __DATE__);
 	printf("\nValue of __TIME__ : %s\n", __TIME__);
+	printf("Multiplication = %d\n", MULTIPLY(20, 30));
+	printf(merge("Hello ", "World\n"));
+	printf("%s\n", get(GeeksQuiz));
+	printf("\a");
 }
 #pragma endregion

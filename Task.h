@@ -7,3 +7,4 @@ void Fn(void);
 void listFiles();
 void file();
 void preprocessor();
+int square(int x);
