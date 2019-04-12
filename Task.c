@@ -11,7 +11,8 @@
 #define merge(a, b) a##b 
 #define get(a) #a 
 #define MKSTR( x ) #x
-volatile int opt = 1;
+
+int opt = 1;
 typedef char string;
 #pragma region My Learning
 enum Gender 
@@ -63,13 +64,7 @@ inline int square(int x)
 {
 	return x*x;
 }
-void Fn(void) {
-start:
-	if (opt == 1)
-		goto start;
-	else
-		opt = 0;
-}
+
 void test()
 {
 	enum Gender x, y;
@@ -140,8 +135,6 @@ void error()
 		fprintf(stderr, "%s\n", strerror(errno));
 }
 
-
-
 void listFiles()
 {
 	DIR *dp;
@@ -179,4 +172,43 @@ void preprocessor()
 	printf("%s\n", get(GeeksQuiz));
 	printf("\a");
 }
+
+void floatcomp()
+{
+	float x = 0.1;
+	int a = 1;
+	char b = 'G';
+	double c = 3.14;
+	a = (int)x + (int)c; //type casting in C
+	if (x == 0.1)
+		printf("IF\n");
+	else if (x == 0.1f)
+		printf("ELSE IF\n");
+	else
+		printf("ELSE\n");
+	//printing the variables defined above along with their sizes 
+	printf("Hello! I am a character. My value is %c and "
+		"my size is %lu byte.\n", b, sizeof(char));
+	//can use sizeof(b) above as well 
+
+	printf("Hello! I am an long int. My value is %d and "
+		"my size is %lu  bytes.\n", a, sizeof(long int));
+	//can use sizeof(a) above as well 
+
+	printf("Hello! I am a double floating point variable."
+		" My value is %lf and my size is %lu bytes.\n", c, sizeof(long double));
+}
+
+void unstable()
+{
+	const int local = 10;
+	int *ptr = (int*)&local;
+
+	printf("Initial value of local : %d \n", local);
+
+	*ptr = 100;
+
+	printf("Modified value of local: %d \n", local); //with optimization it would be the same. *ptr=10;
+}
+
 #pragma endregion
