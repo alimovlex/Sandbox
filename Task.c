@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <errno.h>
 #include <math.h>
+#include <time.h>
 #include "dirent.h"
 #define MIN(a,b) (((a)<(b)) ? a : b)
 #define MAX(a,b) (((a)>(b)) ? a : b)
@@ -11,7 +12,17 @@
 #define merge(a, b) a##b 
 #define get(a) #a 
 #define MKSTR( x ) #x
+#define B(x) S_to_binary_(#x)
 
+static inline unsigned long long S_to_binary_(const char *s)
+{
+	unsigned long long i = 0;
+	while (*s) {
+		i <<= 1;
+		i += *s++ - '0';
+	}
+	return i;
+}
 int opt = 1;
 typedef char string;
 #pragma region My Learning
@@ -24,6 +35,7 @@ struct numbers {
 	int   hex;
 	int   dec;
 	int   bin;
+	int   oct;
 };
 union Data
 {
@@ -58,29 +70,38 @@ enum Errors {
 };
 int number(struct numbers *a)
 {
-	return (a->dec + a->bin);
+	return (a->dec + a->hex);
 }
-inline int square(int x)
-{
-	return x*x;
-}
+
 
 void test()
 {
+	srand((unsigned)time(NULL));
 	enum Gender x, y;
 	x = MALE;
 	y = FEMALE;
 	struct numbers *a;
 	a = malloc(sizeof(struct numbers));
-	int sixteen = 0xFFF;
-	int ten = 0;
-	int bin = 1;
-	ten = square(16);
+	int sixteen = rand()%0xFFF;
+	int ten = rand()%20;
+	int bin = rand()%B(111);
+	int oct = rand() % 020;
+	int i = 0;
 	a->hex = sixteen;
 	a->dec = ten;
 	a->bin = bin;
-	number(&a);
+	a->oct = oct;
 	printf(ErrorNames[STACK_OVERFLOW],"\n");
+	printf("\nHexadecimal number:0x%02X \n", a->hex); //hexadecimal output
+	printf("Decimal RND number: %d\n", a->dec);
+	printf("Binary RND number: %d\n", a->bin);
+	printf("Octal RND number: %o\n", a->oct);
+	printf("Oct and Hex numbers: %o 0x%02X\n", a->oct,a->hex);
+	printf("~hex = 0x%02X\n",~a->hex);  
+	printf("bin<<1 = %d\n", a->bin << 1);  
+	printf("bin>>1 = %d\n", a->bin >> 1);
+	printf("postfix = %i\n", i++);//i=1
+	printf("prefix = %i\n", ++i);
 	//Fn();
 	//free(sizeof(struct numbers));
 }
@@ -150,12 +171,31 @@ void listFiles()
 	else
 		perror("Couldn't open the directory");
 }
-//add proposals
+
 void file()
 {
-	string str[16] = "Hello ";
-	strcat(str,"World\n");
-	printf("%s",str);
+	//writing to file
+	FILE *fp;
+	char buff[255];
+	fp = fopen("test.txt", "w+");
+	fprintf(fp, "This is testing for fprintf...\n");
+	fputs("This is testing for fputs...\n", fp);
+	fclose(fp);
+	//reading the file
+	fp = fopen("test.txt", "r");
+	while (fgets(buff, sizeof buff, fp))
+	{
+		printf("%s\n", buff);
+	}
+	
+	fclose(fp);
+	/*while (!feof(fp))
+	{
+		fgets(buff, 255, (FILE*)fp);
+		//fscanf(fp, "%s", buff);
+		printf("%s\n", buff);
+	}
+	*/
 }
 
 void preprocessor()

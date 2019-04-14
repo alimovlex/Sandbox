@@ -6,13 +6,14 @@
 #include <string.h>
 void __pragma((constructor)) premain()
 {
-	printf("premain()\n");
+	puts("premain()\n");
 }
 
 int main(int argc, char *argv[])
 {
 	opt = 0;
-	int a = 0;
+	//file();
+	test();
 	system("pause");
 	return 0;
 }

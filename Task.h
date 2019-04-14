@@ -7,7 +7,7 @@ void error();
 void listFiles();
 void file();
 void preprocessor();
-int square(int x);
 void floatcomp();
 void unstable();
 extern int opt;
+static inline unsigned long long S_to_binary_(const char *s);
