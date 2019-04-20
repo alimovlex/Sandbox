@@ -13,7 +13,6 @@
 #define get(a) #a 
 #define MKSTR( x ) #x
 #define B(x) S_to_binary_(#x)
-
 static inline unsigned long long S_to_binary_(const char *s)
 {
 	unsigned long long i = 0;
@@ -23,7 +22,7 @@ static inline unsigned long long S_to_binary_(const char *s)
 	}
 	return i;
 }
-int opt = 1;
+
 typedef char string;
 #pragma region My Learning
 enum Gender 
@@ -102,6 +101,13 @@ void test()
 	printf("bin>>1 = %d\n", a->bin >> 1);
 	printf("postfix = %i\n", i++);//i=1
 	printf("prefix = %i\n", ++i);
+	printf("In C programming All graphic "
+		"characters are: \n");
+	for (i = 0; i <= 127; ++i)
+		if (isgraph(i) != 0)
+			printf("%c ", i);
+	printf("\n");
+	
 	//Fn();
 	//free(sizeof(struct numbers));
 }
@@ -110,23 +116,15 @@ void test()
 #pragma region Sololearn
 void pointers()
 {
-	char *trip[] = 
-	{
-		"suitcase",
-		"passport",
-		"ticket"
-	};
 	int j = 63;
 	int *p = NULL;
 	p = &j;
-	printf("The address of j is %x\n", &j);
-	printf("p contains address %x\n", p);
+	int **x = &p;
+	**x = 70;
+	printf("The address of j is 0x%02X\n", &j);
+	printf("p contains address 0x%02X\n", p);
 	printf("The value of j is %d\n", j);
 	printf("p is pointing to the value %d\n", *p);
-	printf("Please bring the following:\n");
-	for (int i = 0; i < 3; i++) {
-		printf("%s\n", trip[i]);
-	}
 }
 
 void swap(int *num1, int *num2) 
@@ -200,6 +198,7 @@ void file()
 
 void preprocessor()
 {
+	printf("%s\n", __func__);//print the name of the function
 	printf("Minimum of 20 and 30 = %d\n", MIN(20, 30)); 
 	printf("Maximum of 20 and 30 = %d\n", MAX(20, 30));
 	printf(MKSTR(HELLO C++));
@@ -210,7 +209,7 @@ void preprocessor()
 	printf("Multiplication = %d\n", MULTIPLY(20, 30));
 	printf(merge("Hello ", "World\n"));
 	printf("%s\n", get(GeeksQuiz));
-	printf("\a");
+    //printf("\a"); signal exclamation
 }
 
 void floatcomp()
@@ -239,16 +238,23 @@ void floatcomp()
 		" My value is %lf and my size is %lu bytes.\n", c, sizeof(long double));
 }
 
-void unstable()
+void zeit()
 {
-	const int local = 10;
-	int *ptr = (int*)&local;
+	time_t t;
+	struct tm *tmp;
+	char MY_TIME[50];
+	time(&t);
 
-	printf("Initial value of local : %d \n", local);
+	//localtime() uses the time pointed by t , 
+	// to fill a tm structure with the  
+	// values that represent the  
+	// corresponding local time. 
 
-	*ptr = 100;
+	tmp = localtime(&t);
 
-	printf("Modified value of local: %d \n", local); //with optimization it would be the same. *ptr=10;
+	// using strftime to display time 
+	strftime(MY_TIME, sizeof(MY_TIME), "%x - %I:%M%p", tmp);
+
+	printf("Formatted date & time : %s\n", MY_TIME);
 }
-
 #pragma endregion
