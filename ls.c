@@ -2,9 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 #include "Task.h"
 #include "dirent.h"
-#include <string.h>
+#include "DataStruct.h"
 
 void __pragma((constructor)) premain()
 {
@@ -20,7 +21,8 @@ int swapresult()
 }
 int main(int argc, char *argv[])
 {
-	pointers();
+	list();
+	//Demo(test);
 	//printf("swap: %d\n", swapresult());
 	system("pause");
 	return 0;

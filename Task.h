@@ -1,4 +1,3 @@
-
 int number(struct numbers *a);
 void test();
 void pointers();
@@ -10,3 +9,4 @@ void preprocessor();
 void floatcomp();
 static inline unsigned long long S_to_binary_(const char *s);
 void zeit();
+void demo(void(*func)());

@@ -42,17 +42,7 @@ union Data
 	float f;
 	char str[20];
 };
-typedef struct
-{
-	int x;
-	int y;
-} point;
 
-typedef struct
-{
-	float radius;
-	point center;
-} circle;
 static char *ErrorNames[] = 
 {
 	"Index Out Of Bounds",
@@ -113,18 +103,33 @@ void test()
 }
 #pragma endregion
 
-#pragma region Sololearn
+
 void pointers()
 {
-	int j = 63;
+	int j = 63, x=4;
+	float y = 5.5;
 	int *p = NULL;
 	p = &j;
-	int **x = &p;
-	**x = 70;
+	int **z = &p;
+	**z = 70;
+	void *ptr; //the type of this pointer in the printf function
+	ptr = &x;
 	printf("The address of j is 0x%02X\n", &j);
 	printf("p contains address 0x%02X\n", p);
 	printf("The value of j is %d\n", j);
 	printf("p is pointing to the value %d\n", *p);
+	// (int*)ptr - does type casting of void  
+	// *((int*)ptr) dereferences the typecasted  
+	// void pointer variable. 
+	printf("Integer variable is = %d\n", *((int*)ptr));
+
+	// void pointer is now float 
+	ptr = &y;
+	printf("Float variable is= %.2f\n", *((float*)ptr));
+	void(*test_ptr)(void);  //pointer to function
+	test_ptr = &test;
+	// Invoking fun() using fun_ptr 
+	(*test_ptr)();
 }
 
 void swap(int *num1, int *num2) 
@@ -257,4 +262,18 @@ void zeit()
 
 	printf("Formatted date & time : %s\n", MY_TIME);
 }
+
+void demo(void(*func)())
+{
+	test();
+	pointers();
+	error();
+	listFiles();
+	file();
+	preprocessor();
+	floatcomp();
+}
+
+#pragma region linkedlist
+
 #pragma endregion
