@@ -5,6 +5,7 @@
 #include <errno.h>
 #include <math.h>
 #include <time.h>
+#include <pthread.h>
 #include "dirent.h"
 #define MIN(a,b) (((a)<(b)) ? a : b)
 #define MAX(a,b) (((a)>(b)) ? a : b)
@@ -178,20 +179,31 @@ void listFiles()
 void file()
 {
 	//writing to file
-	FILE *fp;
+	FILE *fp = tmpfile();
 	char buff[255];
 	fp = fopen("test.txt", "w+");
-	fprintf(fp, "This is testing for fprintf...\n");
-	fputs("This is testing for fputs...\n", fp);
-	fclose(fp);
+	if (fp == NULL)
+	{
+		fprintf(stderr, "\nError opend file\n");
+		fclose(fp);
+	}
+	else
+	{
+		fprintf(fp, "This is testing for fprintf...\n");
+		fputs("This is testing for fputs...\n", fp);
+		fclose(fp);
+	}
 	//reading the file
 	fp = fopen("test.txt", "r");
 	while (fgets(buff, sizeof buff, fp))
 	{
 		printf("%s\n", buff);
 	}
-	
 	fclose(fp);
+	if (remove("test.txt") == 0)
+		printf("Deleted successfully\n");
+	else
+		printf("Unable to delete the file\n");
 	/*while (!feof(fp))
 	{
 		fgets(buff, 255, (FILE*)fp);

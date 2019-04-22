@@ -21,7 +21,7 @@ int swapresult()
 }
 int main(int argc, char *argv[])
 {
-	list();
+	file();
 	//Demo(test);
 	//printf("swap: %d\n", swapresult());
 	system("pause");
