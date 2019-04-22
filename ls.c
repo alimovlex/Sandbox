@@ -6,7 +6,7 @@
 #include "Task.h"
 #include "dirent.h"
 #include "DataStruct.h"
-
+#include "Multi_thread.h"
 void __pragma((constructor)) premain()
 {
 	puts("premain()\n");
@@ -21,7 +21,8 @@ int swapresult()
 }
 int main(int argc, char *argv[])
 {
-	file();
+
+	//file();
 	//Demo(test);
 	//printf("swap: %d\n", swapresult());
 	system("pause");
