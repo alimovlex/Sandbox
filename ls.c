@@ -7,6 +7,7 @@
 #include "dirent.h"
 #include "DataStruct.h"
 #include "Multi_thread.h"
+#include "MyMathDll.h"
 void __pragma((constructor)) premain()
 {
 	puts("premain()\n");
@@ -21,8 +22,7 @@ int swapresult()
 }
 int main(int argc, char *argv[])
 {
-
-	//file();
+	pointers();
 	//Demo(test);
 	//printf("swap: %d\n", swapresult());
 	system("pause");
