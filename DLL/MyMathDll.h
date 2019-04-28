@@ -12,3 +12,6 @@ DLL void file();
 DLL void preprocessor();
 DLL void floatcomp();
 DLL void zeit();
+DLL void sigintHandler(int sig_num);
+DLL void freeze();
+DLL void vremya();

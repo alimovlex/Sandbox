@@ -1,4 +1,3 @@
-#include "MyMathDll.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,6 +6,7 @@
 #include <math.h>
 #include <time.h>
 #include <pthread.h>
+#include <signal.h>
 #include "dirent.h"
 #include "MyMathDll.h"
 #define MIN(a,b) (((a)<(b)) ? a : b)
@@ -183,17 +183,44 @@ void zeit()
 	struct tm *tmp;
 	char MY_TIME[50];
 	time(&t);
-
 	//localtime() uses the time pointed by t , 
 	// to fill a tm structure with the  
 	// values that represent the  
 	// corresponding local time. 
-
 	tmp = localtime(&t);
-
 	// using strftime to display time 
 	strftime(MY_TIME, sizeof(MY_TIME), "%x - %I:%M%p", tmp);
-
 	printf("Formatted date & time : %s\n", MY_TIME);
 }
 
+void vremya()
+{
+	void(*ls_ptr)(void);
+	clock_t t;
+	t = clock();
+	ls_ptr = &listFiles;
+	// Invoking fun() using fun_ptr 
+	(*ls_ptr)();
+	//listFiles();
+	t = clock() - t;
+	double time_taken = ((double)t) / CLOCKS_PER_SEC;
+	printf("LS() took %f seconds to execute \n", time_taken);
+}
+
+void sigintHandler(int sig_num)
+{
+		/* Reset handler to catch SIGINT next time.
+		Refer http://en.cppreference.com/w/c/program/signal */
+		signal(SIGINT, sigintHandler);
+		printf("\n Cannot be terminated using Ctrl+C \n");
+		fflush(stdout);
+}
+
+void freeze()
+{
+	signal(SIGINT, sigintHandler);
+	/* Infinite loop */
+	while (1)
+	{
+	}
+}

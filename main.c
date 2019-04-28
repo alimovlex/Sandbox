@@ -8,6 +8,7 @@
 #include "DataStruct.h"
 #include "Multi_thread.h"
 #include "MyMathDll.h"
+#define start main
 void __pragma((constructor)) premain()
 {
 	puts("premain()\n");
@@ -20,9 +21,9 @@ int swapresult()
 	printf("Received numbers: %d\t%d\n", a, b);
 	return a|b;
 }
-int main(int argc, char *argv[])
+int start()
 {
-	pointers();
+	vremya();
 	//Demo(test);
 	//printf("swap: %d\n", swapresult());
 	system("pause");
