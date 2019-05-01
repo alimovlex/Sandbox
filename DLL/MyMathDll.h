@@ -15,3 +15,7 @@ DLL void zeit();
 DLL void sigintHandler(int sig_num);
 DLL void freeze();
 DLL void vremya();
+DLL void foo();
+DLL void *myThreadFun(void *vargp);
+DLL void potock();
+DLL void except();

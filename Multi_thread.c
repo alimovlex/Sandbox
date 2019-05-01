@@ -30,3 +30,4 @@ void potok ()
 
 	myhandleC = (HANDLE)_beginthread(&mythreadC, 0, 0);
 }
+

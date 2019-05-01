@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <pthread.h>
 #include "Task.h"
 #include "dirent.h"
 #include "DataStruct.h"
@@ -13,19 +14,10 @@ void __pragma((constructor)) premain()
 {
 	puts("premain()\n");
 }
-int swapresult()
-{
-	int a = 10, b = 20;
-	printf("Given Numbers: %d\t%d\n", a, b);
-	swap(&a, &b);
-	printf("Received numbers: %d\t%d\n", a, b);
-	return a|b;
-}
+
 int start()
 {
-	vremya();
-	//Demo(test);
-	//printf("swap: %d\n", swapresult());
+	except();
 	system("pause");
 	return 0;
 }

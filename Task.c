@@ -16,6 +16,9 @@ static inline unsigned long long S_to_binary_(const char *s)
 	}
 	return i;
 }
+
+
+
 static char *ErrorNames[] =
 {
 	"Index Out Of Bounds",

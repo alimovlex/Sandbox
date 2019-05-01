@@ -7,14 +7,22 @@
 #include <time.h>
 #include <pthread.h>
 #include <signal.h>
+#include <setjmp.h>
 #include "dirent.h"
 #include "MyMathDll.h"
+
 #define MIN(a,b) (((a)<(b)) ? a : b)
 #define MAX(a,b) (((a)>(b)) ? a : b)
 #define MULTIPLY(a, b) a*b 
 #define merge(a, b) a##b 
 #define get(a) #a 
 #define MKSTR( x ) #x
+
+#define TRY do{ jmp_buf ex_buf__; if( !setjmp(ex_buf__) ){
+#define CATCH } else {
+#define ETRY } }while(0)
+#define THROW longjmp(ex_buf__, 1)
+
 typedef char string;
 #pragma region My Learning
 union Data
@@ -25,11 +33,26 @@ union Data
 };
 
 #pragma endregion
+void *myThreadFun(void *vargp)
+{
+	_sleep(1);
+	printf("Printing GeeksQuiz from Thread \n");
+	return NULL;
+}
+void foo()
+{
+	int a = 10;
+	static int sa = 10; //example of static variable (it saves its value over each function calling)
 
+	a += 5;
+	sa += 5;
+
+	printf("a = %d, sa = %d\n", a, sa);
+}
 
 void pointers()
 {
-	int j = 63, x = 4;
+	int j = 63, x = 4, i = 0,a=10;
 	float y = 5.5;
 	int *p = NULL;
 	p = &j;
@@ -50,9 +73,9 @@ void pointers()
 	ptr = &y;
 	printf("Float variable is= %.2f\n", *((float*)ptr));
 	void(*ls_ptr)(void);  //pointer to function
-	ls_ptr = &listFiles;
-	// Invoking fun() using fun_ptr 
-	(*ls_ptr)();
+	ls_ptr = &foo;
+	for (i = 0; i < 10; ++i)
+	(*ls_ptr)(&a);
 }
 
 void swap(int *num1, int *num2)
@@ -67,7 +90,7 @@ void error()
 {
 	float k = -5;
 	float num = 1000;
-	float result;
+	double result;
 	errno = 0;
 	result = sqrt(k);
 	if (errno == 0)
@@ -165,16 +188,13 @@ void floatcomp()
 	else
 		printf("ELSE\n");
 	//printing the variables defined above along with their sizes 
-	printf("Hello! I am a character. My value is %c and "
-		"my size is %lu byte.\n", b, sizeof(char));
+	printf("Hello! I am a character. My value is %c and my size is %lu byte.\n", b, sizeof(char));
 	//can use sizeof(b) above as well 
 
-	printf("Hello! I am an long int. My value is %d and "
-		"my size is %lu  bytes.\n", a, sizeof(long int));
+	printf("Hello! I am an long int. My value is %d and my size is %lu  bytes.\n", a, sizeof(long int));
 	//can use sizeof(a) above as well 
 
-	printf("Hello! I am a double floating point variable."
-		" My value is %lf and my size is %lu bytes.\n", c, sizeof(long double));
+	printf("Hello! I am a double floating point variable. My value is %lf and my size is %lu bytes.\n", c, sizeof(long double));
 }
 
 void zeit()
@@ -223,4 +243,28 @@ void freeze()
 	while (1)
 	{
 	}
+}
+
+void potock()
+{
+	pthread_t thread_id;
+	printf("Before Thread\n");
+	pthread_create(&thread_id, NULL, myThreadFun, NULL);
+	pthread_join(thread_id, NULL);
+	printf("After Thread\n");
+}
+
+void except()
+{
+	TRY
+	{
+		printf("In Try Statement\n");
+	THROW;
+	printf("I do not appear\n");
+	}
+		CATCH
+	{
+		printf("Got Exception!\n");
+	}
+	ETRY;
 }
