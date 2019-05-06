@@ -26,11 +26,18 @@
 
 typedef char string;
 #pragma region My Learning
-union Data
+struct Data
 {
-	int i;
-	float f;
-	char str[20];
+	int i; //4 bytes
+	int8_t k; //1 byte
+	int16_t l; //2 byte
+	int32_t m; //4 byte
+	int64_t n; //8 byte
+	long int j; //8 byte
+	float f; //4 byte
+	double g; //8 byte
+	long double h; //8 byte
+	string str[0]; //1 byte
 };
 
 #pragma endregion
@@ -175,27 +182,21 @@ void preprocessor()
 	//printf("\a"); signal exclamation
 }
 
-void floatcomp()
+void memory()
 {
 	float x = 0.1;
-	int a = 1;
+	long int a = 1;
+	int8_t z = 2;
 	char b = 'G';
-	double c = 3.14;
-	a = (int)x + (int)c; //type casting in C
-	if (x == 0.1)
-		printf("IF\n");
-	else if (x == 0.1f)
-		printf("ELSE IF\n");
-	else
-		printf("ELSE\n");
-	//printing the variables defined above along with their sizes 
-	printf("Hello! I am a character. My value is %c and my size is %lu byte.\n", b, sizeof(char));
-	//can use sizeof(b) above as well 
-
-	printf("Hello! I am an long int. My value is %d and my size is %lu  bytes.\n", a, sizeof(long int));
-	//can use sizeof(a) above as well 
-
-	printf("Hello! I am a double floating point variable. My value is %lf and my size is %lu bytes.\n", c, sizeof(long double));
+	long double c = 3.14;
+	struct Data infa;
+	//-------------------------------printing the variables defined above along with their sizes 
+	printf("Size of char %d\n",sizeof(b));
+	printf("Size of long int %d\n",sizeof(a));
+	printf("Size of long double %d\n", sizeof(c));
+	printf("Size of float %d\n", sizeof(x));
+	printf("Size of int %d\n", sizeof(z));
+	printf("Size of union %d\n", sizeof(infa));
 }
 
 void zeit()
@@ -216,13 +217,8 @@ void zeit()
 
 void vremya()
 {
-	void(*ls_ptr)();
 	clock_t t;
 	t = clock();
-	ls_ptr = &listFiles;
-	// Invoking fun() using fun_ptr 
-	(*ls_ptr)();
-	//listFiles();
 	t = clock() - t;
 	double time_taken = ((double)t) / CLOCKS_PER_SEC;
 	printf("LS() took %f seconds to execute \n", time_taken);

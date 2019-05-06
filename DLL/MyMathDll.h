@@ -10,7 +10,7 @@ DLL void error();
 DLL void listFiles();
 DLL void file();
 DLL void preprocessor();
-DLL void floatcomp();
+DLL void memory();
 DLL void zeit();
 DLL void sigintHandler(int sig_num);
 DLL void freeze();
