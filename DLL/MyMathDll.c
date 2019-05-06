@@ -8,6 +8,7 @@
 #include <pthread.h>
 #include <signal.h>
 #include <setjmp.h>
+#include "unistd.h"
 #include "dirent.h"
 #include "MyMathDll.h"
 
@@ -35,7 +36,7 @@ union Data
 #pragma endregion
 void *myThreadFun(void *vargp)
 {
-	_sleep(1);
+	Sleep(1);
 	printf("Printing GeeksQuiz from Thread \n");
 	return NULL;
 }
@@ -72,7 +73,7 @@ void pointers()
 	// void pointer is now float 
 	ptr = &y;
 	printf("Float variable is= %.2f\n", *((float*)ptr));
-	void(*ls_ptr)(void);  //pointer to function
+	void(*ls_ptr)();  //pointer to function
 	ls_ptr = &foo;
 	for (i = 0; i < 10; ++i)
 	(*ls_ptr)(&a);
@@ -215,7 +216,7 @@ void zeit()
 
 void vremya()
 {
-	void(*ls_ptr)(void);
+	void(*ls_ptr)();
 	clock_t t;
 	t = clock();
 	ls_ptr = &listFiles;

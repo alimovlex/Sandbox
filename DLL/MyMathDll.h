@@ -1,5 +1,5 @@
-#ifdef MYMATHDLL_EXPORTS
-#define MYMATHDLL_API __declspec(dllexport) 
+#ifdef DLL_EXPORTS
+#define DLL __declspec(dllexport) 
 #else
 #define DLL __declspec(dllimport) 
 #endif

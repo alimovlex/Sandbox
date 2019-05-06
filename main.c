@@ -4,10 +4,10 @@
 #include <math.h>
 #include <string.h>
 #include <pthread.h>
+#include "unistd.h"
 #include "Task.h"
 #include "dirent.h"
 #include "DataStruct.h"
-#include "Multi_thread.h"
 #include "MyMathDll.h"
 #define start main
 void __pragma((constructor)) premain()
@@ -17,7 +17,7 @@ void __pragma((constructor)) premain()
 
 int start()
 {
-	except();
+	
 	system("pause");
 	return 0;
 }
