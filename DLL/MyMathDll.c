@@ -93,7 +93,14 @@ void swap(int *num1, int *num2)
 	*num1 = *num2;
 	*num2 = temp;
 }
-
+void swap2(char *str1, char *str2)
+{
+	char *temp = (char *)malloc((strlen(str1) + 1) * sizeof(char));
+	strcpy(temp, str1);
+	strcpy(str1, str2);
+	strcpy(str2, temp);
+	free(temp);
+}
 void error()
 {
 	float k = -5;
@@ -265,3 +272,82 @@ void except()
 	}
 	ETRY;
 }
+
+void massiv()
+{
+	srand((unsigned)time(NULL));
+	int t, i, num[3][3];
+	char word[] = "GeeksforGeeks";
+	string *str = strdup(word);//duplicate string
+	/* загрузка чисел */
+	for (t = 0; t<3; t++)
+		for (i = 0; i<3; i++)
+			num[t][i] = rand()%10;
+	/* вывод чисел */
+	printf("Static array:\n");
+	for (t = 0; t<3; t++)
+	{
+		for (i = 0; i<3; i++)
+			printf("%d ", num[t][i]);
+		printf("\n");
+	}
+	printf("%s\n", str);
+}
+
+//---------------------------dynamic array
+
+void dynamic_array_print(int **A, size_t N, size_t M)
+{
+	for (int i = 0; i < N; i++) 
+	{
+		for (int j = 0; j < M; j++) 
+		{
+			printf("%*d", 5, A[i][j]);
+		}
+		printf("\n");
+	}
+}
+/*
+return pointer on 2d dynamic array
+!allocates memory -> to be freed later
+*/
+
+int ** dynamic_array_alloc(size_t N, size_t M)
+{
+	int **A = (int **)malloc(N * sizeof(int *));
+	for (int i = 0; i < N; i++) 
+	{
+		A[i] = (int *)malloc(M * sizeof(int));
+	}
+	return A;
+}
+
+void dynamic_array_free(int **A, size_t N)
+{
+	for (int i = 0; i < N; i++) 
+	{
+		free(A[i]);
+	}
+	free(A);
+}
+
+void dynamic_array_test(size_t N, size_t M) //---------------calling matrix
+{
+	srand((unsigned)time(NULL));
+	int **A = dynamic_array_alloc(N, M);
+	//int x = 1;
+	for (int i = 0; i < N; i++) 
+	{
+		for (int j = 0; j < M; j++) 
+		{
+			A[i][j] = rand()%10;
+			//x += 1;
+		}
+	}
+	printf("Dynamic array:\n");
+	dynamic_array_print(A, N, M);
+	/*memory investigation*/
+	dynamic_array_free(A, N);
+}
+//--------------------------------dynamic array over
+

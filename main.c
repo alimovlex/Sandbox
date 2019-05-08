@@ -17,7 +17,8 @@ void __pragma((constructor)) premain()
 
 int start()
 {
-	
+	massiv();
+	dynamic_array_test(3, 3);
 	system("pause");
 	return 0;
 }
