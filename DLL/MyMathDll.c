@@ -24,8 +24,20 @@
 #define ETRY } }while(0)
 #define THROW longjmp(ex_buf__, 1)
 
+#define B(x) S_to_binary_(#x)
+unsigned long long S_to_binary_(const char *s)
+{
+	unsigned long long i = 0;
+	while (*s)
+	{
+		i <<= 1;
+		i += *s++ - '0';
+	}
+	return i;
+}
+
 typedef char string;
-#pragma region My Learning
+
 struct Data
 {
 	int i; //4 bytes
@@ -40,13 +52,35 @@ struct Data
 	string str[0]; //1 byte
 };
 
-#pragma endregion
-void *myThreadFun(void *vargp)
+void test()
 {
-	Sleep(1);
-	printf("Printing GeeksQuiz from Thread \n");
-	return NULL;
+	srand((unsigned)time(NULL));
+	int hex = rand() % 0xFFF;
+	int dec = rand() % 20;
+	int bin = rand() % B(111);
+	int oct = rand() % 020;
+	int i = 0;
+	printf("\nHexadecimal number:0x%02X \n", hex); //hexadecimal output
+	printf("Decimal RND number: %d\n", dec);
+	printf("Binary RND number: %d\n", bin);
+	printf("Octal RND number: %o\n", oct);
+	printf("Oct and Hex numbers: %o 0x%02X\n", oct, hex);
+	printf("~hex = 0x%02X\n", ~hex);
+	printf("bin<<1 = %d\n", bin << 1);
+	printf("bin>>1 = %d\n", bin >> 1);
+	printf("postfix = %i\n", i++);//i=1
+	printf("prefix = %i\n", ++i);
+	printf("In C programming All graphic "
+		"characters are: \n");
+	for (i = 0; i <= 127; ++i)
+		if (isgraph(i) != 0)
+			printf("%c ", i);
+	printf("\n");
+
+	//Fn();
+	//free(sizeof(struct numbers));
 }
+
 void foo()
 {
 	int a = 10;
@@ -247,15 +281,6 @@ void freeze()
 	while (1)
 	{
 	}
-}
-
-void potock()
-{
-	pthread_t thread_id;
-	printf("Before Thread\n");
-	pthread_create(&thread_id, NULL, myThreadFun, NULL);
-	pthread_join(thread_id, NULL);
-	printf("After Thread\n");
 }
 
 void except()

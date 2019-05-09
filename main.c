@@ -5,7 +5,7 @@
 #include <string.h>
 #include <pthread.h>
 #include "unistd.h"
-#include "Task.h"
+#include "Multithread.h"
 #include "dirent.h"
 #include "DataStruct.h"
 #include "MyMathDll.h"
@@ -17,8 +17,7 @@ void __pragma((constructor)) premain()
 
 int start()
 {
-	massiv();
-	dynamic_array_test(3, 3);
+	potock();
 	system("pause");
 	return 0;
 }
