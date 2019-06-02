@@ -25,3 +25,4 @@ DLL void dynamic_array_free(int **A, size_t N);
 DLL void dynamic_array_test(size_t N, size_t M);
 DLL unsigned long long S_to_binary_(const char *s);
 DLL void test();
+DLL int assembler();

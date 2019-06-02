@@ -17,7 +17,7 @@ void __pragma((constructor)) premain()
 
 int start()
 {
-	potock();
+	zeit();
 	system("pause");
 	return 0;
 }

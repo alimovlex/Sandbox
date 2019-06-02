@@ -254,6 +254,7 @@ void zeit()
 	// using strftime to display time 
 	strftime(MY_TIME, sizeof(MY_TIME), "%x - %I:%M%p", tmp);
 	printf("Formatted date & time : %s\n", MY_TIME);
+	return vremya();
 }
 
 void vremya()
@@ -262,7 +263,7 @@ void vremya()
 	t = clock();
 	t = clock() - t;
 	double time_taken = ((double)t) / CLOCKS_PER_SEC;
-	printf("LS() took %f seconds to execute \n", time_taken);
+	printf("function took %f seconds to execute \n", time_taken);
 }
 
 void sigintHandler(int sig_num)
@@ -376,3 +377,14 @@ void dynamic_array_test(size_t N, size_t M) //---------------calling matrix
 }
 //--------------------------------dynamic array over
 
+int assembler()
+{
+	int joe = 1234, fred;
+	__asm
+	{
+		mov eax, joe; eax = joe(1234)
+		add eax, 2; eax += 2 (1236)
+		mov fred, eax; fred = eax(1236)
+	};
+	return fred;
+}
