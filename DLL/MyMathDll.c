@@ -5,13 +5,11 @@
 #include <errno.h>
 #include <math.h>
 #include <time.h>
-#include <pthread.h>
 #include <signal.h>
 #include <setjmp.h>
 #include "unistd.h"
 #include "dirent.h"
 #include "MyMathDll.h"
-
 #define MIN(a,b) (((a)<(b)) ? a : b)
 #define MAX(a,b) (((a)>(b)) ? a : b)
 #define MULTIPLY(a, b) a*b 
@@ -50,7 +48,7 @@ struct Data
 	double g; //8 byte
 	long double h; //8 byte
 	string str[0]; //1 byte
-};
+}infa;
 
 void test()
 {
@@ -127,7 +125,7 @@ void swap(int *num1, int *num2)
 	*num1 = *num2;
 	*num2 = temp;
 }
-void swap2(char *str1, char *str2)
+void swap_str(char *str1, char *str2)
 {
 	char *temp = (char *)malloc((strlen(str1) + 1) * sizeof(char));
 	strcpy(temp, str1);
@@ -230,7 +228,7 @@ void memory()
 	int8_t z = 2;
 	char b = 'G';
 	long double c = 3.14;
-	struct Data infa;
+	struct Data;
 	//-------------------------------printing the variables defined above along with their sizes 
 	printf("Size of char %d\n",sizeof(b));
 	printf("Size of long int %d\n",sizeof(a));
@@ -254,7 +252,7 @@ void zeit()
 	// using strftime to display time 
 	strftime(MY_TIME, sizeof(MY_TIME), "%x - %I:%M%p", tmp);
 	printf("Formatted date & time : %s\n", MY_TIME);
-	return vremya();
+	//return vremya();
 }
 
 void vremya()
@@ -275,107 +273,41 @@ void sigintHandler(int sig_num)
 		fflush(stdout);
 }
 
-void freeze()
+void except(int x,int y)
 {
-	signal(SIGINT, sigintHandler);
-	/* Infinite loop */
-	while (1)
-	{
-	}
-}
-
-void except()
-{
+	double z = 0;
 	TRY
 	{
-		printf("In Try Statement\n");
+		if (y == 0)
 	THROW;
-	printf("I do not appear\n");
+	printf("No exception caught \n");
+	z = x / y;
+	//printf("Z= %d\n", z);
 	}
 		CATCH
 	{
-		printf("Got Exception!\n");
+		printf("Division by zero\n");
 	}
 	ETRY;
 }
 
-void massiv()
+void massiv(int size)
 {
 	srand((unsigned)time(NULL));
 	int t, i, num[3][3];
-	char word[] = "GeeksforGeeks";
-	string *str = strdup(word);//duplicate string
 	/* загрузка чисел */
-	for (t = 0; t<3; t++)
-		for (i = 0; i<3; i++)
+	for (t = 0; t<size; t++)
+		for (i = 0; i<size; i++)
 			num[t][i] = rand()%10;
 	/* вывод чисел */
 	printf("Static array:\n");
-	for (t = 0; t<3; t++)
+	for (t = 0; t<size; t++)
 	{
-		for (i = 0; i<3; i++)
+		for (i = 0; i<size; i++)
 			printf("%d ", num[t][i]);
 		printf("\n");
 	}
-	printf("%s\n", str);
 }
-
-//---------------------------dynamic array
-
-void dynamic_array_print(int **A, size_t N, size_t M)
-{
-	for (int i = 0; i < N; i++) 
-	{
-		for (int j = 0; j < M; j++) 
-		{
-			printf("%*d", 5, A[i][j]);
-		}
-		printf("\n");
-	}
-}
-/*
-return pointer on 2d dynamic array
-!allocates memory -> to be freed later
-*/
-
-int ** dynamic_array_alloc(size_t N, size_t M)
-{
-	int **A = (int **)malloc(N * sizeof(int *));
-	for (int i = 0; i < N; i++) 
-	{
-		A[i] = (int *)malloc(M * sizeof(int));
-	}
-	return A;
-}
-
-void dynamic_array_free(int **A, size_t N)
-{
-	for (int i = 0; i < N; i++) 
-	{
-		free(A[i]);
-	}
-	free(A);
-}
-
-void dynamic_array_test(size_t N, size_t M) //---------------calling matrix
-{
-	srand((unsigned)time(NULL));
-	int **A = dynamic_array_alloc(N, M);
-	//int x = 1;
-	for (int i = 0; i < N; i++) 
-	{
-		for (int j = 0; j < M; j++) 
-		{
-			A[i][j] = rand()%10;
-			//x += 1;
-		}
-	}
-	printf("Dynamic array:\n");
-	dynamic_array_print(A, N, M);
-	/*memory investigation*/
-	dynamic_array_free(A, N);
-}
-//--------------------------------dynamic array over
 
 int assembler()
 {
@@ -388,3 +320,60 @@ int assembler()
 	};
 	return fred;
 }
+
+//---------------------------dynamic array
+
+void matrix_print(int **A, size_t N, size_t M)
+{
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			printf("%*d", 5, A[i][j]);
+		}
+		printf("\n");
+	}
+}
+/*
+return pointer on 2d dynamic array
+!allocates memory -> to be freed later
+*/
+
+int ** matrix_alloc(size_t N, size_t M)
+{
+	int **A = (int **)malloc(N * sizeof(int *));
+	for (int i = 0; i < N; i++)
+	{
+		A[i] = (int *)malloc(M * sizeof(int));
+	}
+	return A;
+}
+
+void matrix_free(int **A, size_t N)
+{
+	for (int i = 0; i < N; i++)
+	{
+		free(A[i]);
+	}
+	free(A);
+}
+
+void matrix(size_t N, size_t M) //---------------calling matrix
+{
+	srand((unsigned)time(NULL));
+	int **A = matrix_alloc(N, M);
+	//int x = 1;
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			A[i][j] = rand() % 10;
+			//x += 1;
+		}
+	}
+	printf("Dynamic array:\n");
+	matrix_print(A, N, M);
+	/*memory investigation*/
+	matrix_free(A, N);
+}
+//--------------------------------dynamic array over

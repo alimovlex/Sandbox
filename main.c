@@ -7,17 +7,16 @@
 #include "unistd.h"
 #include "Multithread.h"
 #include "dirent.h"
-#include "DataStruct.h"
 #include "MyMathDll.h"
-#define start main
-void __pragma((constructor)) premain()
-{
-	puts("premain()\n");
-}
+#include "DataStruct.h"
 
-int start()
+int main()
 {
-	zeit();
+	except(50,0);
+	massiv(3);
+	matrix(3, 3);
+	//while(1)
+	list();
 	system("pause");
 	return 0;
 }
