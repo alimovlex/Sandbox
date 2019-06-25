@@ -8,15 +8,16 @@
 #include "Multithread.h"
 #include "dirent.h"
 #include "MyMathDll.h"
-#include "DataStruct.h"
+#include "List.h"
 
 int main()
 {
-	except(50,0);
-	massiv(3);
-	matrix(3, 3);
+	//except(50,0);
+	//massiv(3);
+	//matrix(3, 3);
 	//while(1)
 	list();
+	circuitList();
 	system("pause");
 	return 0;
 }
