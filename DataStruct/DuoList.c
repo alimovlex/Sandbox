@@ -15,6 +15,55 @@ struct Node
 	struct Node* prev; // Pointer to previous node in DLL 
 };
 
+/* Function to reverse a Doubly Linked List */
+void reverse_double(struct Node **head_ref)
+{
+	struct Node *temp = NULL;
+	struct Node *current = *head_ref;
+
+	/* swap next and prev for all nodes of
+	doubly linked list */
+	while (current != NULL)
+	{
+		temp = current->prev;
+		current->prev = current->next;
+		current->next = temp;
+		current = current->prev;
+	}
+
+	/* Before changing head, check for the cases like empty
+	list and list with only one node */
+	if (temp != NULL)
+		*head_ref = temp->prev;
+}
+
+/* Function to delete a node in a Doubly Linked List.
+head_ref --> pointer to head node pointer.
+del  -->  pointer to node to be deleted. */
+void eraseNode(struct Node** head_ref, struct Node* del)
+{
+	/* base case */
+	if (*head_ref == NULL || del == NULL)
+		return;
+
+	/* If node to be deleted is head node */
+	if (*head_ref == del)
+		*head_ref = del->next;
+
+	/* Change next only if node to be deleted is NOT the last node */
+	if (del->next != NULL)
+		del->next->prev = del->prev;
+
+	/* Change prev only if node to be deleted is NOT the first node */
+	if (del->prev != NULL)
+		del->prev->next = del->next;
+
+	/* Finally, free the memory occupied by del*/
+	free(del);
+	return;
+}
+
+
 /* Given a reference (pointer to pointer) to the head of a list
 and an int, inserts a new node on the front of the list. */
 void push_double(struct Node** head_ref, int new_data)
@@ -110,16 +159,23 @@ void dual_list()
 {
 	/* Start with the empty list */
 	struct Node* head = NULL;
-	// Insert 6.  So linked list becomes 6->NULL 
-	append(&head, 6);
-	// Insert 7 at the beginning. So linked list becomes 7->6->NULL 
+	// Insert 7 at the beginning. So linked list becomes 7->NULL 
 	push_double(&head, 7);
-	// Insert 1 at the beginning. So linked list becomes 1->7->6->NULL 
+	// Insert 1 at the beginning. So linked list becomes 1->7->NULL 
 	push_double(&head, 1);
-	// Insert 4 at the end. So linked list becomes 1->7->6->4->NULL 
+	push_double(&head, 9);
+	// Insert 4 at the end. So linked list becomes 1->7->4->NULL 
 	append(&head, 4);
-	// Insert 8, after 7. So linked list becomes 1->7->8->6->4->NULL 
-	insertAfter(head->next, 8);
 	printf("Created DLL is: ");
+	print_double(head);
+	reverse_double(&head);
+	printf("Reversed Linked list \n");
+	print_double(head);
+	/* delete nodes from the doubly linked list */
+	eraseNode(&head, head); /*delete first node*/
+	eraseNode(&head, head->next); /*delete middle node*/
+	eraseNode(&head, head->next); /*delete last node*/
+	/* Modified linked list will be NULL<-8->NULL */
+	printf("Modified Linked list \n");
 	print_double(head);
 }
