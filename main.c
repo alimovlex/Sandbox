@@ -10,6 +10,8 @@
 #include "Tutorial.h"
 #include "List.h"
 #include "DuoList.h"
+#include "Array.h"
+#include "Stack.h"
 int main()
 {
 	//except(50,0);
@@ -19,6 +21,7 @@ int main()
 	//circuitList();
 	//list();
 	dual_list();
+	stack();
 	system("pause");
 	return 0;
 }
