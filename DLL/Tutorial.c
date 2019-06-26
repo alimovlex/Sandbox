@@ -9,7 +9,7 @@
 #include <setjmp.h>
 #include "unistd.h"
 #include "dirent.h"
-#include "MyMathDll.h"
+#include "Tutorial.h"
 #define MIN(a,b) (((a)<(b)) ? a : b)
 #define MAX(a,b) (((a)>(b)) ? a : b)
 #define MULTIPLY(a, b) a*b 

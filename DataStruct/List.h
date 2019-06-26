@@ -18,3 +18,4 @@ DLL void rotate(struct Node **head_ref, int k);
 DLL void push_circle(struct Node **head_ref, int data);
 DLL void druekenList(struct Node *head);
 DLL void circuitList();
+DLL void splitList(struct Node *head, struct Node **head1_ref, struct Node **head2_ref);

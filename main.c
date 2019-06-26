@@ -7,17 +7,18 @@
 #include "unistd.h"
 #include "Multithread.h"
 #include "dirent.h"
-#include "MyMathDll.h"
+#include "Tutorial.h"
 #include "List.h"
-
+#include "DuoList.h"
 int main()
 {
 	//except(50,0);
 	//massiv(3);
 	//matrix(3, 3);
 	//while(1)
-	list();
-	circuitList();
+	//circuitList();
+	//list();
+	dual_list();
 	system("pause");
 	return 0;
 }

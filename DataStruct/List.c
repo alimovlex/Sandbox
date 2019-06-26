@@ -250,8 +250,45 @@ void druekenList(struct Node *head)
 		{
 			printf("%d ", temp->data);
 			temp = temp->next;
-		} while (temp != head);
+		} 
+		while (temp != head);
 	}
+	printf("\n");
+}
+
+void splitList(struct Node *head, struct Node **head1_ref, struct Node **head2_ref)
+{
+	struct Node *slow_ptr = head;
+	struct Node *fast_ptr = head;
+
+	if (head == NULL)
+		return;
+
+	/* If there are odd nodes in the circular list then
+	fast_ptr->next becomes head and for even nodes
+	fast_ptr->next->next becomes head */
+	while (fast_ptr->next != head && fast_ptr->next->next != head)
+	{
+		fast_ptr = fast_ptr->next->next;
+		slow_ptr = slow_ptr->next;
+	}
+
+	/* If there are even elements in list then move fast_ptr */
+	if (fast_ptr->next->next == head)
+		fast_ptr = fast_ptr->next;
+
+	/* Set the head pointer of first half */
+	*head1_ref = head;
+
+	/* Set the head pointer of second half */
+	if (head->next != head)
+		*head2_ref = slow_ptr->next;
+
+	/* Make second half circular */
+	fast_ptr->next = slow_ptr->next;
+
+	/* Make first half circular */
+	slow_ptr->next = head;
 }
 
 void deleteList(struct Node** head_ref)
@@ -432,13 +469,20 @@ void circuitList()
 {
 	/* Initialize lists as empty */
 	struct Node *head = NULL;
-
+	struct Node *head1 = NULL;
+	struct Node *head2 = NULL;
 	/* Created linked list will be 11->2->56->12 */
-	push(&head, 12);
-	push(&head, 56);
-	push(&head, 2);
-	push(&head, 11);
-
+	push_circle(&head, 12);
+	push_circle(&head, 56);
+	push_circle(&head, 2);
+	push_circle(&head, 11);
 	printf("Contents of Circular Linked List\n");
-	printList(head);
+	druekenList(head);
+	/* Split the list */
+	splitList(head, &head1, &head2);
+	printf("First Circular Linked List\n");
+	druekenList(head1);
+	printf("Second Circular Linked List\n");
+	druekenList(head2);
+	//deleteList(&head);
 }
