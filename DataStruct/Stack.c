@@ -9,58 +9,70 @@
 #include "Stack.h"
 
 // A structure to represent a stack 
-struct StackNode 
+/*Переменная ошибок*/
+int errorStackArray;
+/*Инициализация стека*/
+void initStackArray(StackArray *S) 
 {
-	int data;
-	struct StackNode* next;
-};
-
-struct StackNode* neueNode(int data)
-{
-	struct StackNode* stackNode = (struct StackNode*)malloc(sizeof(struct StackNode));
-	stackNode->data = data;
-	stackNode->next = NULL;
-	return stackNode;
+	S->uk = 0;
+	errorStackArray = okStackArray;
 }
-
-int isEmpty(struct StackNode* root)
+/*Включение в стек*/
+void putStackArray(StackArray *S, int E) 
 {
-	return !root;
+	/*Если стек переполнен*/
+	if (isFullStackArray(S)) 
+	{
+		return;
+	}
+	/*Иначе*/
+	S->buf[S->uk] = E;				// Включение элемента
+	S->uk++;							 	// Сдвиг указателя
 }
-
-void pusch(struct StackNode** root, int data)
+/*Исключение из стека*/
+void getStackArray(StackArray *S, int *E) 
 {
-	struct StackNode* stackNode = neueNode(data);
-	stackNode->next = *root;
-	*root = stackNode;
-	printf("%d pushed to stack\n", data);
+	/*Если стек пуст*/
+	if (isEmptyStackArray(S)) 
+	{
+		return;
+	}
+	/*Иначе*/
+	*E = S->buf[S->uk - 1];		// Считывание элемента в переменную
+	S->uk--;							 	// Сдвиг указателя
 }
-
-int pop(struct StackNode** root)
+/*Предикат: полон ли стек*/
+int isFullStackArray(StackArray *S) 
 {
-	if (isEmpty(*root))
-		return INT_MIN;
-	struct StackNode* temp = *root;
-	*root = (*root)->next;
-	int popped = temp->data;
-	free(temp);
-
-	return popped;
+	if (S->uk == SIZE_STACK_ARRAY) 
+	{
+		errorStackArray = fullStackArray;
+		return 1;
+	}
+	return 0;
 }
-
-int peek(struct StackNode* root)
+/*Предикат: пуст ли стек*/
+int isEmptyStackArray(StackArray *S) 
 {
-	if (isEmpty(root))
-		return INT_MIN;
-	return root->data;
+	if (S->uk == 0) 
+	{
+		errorStackArray = emptyStackArray;
+		return 1;
+	}
+	return 0;
 }
-
 void stack()
 {
-	struct StackNode* root = NULL;
-	pusch(&root, 10);
-	pusch(&root, 20);
-	pusch(&root, 30);
-	printf("%d popped from stack\n", pop(&root));
-	printf("Top element is %d\n", peek(root));
+	/*Тестирование стека*/
+	printf("Array stack\n");
+	StackArray S;
+	int a;
+	initStackArray(&S);
+	putStackArray(&S, 10);
+	putStackArray(&S, 15);
+	printf("Entered: 10, 15\nOutput: ");
+	getStackArray(&S, &a);
+	printf("%d ", a);
+	getStackArray(&S, &a);
+	printf("%d\n", a);
 }
