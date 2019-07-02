@@ -79,60 +79,40 @@ void test()
 	//free(sizeof(struct numbers));
 }
 
-void foo()
+
+
+void pointers(int *p, void *ptr)
 {
-	int a = 10;
-	static int sa = 10; //example of static variable (it saves its value over each function calling)
-
-	a += 5;
-	sa += 5;
-
-	printf("a = %d, sa = %d\n", a, sa);
-}
-
-void pointers()
-{
-	int j = 63, x = 4, i = 0,a=10;
+	int  i = 0,a=10;
 	float y = 5.5;
-	int *p = NULL;
-	p = &j;
 	int **z = &p;
 	**z = 70;
-	void *ptr; //the type of this pointer in the printf function
-	ptr = &x;
-	printf("The address of j is 0x%02X\n", &j);
 	printf("p contains address 0x%02X\n", p);
-	printf("The value of j is %d\n", j);
 	printf("p is pointing to the value %d\n", *p);
 	// (int*)ptr - does type casting of void  
 	// *((int*)ptr) dereferences the typecasted  
 	// void pointer variable. 
 	printf("Integer variable is = %d\n", *((int*)ptr));
-
 	// void pointer is now float 
 	ptr = &y;
 	printf("Float variable is= %.2f\n", *((float*)ptr));
 	void(*ls_ptr)();  //pointer to function
-	ls_ptr = &foo;
-	for (i = 0; i < 10; ++i)
-	(*ls_ptr)(&a);
+	ls_ptr = &listFiles;
+	(*ls_ptr)();
 }
 
-void swap(int *num1, int *num2)
+void foo()
 {
-	int temp;
-	temp = *num1;
-	*num1 = *num2;
-	*num2 = temp;
+	static int sa = 10; //example of static variable (it saves its value over each function calling)
+	int j = 63, x = 4, i = 0, a = 10;
+	a += 5;
+	sa += 5;
+	printf("a = %d, sa = %d\n", a, sa);
+	printf("The address of j is 0x%02X\n", &j);
+	printf("The value of j is %d\n", j);
+	pointers(&j, &x);
 }
-void swap_str(char *str1, char *str2)
-{
-	char *temp = (char *)malloc((strlen(str1) + 1) * sizeof(char));
-	strcpy(temp, str1);
-	strcpy(str1, str2);
-	strcpy(str2, temp);
-	free(temp);
-}
+
 void error()
 {
 	float k = -5;

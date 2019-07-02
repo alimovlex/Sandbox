@@ -12,6 +12,9 @@
 #include "DuoList.h"
 #include "Array.h"
 #include "Stack.h"
+#include "Queue.h"
+#include "Dynamic_queue.h"
+
 int main()
 {
 	//except(50,0);
@@ -20,8 +23,10 @@ int main()
 	//while(1)
 	//circuitList();
 	//list();
-	dual_list();
+	//dual_list();
 	stack();
+	queue(6);
+	warteschlange();
 	system("pause");
 	return 0;
 }
