@@ -27,6 +27,7 @@ int main()
 	stack();
 	queue(6);
 	warteschlange();
+	except(5, 0);
 	printf("Assembly output = %d\n",assembler());
 	system("pause");
 	return 0;
