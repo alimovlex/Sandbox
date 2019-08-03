@@ -30,3 +30,8 @@ DLL int isFullStackArray(StackArray *S);								// Предикат: полон ли стек
 DLL int isEmptyStackArray(StackArray *S);								// Предикат: пуст ли стек
 /**************************/
 #endif
+//---------------------------------------------Habrostack
+DLL void s_push(struct comp **top, int D);
+DLL void s_delete_key(struct comp **top, int N);
+DLL void s_print(struct comp *top);
+DLL void habrostack();

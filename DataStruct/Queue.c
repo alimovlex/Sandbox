@@ -96,10 +96,11 @@ void queue(int size)
 		a = rand() % 10;
 		insert(q, a);
 	}
-	printf("The queue : ");
+	printf("The queue: ");
 	print(q);
 		a = remove(q);
 		printf("\n");
+		printf("Queue after removal:\n");
 	print(q);
 	printf("\n");
 }

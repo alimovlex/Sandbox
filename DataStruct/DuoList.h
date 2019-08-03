@@ -5,6 +5,7 @@
 #endif
 
 DLL void push_double(struct Node** head_ref, int new_data);
+DLL void insertBefore(struct Node** head_ref, struct Node* next_node, int new_data);
 DLL void insertAfter(struct Node* prev_node, int new_data);
 DLL void append(struct Node** head_ref, int new_data);
 DLL void print_double(struct Node* node);

@@ -1,4 +1,3 @@
-/* Written by JJL */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -23,33 +22,21 @@ struct Node *newNode(int data)
 	return new_node;
 }
 
-/* Reverses the linked list in groups of size k and returns the
-pointer to the new head node. */
-struct Node *rewerse(struct Node *head, int k)
+struct Node* circular(struct Node* head)
 {
-	struct Node* current = head;
-	struct Node* next = NULL;
-	struct Node* prev = NULL;
-	int count = 0;
+	// declare a node variable start and  
+	// assign head node into start node. 
+	struct Node* start = head;
 
-	/*reverse first k nodes of the linked list */
-	while (current != NULL && count < k)
-	{
-		next = current->next;
-		current->next = prev;
-		prev = current;
-		current = next;
-		count++;
-	}
+	// check that while head->next not equal 
+	// to NULL then head points to next node. 
+	while (head->next != NULL)
+		head = head->next;
 
-	/* next is now a pointer to (k+1)th node
-	Recursively call for the list starting from current.
-	And make rest of the list as next of first node */
-	if (next != NULL)
-		head->next = rewerse(next, k);
-
-	/* prev is new head of the input list */
-	return prev;
+	// if head->next points to NULL then  
+	// start assign to the head->next node. 
+	head->next = start;
+	return start;
 }
 
 /* Function to swap nodes x and y in linked list by
@@ -171,28 +158,6 @@ void push(struct Node** head_ref, int new_data)
 	(*head_ref) = new_node;
 }
 
-/* Function to insert a node at the beginning of a Circular
-linked list */
-void push_circle(struct Node **head_ref, int data)
-{
-	struct Node *ptr1 = (struct Node *)malloc(sizeof(struct Node));
-	struct Node *temp = *head_ref;
-	ptr1->data = data;
-	ptr1->next = *head_ref;
-
-	/* If linked list is not NULL then set the next of last node */
-	if (*head_ref != NULL)
-	{
-		while (temp->next != *head_ref)
-			temp = temp->next;
-		temp->next = ptr1;
-	}
-	else
-		ptr1->next = ptr1; /*For the first node */
-
-	*head_ref = ptr1;
-}
-
 /* Given a reference (pointer to pointer) to the head of a list
 and a position, deletes the node at the given position */
 void deleteNode(struct Node **head_ref, int position)
@@ -241,56 +206,6 @@ void printList(struct Node *n)
 	printf("\n");
 }
 
-void druekenList(struct Node *head)
-{
-	struct Node *temp = head;
-	if (head != NULL)
-	{
-		do
-		{
-			printf("%d ", temp->data);
-			temp = temp->next;
-		} 
-		while (temp != head);
-	}
-	printf("\n");
-}
-
-void splitList(struct Node *head, struct Node **head1_ref, struct Node **head2_ref)
-{
-	struct Node *slow_ptr = head;
-	struct Node *fast_ptr = head;
-
-	if (head == NULL)
-		return;
-
-	/* If there are odd nodes in the circular list then
-	fast_ptr->next becomes head and for even nodes
-	fast_ptr->next->next becomes head */
-	while (fast_ptr->next != head && fast_ptr->next->next != head)
-	{
-		fast_ptr = fast_ptr->next->next;
-		slow_ptr = slow_ptr->next;
-	}
-
-	/* If there are even elements in list then move fast_ptr */
-	if (fast_ptr->next->next == head)
-		fast_ptr = fast_ptr->next;
-
-	/* Set the head pointer of first half */
-	*head1_ref = head;
-
-	/* Set the head pointer of second half */
-	if (head->next != head)
-		*head2_ref = slow_ptr->next;
-
-	/* Make second half circular */
-	fast_ptr->next = slow_ptr->next;
-
-	/* Make first half circular */
-	slow_ptr->next = head;
-}
-
 void deleteList(struct Node** head_ref)
 {
 	/* deref head_ref to get the real head */
@@ -320,25 +235,6 @@ int getCount(struct Node* head)
 		current = current->next;
 	}
 	return count;
-}
-
-int detectloop(struct Node* list)
-{
-	struct Node *slow_p = list, *fast_p = list;
-
-	while (slow_p && fast_p && fast_p->next) 
-	{
-		slow_p = slow_p->next;
-		fast_p = fast_p->next->next;
-		if (slow_p == fast_p)
-		{
-			printf("Found Loop");
-			return 1;
-		}
-		else
-			printf("No loop found\n");
-	}
-	return 0;
 }
 
 /* Adds contents of two linked lists and return the head node of resultant list */
@@ -415,6 +311,7 @@ void list()
 	push(&head, 3);
 	push(&head, 2);
 	//End of the addition
+	circular(head);
 	printf("Printing linked list:\n");
 	printList(head);
 	printf("count of nodes is %d\n", getCount(head));
@@ -430,12 +327,10 @@ void list()
 	reverse(&head);
 	printf("Reversed Linked list \n");
 	printList(head);
-	head = rewerse(head, 3);
-	printf("Reversed Linked list \n");
-	printList(head);
 	rotate(&head, 4);
 	printf("Rotated Linked list \n");
 	printList(head);
+
 	//detectloop(head);
 	// create first list 7->5->9->4->6 
 	push(&first, 6);
@@ -465,24 +360,3 @@ void list()
 	printf("Linked list deleted\n");
 }
 
-void circuitList()
-{
-	/* Initialize lists as empty */
-	struct Node *head = NULL;
-	struct Node *head1 = NULL;
-	struct Node *head2 = NULL;
-	/* Created linked list will be 11->2->56->12 */
-	push_circle(&head, 12);
-	push_circle(&head, 56);
-	push_circle(&head, 2);
-	push_circle(&head, 11);
-	printf("Contents of Circular Linked List\n");
-	druekenList(head);
-	/* Split the list */
-	splitList(head, &head1, &head2);
-	printf("First Circular Linked List\n");
-	druekenList(head1);
-	printf("Second Circular Linked List\n");
-	druekenList(head2);
-	//deleteList(&head);
-}
