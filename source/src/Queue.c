@@ -5,7 +5,6 @@
 #include <errno.h>
 #include <math.h>
 #include <time.h>
-#include "Queue.h"
 
 #define QMAX 100
 struct queue
@@ -54,7 +53,7 @@ void print(struct queue *q)
 	return;
 }
 
-int remove(struct queue *q) 
+int erase(struct queue *q) 
 {
 	int x;
 	if (isempty(q) == 1) 

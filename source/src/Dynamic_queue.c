@@ -6,7 +6,7 @@
 #include <math.h>
 #include <time.h>
 #include <limits.h>
-#include "Dynamic_queue.h"
+
 struct Queue
 {
 	int front, rear, size;

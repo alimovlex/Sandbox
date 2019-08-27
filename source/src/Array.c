@@ -5,17 +5,16 @@
 #include <errno.h>
 #include <math.h>
 #include <time.h>
-#include "Array.h"
 
 void massiv(int size)
 {
 	srand((unsigned)time(NULL));
 	int t, i, num[3][3];
-	/* загрузка чисел */
+	
 	for (t = 0; t<size; t++)
 		for (i = 0; i<size; i++)
 			num[t][i] = rand() % 10;
-	/* вывод чисел */
+	
 	printf("Static array:\n");
 	for (t = 0; t<size; t++)
 	{

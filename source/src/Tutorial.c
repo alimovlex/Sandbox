@@ -7,9 +7,8 @@
 #include <time.h>
 #include <signal.h>
 #include <setjmp.h>
-#include "unistd.h"
-#include "dirent.h"
-#include "Tutorial.h"
+#include <unistd.h>
+#include <dirent.h>
 #define MIN(a,b) (((a)<(b)) ? a : b)
 #define MAX(a,b) (((a)>(b)) ? a : b)
 #define MULTIPLY(a, b) a*b 
@@ -39,10 +38,10 @@ typedef char string;
 struct Data
 {
 	int i; //4 bytes
-	int8_t k; //1 byte
-	int16_t l; //2 byte
-	int32_t m; //4 byte
-	int64_t n; //8 byte
+	__int8_t k; //1 byte
+	__int16_t l; //2 byte
+	__int32_t m; //4 byte
+	__int64_t n; //8 byte
 	long int j; //8 byte
 	float f; //4 byte
 	double g; //8 byte
@@ -79,7 +78,21 @@ void test()
 	//free(sizeof(struct numbers));
 }
 
+void listFiles()
+{
+	DIR *dp;
+	struct dirent *ep;
 
+	dp = opendir("./");
+	if (dp != NULL)
+	{
+		while (ep = readdir(dp))
+			puts(ep->d_name);
+		(void)closedir(dp);
+	}
+	else
+		perror("Couldn't open the directory");
+}
 
 void pointers(int *p, void *ptr)
 {
@@ -111,41 +124,6 @@ void foo()
 	printf("The address of j is 0x%02X\n", &j);
 	printf("The value of j is %d\n", j);
 	pointers(&j, &x);
-}
-
-void error()
-{
-	float k = -5;
-	float num = 1000;
-	double result;
-	errno = 0;
-	result = sqrt(k);
-	if (errno == 0)
-		printf("%f ", result);
-	else if (errno == EDOM) //the domain is out of range
-		fprintf(stderr, "%s\n", strerror(errno));
-	errno = 0;
-	result = exp(num);
-	if (errno == 0)
-		printf("%f ", result);
-	else if (errno == ERANGE) // Result too large
-		fprintf(stderr, "%s\n", strerror(errno));
-}
-
-void listFiles()
-{
-	DIR *dp;
-	struct dirent *ep;
-
-	dp = opendir("./");
-	if (dp != NULL)
-	{
-		while (ep = readdir(dp))
-			puts(ep->d_name);
-		(void)closedir(dp);
-	}
-	else
-		perror("Couldn't open the directory");
 }
 
 void file()
@@ -196,7 +174,7 @@ void preprocessor()
 	printf("\nValue of __DATE__ : %s\n", __DATE__);
 	printf("\nValue of __TIME__ : %s\n", __TIME__);
 	printf("Multiplication = %d\n", MULTIPLY(20, 30));
-	printf(merge("Hello ", "World\n"));
+	//printf(merge("Hello ", "World\n"));
 	printf("%s\n", get(GeeksQuiz));
 	//printf("\a"); signal exclamation
 }
@@ -205,7 +183,7 @@ void memory()
 {
 	float x = 0.1;
 	long int a = 1;
-	int8_t z = 2;
+	__int8_t z = 2;
 	char b = 'G';
 	long double c = 3.14;
 	struct Data;
@@ -269,17 +247,5 @@ void except(int x,int y)
 		printf("Division by zero\n");
 	}
 	ETRY;
-}
-
-int assembler()
-{
-	int joe = 1234, fred;
-	__asm
-	{
-		mov eax, joe; eax = joe(1234)
-		add eax, 2; eax += 2 (1236)
-		mov fred, eax; fred = eax(1236)
-	};
-	return fred;
 }
 

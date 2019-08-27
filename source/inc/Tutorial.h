@@ -1,0 +1,14 @@
+void pointers();
+void swap(int *num1, int *num2);
+void listFiles();
+void file();
+void preprocessor();
+void memory();
+void zeit();
+void sigintHandler(int sig_num);
+void vremya();
+void foo();
+void except(int x,int y);
+void swap_str(char *str1, char *str2);
+unsigned long long S_to_binary_(const char *s);
+void test();

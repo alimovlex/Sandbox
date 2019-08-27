@@ -5,7 +5,6 @@
 #include <errno.h>
 #include <math.h>
 #include <time.h>
-#include "DuoList.h"
 
 /* Node of a doubly linked list */
 struct Node 

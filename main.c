@@ -1,10 +1,7 @@
-// Test.cpp : Defines the entry point for the console application.
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
-#include <pthread.h>
-#include "unistd.h"
 #include "Multithread.h"
 #include "dirent.h"
 #include "Tutorial.h"
@@ -20,7 +17,6 @@
 int main()
 {
 	queue(5);
-	system("pause");
 	return 0;
 }
 //-----

@@ -5,7 +5,7 @@
 #include <errno.h>
 #include <math.h>
 #include <time.h>
-#include "Circuit_List.h"
+
 struct Node
 {
 	int data;
