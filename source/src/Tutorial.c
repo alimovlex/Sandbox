@@ -100,7 +100,7 @@ void pointers(int *p, void *ptr)
 	float y = 5.5;
 	int **z = &p;
 	**z = 70;
-	printf("p contains address 0x%02X\n", p);
+	printf("p contains address %p\n", p);
 	printf("p is pointing to the value %d\n", *p);
 	// (int*)ptr - does type casting of void  
 	// *((int*)ptr) dereferences the typecasted  
@@ -121,7 +121,7 @@ void foo()
 	a += 5;
 	sa += 5;
 	printf("a = %d, sa = %d\n", a, sa);
-	printf("The address of j is 0x%02X\n", &j);
+	printf("The address of j is %p\n", &j);
 	printf("The value of j is %d\n", j);
 	pointers(&j, &x);
 }
@@ -249,3 +249,26 @@ void except(int x,int y)
 	ETRY;
 }
 
+void print_reverse(char* s)
+{
+    
+}
+
+void sandbox()
+{
+    float latitude, longtitude;
+    char info[80];
+    int started = 0;
+    printf("data=[");
+    while(scanf("%f,%f,%79[^\n]",&latitude,&longtitude,info)==3)
+    {
+        if(started)
+            printf(",\n");
+        else
+            started = 1;
+        //additional code
+        
+        printf("{latitude: %f, longtitude: %f, info: %s}", latitude, longtitude, info);
+    }
+    printf("\n]");
+}
