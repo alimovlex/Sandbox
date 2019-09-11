@@ -9,6 +9,8 @@
 #include <setjmp.h>
 #include <unistd.h>
 #include <dirent.h>
+#include <limits.h>
+#include <float.h>
 #define MIN(a,b) (((a)<(b)) ? a : b)
 #define MAX(a,b) (((a)>(b)) ? a : b)
 #define MULTIPLY(a, b) a*b 
@@ -34,6 +36,13 @@ unsigned long long S_to_binary_(const char *s)
 }
 
 typedef char string;
+
+struct sand
+{
+    float total;
+    int count;
+    int tax_percent;
+}box;
 
 struct Data
 {
@@ -63,8 +72,8 @@ void test()
 	printf("Octal RND number: %o\n", oct);
 	printf("Oct and Hex numbers: %o 0x%02X\n", oct, hex);
 	printf("~hex = 0x%02X\n", ~hex);
-	printf("bin<<1 = %d\n", bin << 1);
-	printf("bin>>1 = %d\n", bin >> 1);
+	printf("bin<<1 = %d\n", bin << 2);
+	printf("bin>>1 = %d\n", bin >> 2);
 	printf("postfix = %i\n", i++);//i=1
 	printf("prefix = %i\n", ++i);
 	printf("In C programming All graphic "
@@ -123,6 +132,7 @@ void foo()
 	printf("a = %d, sa = %d\n", a, sa);
 	printf("The address of j is %p\n", &j);
 	printf("The value of j is %d\n", j);
+        printf("address of function foo() is :%p\n", foo);
 	pointers(&j, &x);
 }
 
@@ -193,10 +203,15 @@ void memory()
 	printf("Size of long double %d\n", sizeof(c));
 	printf("Size of float %d\n", sizeof(x));
 	printf("Size of int %d\n", sizeof(z));
-	printf("Size of union %d\n", sizeof(infa));
+	printf("Size of structure %d\n", sizeof(infa));
+        printf("Value of INT_MAX %d\n", INT_MAX);
+        printf("Value of INT_MIN %d\n", INT_MIN);
+        printf("Value of FLT_MAX %f\n", FLT_MAX);
+        printf("Value of FLT_MIN %d\n", FLT_MIN);
+        
 }
 
-void zeit()
+clock_t zeit()
 {
 	time_t t;
 	struct tm *tmp;
@@ -210,7 +225,7 @@ void zeit()
 	// using strftime to display time 
 	strftime(MY_TIME, sizeof(MY_TIME), "%x - %I:%M%p", tmp);
 	printf("Formatted date & time : %s\n", MY_TIME);
-	//return vremya();
+	return vremya();
 }
 
 void vremya()
@@ -249,26 +264,27 @@ void except(int x,int y)
 	ETRY;
 }
 
-void print_reverse(char* s)
+float add_with_tax(float f)
 {
-    
+    box.total = 0.0;
+    box.count = 0;
+    box.tax_percent = 6;
+    float tax_rate = 1+box.tax_percent/100.0;
+    box.total = box.total + (f*tax_rate);
+    box.count++;
+    return box.total;
 }
 
 void sandbox()
 {
-    float latitude, longtitude;
-    char info[80];
-    int started = 0;
-    printf("data=[");
-    while(scanf("%f,%f,%79[^\n]",&latitude,&longtitude,info)==3)
+    float val;
+    printf("The price of the order: ");
+    while(scanf("%f",&val)==1)
     {
-        if(started)
-            printf(",\n");
-        else
-            started = 1;
-        //additional code
-        
-        printf("{latitude: %f, longtitude: %f, info: %s}", latitude, longtitude, info);
+        printf("The total price now is: %.2f\n", add_with_tax(val));
+        printf("The price of the order: ");
     }
-    printf("\n]");
+    printf("\nTotal: %.2f\n",box.total);
+    printf("The amount of food: %hi\n",box.count);
+    
 }
