@@ -37,9 +37,9 @@ void myCleanupFun (void)
 
 int main(int argc, char *argv[])
 {
-    //sandbox();
-      potock();
-    return 0;
+     //sandbox();
+    list();
+     return 0;
 }
 //-----
 //switch((int)(n1 > n2))  

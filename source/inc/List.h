@@ -7,5 +7,4 @@ int getCount(struct Node* head);
 void swapNodes(struct Node **head_ref, int x, int y);
 void reverse(struct Node** head_ref);
 struct Node* addTwoLists(struct Node* first, struct Node* second);
-struct Node* circular(struct Node* head);
 void rotate(struct Node **head_ref, int k);

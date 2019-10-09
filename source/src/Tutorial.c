@@ -22,7 +22,6 @@
 #define CATCH } else {
 #define ETRY } }while(0)
 #define THROW longjmp(ex_buf__, 1)
-
 #define B(x) S_to_binary_(#x)
 unsigned long long S_to_binary_(const char *s)
 {
@@ -37,14 +36,14 @@ unsigned long long S_to_binary_(const char *s)
 
 typedef char string;
 
-struct sand
+typedef struct sand
 {
     float total;
     int count;
     int tax_percent;
 }box;
 
-struct Data
+typedef struct Data
 {
 	int i; //4 bytes
 	__int8_t k; //1 byte
@@ -264,27 +263,20 @@ void except(int x,int y)
 	ETRY;
 }
 
-float add_with_tax(float f)
+typedef struct island
 {
-    box.total = 0.0;
-    box.count = 0;
-    box.tax_percent = 6;
-    float tax_rate = 1+box.tax_percent/100.0;
-    box.total = box.total + (f*tax_rate);
-    box.count++;
-    return box.total;
+    char *name;
+    char *opens;
+    char *closes;
+    struct island *next;
+}island;
+
+void display(island *start)
+{
+    
 }
 
 void sandbox()
 {
-    float val;
-    printf("The price of the order: ");
-    while(scanf("%f",&val)==1)
-    {
-        printf("The total price now is: %.2f\n", add_with_tax(val));
-        printf("The price of the order: ");
-    }
-    printf("\nTotal: %.2f\n",box.total);
-    printf("The amount of food: %hi\n",box.count);
     
 }

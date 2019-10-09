@@ -22,23 +22,6 @@ struct Node *newNode(int data)
 	return new_node;
 }
 
-struct Node* circular(struct Node* head)
-{
-	// declare a node variable start and  
-	// assign head node into start node. 
-	struct Node* start = head;
-
-	// check that while head->next not equal 
-	// to NULL then head points to next node. 
-	while (head->next != NULL)
-		head = head->next;
-
-	// if head->next points to NULL then  
-	// start assign to the head->next node. 
-	head->next = start;
-	return start;
-}
-
 /* Function to swap nodes x and y in linked list by
 changing links */
 void swapNodes(struct Node **head_ref, int x, int y)
@@ -311,7 +294,7 @@ void list()
 	push(&head, 3);
 	push(&head, 2);
 	//End of the addition
-	circular(head);
+	//circular(head);
 	printf("Printing linked list:\n");
 	printList(head);
 	printf("count of nodes is %d\n", getCount(head));
