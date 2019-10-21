@@ -1,1 +1,2 @@
 void potock();
+void piwo();
