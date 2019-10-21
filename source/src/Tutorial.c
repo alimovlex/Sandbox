@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <stdarg.h>
 #include <errno.h>
 #include <math.h>
 #include <time.h>
@@ -138,9 +139,9 @@ void foo()
 void file()
 {
 	//writing to file
-	FILE *fp = tmpfile();
+	FILE *fp= fopen("test.txt", "w+");
 	char buff[255];
-	fp = fopen("test.txt", "w+");
+	int descriptor = fileno(fp);
 	if (fp == NULL)
 	{
 		fprintf(stderr, "\nError opend file\n");
@@ -150,6 +151,7 @@ void file()
 	{
 		fprintf(fp, "This is testing for fprintf...\n");
 		fputs("This is testing for fputs...\n", fp);
+                printf("The file descriptor is %d\n", descriptor);
 		fclose(fp);
 	}
 	//reading the file
@@ -159,10 +161,6 @@ void file()
 		printf("%s\n", buff);
 	}
 	fclose(fp);
-	if (remove("test.txt") == 0)
-		printf("Deleted successfully\n");
-	else
-		printf("Unable to delete the file\n");
 	/*while (!feof(fp))
 	{
 	fgets(buff, 255, (FILE*)fp);
@@ -262,21 +260,69 @@ void except(int x,int y)
 	}
 	ETRY;
 }
+//------------------------------------------------function pointers
+enum response_type {DUMP, SECOND_CHANCE, MARRIAGE};
 
-typedef struct island
+typedef struct
 {
     char *name;
-    char *opens;
-    char *closes;
-    struct island *next;
-}island;
+    enum response_type type;
+}response;
 
-void display(island *start)
+void dump(response r)
 {
-    
+    printf("Dear %s,\n",r.name);
+    printf("Unfortunately, your recent dating partner has been calling us to say that you wouldn't see him.\n");   
+}
+
+void second_chance(response r)
+{
+    printf("Dear %s,\n",r.name);
+    printf("Good news: your recent partner has asked us to set up a additional dating. Call us asap.\n");
+}
+
+void marriage(response r)
+{
+    printf("Dear %s,\n",r.name);
+    printf("Congratulations! Your recent dating partner has called us with marriage offer.\n");
+}
+
+void(*replies[])(response) = {dump, second_chance, marriage}; //an array of pointers to functions in brackets
+void func_ptr()
+{
+    response r[] = 
+    {
+        {"Mike",DUMP}, {"Louis",SECOND_CHANCE}, {"Matthew",SECOND_CHANCE}, {"William",MARRIAGE}
+    };
+    int i;
+    for(i=0;i<4;i++)
+    {
+        (replies[r[i].type])(r[i]);
+    }
+        
+}
+//-------------------------------------------------Ending
+
+void arguments(int args,...) 
+{
+    va_list ap;
+    va_start(ap,args);
+    int i;
+    for(i=0;i<args;i++)
+        printf("Summ: %i\n",va_arg(ap,int));
+    va_end(ap);
+}
+
+void pythonScript()
+{
+   char *calledPython="./calledPython.py";  
+    char *pythonArgs[]={calledPython,"a","b","c",NULL};
+    execvp(calledPython,pythonArgs);//Python script execution
+    perror("Python execution");
 }
 
 void sandbox()
 {
     
 }
+

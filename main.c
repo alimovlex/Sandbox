@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <stdarg.h>
 #include <pthread.h>
 #include <unistd.h>
 #include "Tutorial.h"
@@ -37,8 +38,7 @@ void myCleanupFun (void)
 
 int main(int argc, char *argv[])
 {
-     //sandbox();
-    list();
+    sandbox();     
      return 0;
 }
 //-----

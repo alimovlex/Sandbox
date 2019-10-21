@@ -12,4 +12,7 @@ void except(int x,int y);
 void swap_str(char *str1, char *str2);
 unsigned long long S_to_binary_(const char *s);
 void test();
+void func_ptr();
+void arguments(int args,...);
+void pythonScript();
 void sandbox();
