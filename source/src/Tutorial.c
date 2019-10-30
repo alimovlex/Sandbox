@@ -12,6 +12,7 @@
 #include <dirent.h>
 #include <limits.h>
 #include <float.h>
+#include <pthread.h>
 #define MIN(a,b) (((a)<(b)) ? a : b)
 #define MAX(a,b) (((a)>(b)) ? a : b)
 #define MULTIPLY(a, b) a*b 
@@ -105,6 +106,9 @@ void listFiles()
 
 void pointers(int *p, void *ptr)
 {
+        box *m = (int*)malloc(sizeof(box));
+        printf("The size of the structure box = %d\n",sizeof(m));
+        free(m);
 	int  i = 0,a=10;
 	float y = 5.5;
 	int **z = &p;
@@ -121,6 +125,7 @@ void pointers(int *p, void *ptr)
 	void(*ls_ptr)();  //pointer to function
 	ls_ptr = &listFiles;
 	(*ls_ptr)();
+        
 }
 
 void foo()
@@ -245,7 +250,7 @@ void sigintHandler(int sig_num)
 
 void except(int x,int y)
 {
-	double z = 0;
+	double z = 0.0;
 	TRY
 	{
 		if (y == 0)
@@ -314,15 +319,28 @@ void arguments(int args,...)
 }
 
 void pythonScript()
-{
+{ 
    char *calledPython="./calledPython.py";  
     char *pythonArgs[]={calledPython,"a","b","c",NULL};
     execvp(calledPython,pythonArgs);//Python script execution
     perror("Python execution");
 }
 
+void(*func[])() = {listFiles, file, preprocessor, memory, zeit, vremya, foo, test, func_ptr, pythonScript};
+
+//WORK ON THREADS IS IN PROGRESS
 void sandbox()
 {
-    
+    pthread_t t0;
+    pthread_t t1;
+    if(pthread_create(&t0,NULL,test,NULL)==-1)
+        error("Unable to create a thread t0\n");
+    if(pthread_create(&t1,NULL,foo,NULL)==-1)
+        error("Unable to create a thread t1\n");
+    void *result;
+    if(pthread_join(t0,&result)==-1)
+        error("Can't join thread t0\n");
+    if(pthread_join(t1,&result)==-1)
+        error("Can't join thread t1\n");
 }
 

@@ -38,7 +38,7 @@ void myCleanupFun (void)
 
 int main(int argc, char *argv[])
 {
-    piwo();    
+     sandbox();
      return 0;
 }
 //-----
