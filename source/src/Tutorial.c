@@ -108,7 +108,7 @@ void pointers(int *p, void *ptr)
 {
         box *m = (int*)malloc(sizeof(box)); //structure init
         box num =  { 100.0, 200,100 };// C11 struct init
-        printf("The size of the structure box = %d %d\n",sizeof(m),sizeof(num));
+        printf("The size of the structure box = %d %d\n",sizeof(m),sizeof(num));//sizes
         free(m);
 	int  i = 0,a=10;
 	float y = 5.5;
