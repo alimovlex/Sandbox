@@ -38,8 +38,10 @@ void myCleanupFun (void)
 
 int main(int argc, char *argv[])
 {
-     sandbox();
-     return 0;
+    void(*functions[])() = {listFiles, file, preprocessor, memory, zeit, vremya, foo, test, func_ptr, pythonScript};
+    void(*func)()=sandbox;
+    func();
+    return 0;
 }
 //-----
 //switch((int)(n1 > n2))  

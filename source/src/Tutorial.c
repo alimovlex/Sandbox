@@ -5,6 +5,7 @@
 #include <stdarg.h>
 #include <errno.h>
 #include <math.h>
+#include <tgmath.h>
 #include <time.h>
 #include <signal.h>
 #include <setjmp.h>
@@ -106,10 +107,10 @@ void listFiles()
 
 void pointers(int *p, void *ptr)
 {
-        box *m = (int*)malloc(sizeof(box)); //structure init
-        box num =  { 100.0, 200,100 };// C11 struct init
-        printf("The size of the structure box = %d %d\n",sizeof(m),sizeof(num));//sizes
-        free(m);
+    box *m = (int*)malloc(sizeof(box)); //structure init
+    box num =  { 100.0, 200,100 };// C11 struct init
+    printf("The size of the structure box = %d %d\n",sizeof(m),sizeof(num));//sizes
+    free(m);
 	int  i = 0,a=10;
 	float y = 5.5;
 	int **z = &p;
@@ -123,9 +124,8 @@ void pointers(int *p, void *ptr)
 	// void pointer is now float 
 	ptr = &y;
 	printf("Float variable is= %.2f\n", *((float*)ptr));
-	void(*ls_ptr)();  //pointer to function
-	ls_ptr = &listFiles;
-	(*ls_ptr)();
+	void(*ls_ptr)()=listFiles;  //pointer to function
+	ls_ptr();
         
 }
 
