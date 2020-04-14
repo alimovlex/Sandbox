@@ -5,6 +5,7 @@
 #include <stdarg.h>
 #include <pthread.h>
 #include <unistd.h>
+#include "Exercism.h"
 #include "Tutorial.h"
 #include "List.h"
 #include "Circuit_List.h"
@@ -33,13 +34,13 @@ void myStartupFun (void)
 void myCleanupFun (void) 
 { 
     printf ("cleanup code after main()\n"); 
-} 
+}
 
 
 int main(int argc, char *argv[])
 {
     //void(*functions[])() = {listFiles, file, preprocessor, memory, zeit, vremya, foo, test, func_ptr, pythonScript};
-    void(*func)()=sandbox;
+    void(*func)()=exercism;
     func();
     return 0;
 }

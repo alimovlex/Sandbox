@@ -162,7 +162,7 @@ void file()
 	}
 	//reading the file
 	fp = fopen("test.txt", "r");
-	while (fgets(buff, sizeof buff, fp))
+	while (fgets(buff, sizeof(buff), fp))
 	{
 		printf("%s\n", buff);
 	}
@@ -214,6 +214,15 @@ void memory()
         
 }
 
+void vremya()
+{
+    clock_t t;
+    t = clock();
+    t = clock() - t;
+    double time_taken = ((double)t) / CLOCKS_PER_SEC;
+    printf("function took %f seconds to execute \n", time_taken);
+}
+
 clock_t zeit()
 {
 	time_t t;
@@ -228,17 +237,10 @@ clock_t zeit()
 	// using strftime to display time 
 	strftime(MY_TIME, sizeof(MY_TIME), "%x - %I:%M%p", tmp);
 	printf("Formatted date & time : %s\n", MY_TIME);
-	return vremya();
+	return 0;
 }
 
-void vremya()
-{
-	clock_t t;
-	t = clock();
-	t = clock() - t;
-	double time_taken = ((double)t) / CLOCKS_PER_SEC;
-	printf("function took %f seconds to execute \n", time_taken);
-}
+
 
 void sigintHandler(int sig_num)
 {

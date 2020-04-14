@@ -12,8 +12,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 
-void server()
-{
+void server() {
 
 }
 

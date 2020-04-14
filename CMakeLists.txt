@@ -4,7 +4,8 @@ project(Sandbox C)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pthread")
 include_directories(source/inc)
-
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
 add_executable(Sandbox
         source/inc/Array.h
         source/inc/Circuit_List.h
@@ -26,4 +27,5 @@ add_executable(Sandbox
         source/src/Queue.c
         source/src/Stack.c
         source/src/Tutorial.c
-        main.c)
+        main.c source/src/Exercism.c source/inc/Exercism.h)
+target_link_libraries(Sandbox ${GTEST_LIBRARIES} pthread)
