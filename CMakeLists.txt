@@ -17,6 +17,11 @@ add_executable(Sandbox
         source/inc/Queue.h
         source/inc/Stack.h
         source/inc/Tutorial.h
+        source/inc/OOBase.h
+        source/inc/OOCfg.h
+        source/inc/OOCore.h
+        source/inc/OODbg.h
+        source/inc/OOStd.h
         source/src/Array.c
         source/src/Circuit_List.c
         source/src/DuoList.c
@@ -27,5 +32,6 @@ add_executable(Sandbox
         source/src/Queue.c
         source/src/Stack.c
         source/src/Tutorial.c
-        main.c source/src/Exercism.c source/inc/Exercism.h)
+        source/src/OODbg.c
+        main.c source/src/Object.c source/inc/Object.h)
 target_link_libraries(Sandbox ${GTEST_LIBRARIES} pthread)

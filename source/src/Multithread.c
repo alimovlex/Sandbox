@@ -8,6 +8,25 @@
 #include <pthread.h>
 #include <unistd.h>
 #include "Tutorial.h"
+void myStartupFun (void) __attribute__ ((constructor));
+/* Apply the destructor attribute to myCleanupFun() so that it is executed after main() */
+void myCleanupFun (void) __attribute__ ((destructor));
+/* implementation of myStartupFun */
+void myStartupFun (void)
+{
+    printf ("startup code before main()\n");
+    unsigned int i = 1;
+    char *c = (char*)&i;
+    if (*c)
+        printf("Little endian\n");
+    else
+        printf("Big endian\n");
+}
+/* implementation of myCleanupFun */
+void myCleanupFun (void)
+{
+    printf ("\ncleanup code after main()\n");
+}
 
 enum response_type {NO, YES};
 void* does_not(void *a)
@@ -81,4 +100,22 @@ void piwo()
         pthread_join(threads[t],&result);
     }
     printf("Now %d bottles of beers are left on the wall\n",beers);
+}
+
+//WORK ON THREADS IS IN PROGRESS
+void multithreading()
+{
+
+    pthread_t t0;
+    pthread_t t1;
+    if(pthread_create(&t0,NULL,test,NULL)==-1)
+        perror("Unable to create a thread t0\n");
+    if(pthread_create(&t1,NULL,foo,NULL)==-1)
+        perror("Unable to create a thread t1\n");
+    void *result;
+    if(pthread_join(t0,&result)==-1)
+        perror("Can't join thread t0\n");
+    if(pthread_join(t1,&result)==-1)
+        perror("Can't join thread t1\n");
+
 }

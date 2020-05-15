@@ -14,6 +14,9 @@
 #include <limits.h>
 #include <float.h>
 #include <pthread.h>
+#include "OOStd.h"
+#include "Tutorial.h"
+
 #define MIN(a,b) (((a)<(b)) ? a : b)
 #define MAX(a,b) (((a)>(b)) ? a : b)
 #define MULTIPLY(a, b) a*b 
@@ -214,13 +217,14 @@ void memory()
         
 }
 
-void vremya()
+clock_t vremya()
 {
     clock_t t;
     t = clock();
     t = clock() - t;
     double time_taken = ((double)t) / CLOCKS_PER_SEC;
     printf("function took %f seconds to execute \n", time_taken);
+    return 0;
 }
 
 clock_t zeit()
@@ -331,19 +335,8 @@ void pythonScript()
 
 void(*func[])() = {listFiles, file, preprocessor, memory, zeit, vremya, foo, test, func_ptr, pythonScript};
 
-//WORK ON THREADS IS IN PROGRESS
 void sandbox()
 {
-    pthread_t t0;
-    pthread_t t1;
-    if(pthread_create(&t0,NULL,test,NULL)==-1)
-        perror("Unable to create a thread t0\n");
-    if(pthread_create(&t1,NULL,foo,NULL)==-1)
-        perror("Unable to create a thread t1\n");
-    void *result;
-    if(pthread_join(t0,&result)==-1)
-        perror("Can't join thread t0\n");
-    if(pthread_join(t1,&result)==-1)
-        perror("Can't join thread t1\n");
+
 }
 

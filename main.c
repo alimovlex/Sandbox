@@ -5,7 +5,7 @@
 #include <stdarg.h>
 #include <pthread.h>
 #include <unistd.h>
-#include "Exercism.h"
+#include "Object.h"
 #include "Tutorial.h"
 #include "List.h"
 #include "Circuit_List.h"
@@ -16,31 +16,13 @@
 #include "Dynamic_queue.h"
 #include "Inet.h"
 #include "Multithread.h"
-void myStartupFun (void) __attribute__ ((constructor)); 
-/* Apply the destructor attribute to myCleanupFun() so that it is executed after main() */
-void myCleanupFun (void) __attribute__ ((destructor)); 
-/* implementation of myStartupFun */
-void myStartupFun (void) 
-{ 
-    printf ("startup code before main()\n"); 
-    unsigned int i = 1; 
-    char *c = (char*)&i; 
-    if (*c)     
-       printf("Little endian\n"); 
-    else
-       printf("Big endian\n"); 
-} 
-/* implementation of myCleanupFun */
-void myCleanupFun (void) 
-{ 
-    printf ("cleanup code after main()\n"); 
-}
+
 
 
 int main(int argc, char *argv[])
 {
     //void(*functions[])() = {listFiles, file, preprocessor, memory, zeit, vremya, foo, test, func_ptr, pythonScript};
-    void(*func)()=exercism;
+    void(*func)()=objecting;
     func();
     return 0;
 }
