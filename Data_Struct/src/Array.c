@@ -5,23 +5,47 @@
 #include <errno.h>
 #include <math.h>
 #include <time.h>
-
+#include "sglib.h"
+SGLIB_DEFINE_ARRAY_SORTING_FUNCTIONS(int, SGLIB_NUMERIC_COMPARATOR)
 void massiv(int size)
 {
 	srand((unsigned)time(NULL));
-	int t, i, num[3][3];
-	
+	int t, i, num[3][3],a[4],b[4];
+	//-------------------------------Random Matrix-------------------------------
 	for (t = 0; t<size; t++)
 		for (i = 0; i<size; i++)
 			num[t][i] = rand() % 10;
-	
-	printf("Static array:\n");
+
+	printf("Static matrix:\n");
 	for (t = 0; t<size; t++)
 	{
 		for (i = 0; i<size; i++)
 			printf("%d ", num[t][i]);
 		printf("\n");
 	}
+    //-------------------------------Random Array one-------------------------------
+	for(i=0;i<size;i++)
+	    a[i]=rand()%10;
+    printf("Static array one:\n");
+    for(i=0;i<size;i++)
+        printf("%d\t", a[i]);
+    printf("\n");
+    SGLIB_ARRAY_SINGLE_QUICK_SORT(int, a, size, SGLIB_NUMERIC_COMPARATOR);
+    printf("Sorted array one:\n");
+    for(i=0;i<size;i++)
+        printf("%d\t", a[i]);
+    printf("\n");
+    //-------------------------------Random Array two-------------------------------
+    for(i=0;i<size;i++)
+        b[i]=rand()%10;
+    printf("Static array two:\n");
+    for(i=0;i<size;i++)
+        printf("%d\t", b[i]);
+    printf("\n");
+    sglib_int_array_heap_sort(b, size);
+    printf("Sorted array two:\n");
+    for(i=0;i<size;i++)
+        printf("%d\t", b[i]);
 }
 
 

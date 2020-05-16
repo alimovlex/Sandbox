@@ -5,7 +5,9 @@
 #include <errno.h>
 #include <math.h>
 #include <time.h>
-
+#include <malloc.h>
+#include "sglib.h"
+#define DLLIST_COMPARATOR(e1, e2) (e1->i - e2->i)
 /* Node of a doubly linked list */
 struct Node 
 {
@@ -13,6 +15,15 @@ struct Node
 	struct Node* next; // Pointer to next node in DLL 
 	struct Node* prev; // Pointer to previous node in DLL 
 };
+
+typedef struct dllist {
+    int i;
+    struct dllist *ptr_to_next;
+    struct dllist *ptr_to_previous;
+} dllist;
+
+SGLIB_DEFINE_DL_LIST_PROTOTYPES(dllist, DLLIST_COMPARATOR, ptr_to_previous, ptr_to_next);
+SGLIB_DEFINE_DL_LIST_FUNCTIONS(dllist, DLLIST_COMPARATOR, ptr_to_previous, ptr_to_next);
 
 /* Function to reverse a Doubly Linked List */
 void reverse_double(struct Node **head_ref)
@@ -210,4 +221,32 @@ void dual_list()
 	/* Modified linked list will be NULL<-8->NULL */
 	printf("Modified Linked list \n");
 	print_double(head);
+}
+
+void duolist(int size,int array[])
+{
+    int i,a;
+    dllist *l, *the_list;
+    struct sglib_dllist_iterator  it;
+    the_list = NULL;
+    for (i=1; i<size; i++)
+    {
+        sscanf(array[i],"%d", &a);
+        l = malloc(sizeof(dllist));
+        l->i = a;
+        sglib_dllist_add(&the_list, l);
+    }
+    // sort the list
+    sglib_dllist_sort(&the_list);
+    // print the list
+    for(l=sglib_dllist_get_first(the_list); l!=NULL; l=l->ptr_to_next) printf("%d ", l->i);
+    printf("\n");
+    // print the list in reversed direction
+    for(l=sglib_dllist_get_last(the_list); l!=NULL; l=l->ptr_to_previous) printf("%d ", l->i);
+    printf("\n");
+    // free the list
+    for(l=sglib_dllist_it_init(&it,the_list); l!=NULL; l=sglib_dllist_it_next(&it))
+    {
+        free(l);
+    }
 }

@@ -6,3 +6,4 @@ void print_double(struct Node* node);
 void dual_list();
 void eraseNode(struct Node** head_ref, struct Node* del);
 void reverse_double(struct Node **head_ref);
+

@@ -9,6 +9,7 @@ include_directories(ooc/inc)
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 add_executable(Sandbox
+        main.c
         Data_Struct/inc/Array.h
         Data_Struct/inc/Circuit_List.h
         Data_Struct/inc/DuoList.h
@@ -33,7 +34,9 @@ add_executable(Sandbox
         source/src/Multithread.c
         Data_Struct/src/Queue.c
         Data_Struct/src/Stack.c
+        Data_Struct/inc/sglib.h
         source/src/Tutorial.c
         ooc/src/OODbg.c
-        main.c source/src/Object.c source/inc/Object.h)
+        source/src/Object.c
+        source/inc/Object.h)
 target_link_libraries(Sandbox ${GTEST_LIBRARIES} pthread)
