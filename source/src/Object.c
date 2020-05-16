@@ -15,54 +15,61 @@
 #include <float.h>
 #include <pthread.h>
 #include "OOStd.h"
-
-CLASS(Animal) {
+//--------------------------------------------------------FIRST TUTORIAL----------------------------------------
+CLASS(Animal)
+{
         char *name;
         STATIC(Animal);
         vFn talk;
 };
-static int Animal_load(Animal *THIS,void *name) {
+static int Animal_load(Animal *THIS,void *name)
+{
     THIS->name = name;
     return 0;
 }
 ASM(Animal, Animal_load, NULL, NULL, NULL)
 
-CLASS_EX(Cat,Animal) {
+CLASS_EX(Cat,Animal)
+{
 STATIC_EX(Cat, Animal);
 };
-static void Meow(Animal *THIS){
+static void Meow(Animal *THIS)
+{
     printf("Meow!My name is %s!\n", THIS->name);
 }
 
-static int Cat_loadSt(StAnimal *THIS, void *PARAM){
+static int Cat_loadSt(StAnimal *THIS, void *PARAM)
+{
     THIS->talk = (void *)Meow;
     return 0;
 }
 ASM_EX(Cat,Animal, NULL, NULL, Cat_loadSt, NULL)
 
 
-CLASS_EX(Dog,Animal){
+CLASS_EX(Dog,Animal)
+{
 STATIC_EX(Dog, Animal);
 };
 
-static void Woof(Animal *THIS){
+static void Woof(Animal *THIS)
+{
     printf("Woof!My name is %s!\n", THIS->name);
 }
 
-static int Dog_loadSt(StAnimal *THIS, void *PARAM) {
+static int Dog_loadSt(StAnimal *THIS, void *PARAM)
+{
     THIS->talk = (void *)Woof;
     return 0;
 }
 ASM_EX(Dog, Animal, NULL, NULL, Dog_loadSt, NULL)
 
 
-
-void objecting()
+void test_animals()
 {
-    Animal *animals[4000];
+    Animal *animals[4];
     StAnimal *f;
     int i = 0;
-    for (i=0; i<4000; i++)
+    for (i=0; i<4; i++)
     {
         if(i%2==0)
             animals[i] = NEW(Dog,"Jack");
@@ -70,10 +77,45 @@ void objecting()
             animals[i] = NEW(Cat,"Lily");
     };
     f = ST(animals[0]);
-    for(i=0; i<4000; ++i) {
+    for(i=0; i<4; ++i) {
         f->talk(animals[i]);
     }
-    for (i=0; i<4000; ++i) {
+    for (i=0; i<4; ++i) {
         DELETE0(animals[i]);
     }
 }
+//--------------------------------------------------------SECOND TUTORIAL----------------------------------------
+void test2()
+{
+    Exception *e=GET_EXCEPTION(1);
+    TRY
+    THROW(e);
+    END_TRY
+}
+void test1()
+{
+    Exception e={"exception test2 has been changed!"};
+    SET_EXCEPTION(1,&e);
+    TRY
+    test2();
+    CATCH(&e)
+    fprintf(stderr,"!!! exception : %s\n",e.reason);
+    END_TRY
+}
+void exception()
+{
+    Exception excp[32]={
+            {"test1"},
+            {"test2"},
+            {"test3"},
+    };
+
+    SET_EXCEPTIONS(&excp,32);
+    TRY
+    test1();
+    FINALLY
+    fprintf(stderr,"final process\n");
+    END_TRY
+}
+
+//----------------------------------------------------------------------ENDING-----------------------------------

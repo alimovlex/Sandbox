@@ -1,1 +1,2 @@
-void objecting();
+void test_animals();
+void exception();

@@ -1,0 +1,10 @@
+void printList(struct Node *n);
+void list();
+void push(struct Node** head_ref, int new_data);
+void deleteNode(struct Node **head_ref, int position);
+void deleteList(struct Node** head_ref);
+int getCount(struct Node* head);
+void swapNodes(struct Node **head_ref, int x, int y);
+void reverse(struct Node** head_ref);
+struct Node* addTwoLists(struct Node* first, struct Node* second);
+void rotate(struct Node **head_ref, int k);

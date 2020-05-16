@@ -22,7 +22,9 @@
 int main(int argc, char *argv[])
 {
     //void(*functions[])() = {listFiles, file, preprocessor, memory, zeit, vremya, foo, test, func_ptr, pythonScript};
-    void(*func)()=objecting;
+    void(*func)()=test_animals;
+    func();
+    func=exception;
     func();
     return 0;
 }

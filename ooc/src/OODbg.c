@@ -18,7 +18,7 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-#include "OODbg.h"
+#include "../inc/OODbg.h"
 #ifdef __OOC_USING__ASSERT
 	void  __ooc_assert(const int mode,const  char *msg1, const  char *msg2, const  char *msg3){
 		fputs(msg1,stderr);
