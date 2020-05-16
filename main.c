@@ -13,10 +13,10 @@
 #include "Array.h"
 #include "Stack.h"
 #include "Queue.h"
-#include "Dynamic_queue.h"
+#include "Dynamic_Queue.h"
 #include "Inet.h"
 #include "Multithread.h"
-#include "sglib.h"
+#include "Data_Test.h"
 
 
 int main(int argc, char *argv[])
@@ -24,8 +24,8 @@ int main(int argc, char *argv[])
     //void(*functions[])() = {listFiles, file, preprocessor, memory, zeit, vremya, foo, test, func_ptr, pythonScript};
     //void(*func)()=test_animals;
     //func();
-    massiv(4);
-
+    //massiv(4);
+    data_test();
     return 0;
 
 }

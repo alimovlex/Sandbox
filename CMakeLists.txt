@@ -13,7 +13,7 @@ add_executable(Sandbox
         Data_Struct/inc/Array.h
         Data_Struct/inc/Circuit_List.h
         Data_Struct/inc/DuoList.h
-        Data_Struct/inc/Dynamic_queue.h
+        Data_Struct/inc/Dynamic_Queue.h
         source/inc/Inet.h
         Data_Struct/inc/List.h
         source/inc/Multithread.h
@@ -28,13 +28,15 @@ add_executable(Sandbox
         Data_Struct/src/Array.c
         Data_Struct/src/Circuit_List.c
         Data_Struct/src/DuoList.c
-        Data_Struct/src/Dynamic_queue.c
+        Data_Struct/src/Dynamic_Queue.c
         source/src/Inet.c
+        Data_Struct/src/Data_Test.c
         Data_Struct/src/List.c
         source/src/Multithread.c
         Data_Struct/src/Queue.c
         Data_Struct/src/Stack.c
         Data_Struct/inc/sglib.h
+        Data_Struct/inc/Data_Test.h
         source/src/Tutorial.c
         ooc/src/OODbg.c
         source/src/Object.c

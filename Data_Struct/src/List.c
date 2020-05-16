@@ -5,8 +5,8 @@
 #include <errno.h>
 #include <math.h>
 #include <time.h>
-
-
+#include "sglib.h"
+#define NODE_COMPARATOR(e1, e2) (e1->data - e2->data)
 struct Node
 {
 	int data;
@@ -139,6 +139,7 @@ void push(struct Node** head_ref, int new_data)
 	new_node->data = new_data;
 	new_node->next = (*head_ref);
 	(*head_ref) = new_node;
+    //SGLIB_SORTED_LIST_ADD(struct Node, head_ref, new_node, NODE_COMPARATOR, next); bugging sorting on addition
 }
 
 /* Given a reference (pointer to pointer) to the head of a list
@@ -272,12 +273,9 @@ void list()
 	struct Node* head = NULL;
 	struct Node* zweite = NULL;
 	struct Node* third = NULL;
-
-	struct Node* res = NULL;
 	struct Node* first = NULL;
-	struct Node* second = NULL;
 
-	// allocate 3 nodes in the heap   
+	// allocate 3 nodes in the heap
 	head = (struct Node*)malloc(sizeof(struct Node));
 	zweite = (struct Node*)malloc(sizeof(struct Node));
 	third = (struct Node*)malloc(sizeof(struct Node));
@@ -322,24 +320,16 @@ void list()
 	push(&first, 5);
 	push(&first, 7);
 	printf("First List is ");
+    printList(first);
+    printf("First Reversed List is ");
+    SGLIB_LIST_REVERSE(struct Node, first, next);
 	printList(first);
-
-	// create second list 8->4 
-	push(&second, 4);
-	push(&second, 8);
-	printf("Second List is ");
-	printList(second);
-
-	// Add the two lists and see result 
-	res = addTwoLists(first, second);
-	printf("Resultant list is ");
-	printList(res);
-
+    printf("First Sorted List is ");
+    SGLIB_LIST_SORT(struct Node, first, NODE_COMPARATOR, next);
+    printList(first);
 	printf("Deleting linked list\n");
 	deleteList(&head);
 	deleteList(&first);
-	deleteList(&second);
-	deleteList(&res);
 	printf("Linked list deleted\n");
 }
 
