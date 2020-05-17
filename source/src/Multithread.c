@@ -110,7 +110,7 @@ void multithreading()
     pthread_t t1;
     if(pthread_create(&t0,NULL,test,NULL)==-1)
         perror("Unable to create a thread t0\n");
-    if(pthread_create(&t1,NULL,foo,NULL)==-1)
+    if(pthread_create(&t1,NULL,ptr_test,NULL)==-1)
         perror("Unable to create a thread t1\n");
     void *result;
     if(pthread_join(t0,&result)==-1)

@@ -7,11 +7,12 @@ include_directories(source/inc)
 include_directories(Data_Struct/inc)
 include_directories(ooc/inc)
 include_directories(cstl/inc)
+include_directories(csptr/inc)
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 add_executable(Sandbox
         main.c
-        Data_Struct/inc/Array.h
+        Data_Struct/inc/Matrix.h
         Data_Struct/inc/Circuit_List.h
         Data_Struct/inc/DuoList.h
         Data_Struct/inc/Dynamic_Queue.h
@@ -26,7 +27,7 @@ add_executable(Sandbox
         ooc/inc/OOCore.h
         ooc/inc/OODbg.h
         ooc/inc/OOStd.h
-        Data_Struct/src/Array.c
+        Data_Struct/src/Matrix.c
         Data_Struct/src/Circuit_List.c
         Data_Struct/src/DuoList.c
         Data_Struct/src/Dynamic_Queue.c
@@ -68,5 +69,13 @@ add_executable(Sandbox
         cstl/test/t_c_set.c
         cstl/test/t_c_slist.c
         cstl/test/t_clib.c
-        cstl/inc/t_clib.h)
+        cstl/inc/t_clib.h
+        csptr/inc/array.h
+        csptr/inc/common.h
+        csptr/inc/config.h
+        csptr/inc/smalloc.h
+        csptr/inc/smart_ptr.h
+        csptr/inc/mman.h
+        csptr/src/array.c
+        csptr/src/mman.c)
 target_link_libraries(Sandbox ${GTEST_LIBRARIES} pthread m)

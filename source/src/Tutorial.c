@@ -8,13 +8,14 @@
 #include <tgmath.h>
 #include <time.h>
 #include <signal.h>
-#include <setjmp.h>
 #include <unistd.h>
 #include <dirent.h>
 #include <limits.h>
 #include <float.h>
 #include <pthread.h>
+#include <ctype.h>
 #include "OOStd.h"
+#include "smart_ptr.h"
 #include "Tutorial.h"
 #define MIN(a,b) (((a)<(b)) ? a : b)
 #define MAX(a,b) (((a)>(b)) ? a : b)
@@ -22,11 +23,6 @@
 #define merge(a, b) a##b 
 #define get(a) #a 
 #define MKSTR( x ) #x
-
-#define TRY do{ jmp_buf ex_buf__; if( !setjmp(ex_buf__) ){
-#define CATCH } else {
-#define ETRY } }while(0)
-#define THROW longjmp(ex_buf__, 1)
 #define B(x) S_to_binary_(#x)
 unsigned long long S_to_binary_(const char *s)
 {
@@ -128,10 +124,9 @@ void pointers(int *p, void *ptr)
 	printf("Float variable is= %.2f\n", *((float*)ptr));
 	void(*ls_ptr)()=listFiles;  //pointer to function
 	ls_ptr();
-        
 }
 
-void foo()
+void ptr_test()
 {
 	static int sa = 10; //example of static variable (it saves its value over each function calling)
 	int j = 63, x = 4, i = 0, a = 10;
@@ -140,7 +135,9 @@ void foo()
 	printf("a = %d, sa = %d\n", a, sa);
 	printf("The address of j is %p\n", &j);
 	printf("The value of j is %d\n", j);
-        printf("address of function foo() is :%p\n", foo);
+        printf("address of function ptr_test() is :%p\n", ptr_test);
+    smart int *some_int = unique_ptr(int, 1);//Using smart pointers library
+    printf("%p = %d\n", some_int, *some_int);
 	pointers(&j, &x);
 }
 
@@ -254,23 +251,6 @@ void sigintHandler(int sig_num)
 		fflush(stdout);
 }
 
-void except(int x,int y)
-{
-	double z = 0.0;
-	TRY
-	{
-		if (y == 0)
-	THROW;
-	printf("No exception caught \n");
-	z = x / y;
-	//printf("Z= %d\n", z);
-	}
-		CATCH
-	{
-		printf("Division by zero\n");
-	}
-	ETRY;
-}
 //------------------------------------------------function pointers
 enum response_type {DUMP, SECOND_CHANCE, MARRIAGE};
 
@@ -332,7 +312,7 @@ void pythonScript()
     perror("Python execution");
 }
 
-void(*func[])() = {listFiles, file, preprocessor, memory, zeit, vremya, foo, test, func_ptr, pythonScript};
+void(*func[])() = {listFiles, file, preprocessor, memory, zeit, vremya, ptr_test, test, func_ptr, pythonScript};
 
 void sandbox()
 {
