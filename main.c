@@ -17,6 +17,8 @@
 #include "Inet.h"
 #include "Multithread.h"
 #include "Data_Test.h"
+#include "t_clib.h"
+#include "c_lib.h"
 
 
 int main(int argc, char *argv[])
@@ -26,6 +28,7 @@ int main(int argc, char *argv[])
     //func();
     //massiv(4);
     data_test();
+    stl_test();
     return 0;
 
 }

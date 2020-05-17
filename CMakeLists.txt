@@ -6,6 +6,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pthread")
 include_directories(source/inc)
 include_directories(Data_Struct/inc)
 include_directories(ooc/inc)
+include_directories(cstl/inc)
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 add_executable(Sandbox
@@ -40,5 +41,32 @@ add_executable(Sandbox
         source/src/Tutorial.c
         ooc/src/OODbg.c
         source/src/Object.c
-        source/inc/Object.h)
-target_link_libraries(Sandbox ${GTEST_LIBRARIES} pthread)
+        source/inc/Object.h
+        cstl/inc/c_algorithms.h
+        cstl/inc/c_array.h
+        cstl/inc/c_deque.h
+        cstl/inc/c_errors.h
+        cstl/inc/c_iterator.h
+        cstl/inc/c_lib.h
+        cstl/inc/c_list.h
+        cstl/inc/c_map.h
+        cstl/inc/c_rb.h
+        cstl/inc/c_set.h
+        cstl/src/c_algorithms.c
+        cstl/src/c_array.c
+        cstl/src/c_deque.c
+        cstl/src/c_list.c
+        cstl/src/c_map.c
+        cstl/src/c_rb.c
+        cstl/src/c_set.c
+        cstl/src/c_util.c
+        cstl/test/t_c_algorithms.c
+        cstl/test/t_c_array.c
+        cstl/test/t_c_deque.c
+        cstl/test/t_c_map.c
+        cstl/test/t_c_rb.c
+        cstl/test/t_c_set.c
+        cstl/test/t_c_slist.c
+        cstl/test/t_clib.c
+        cstl/inc/t_clib.h)
+target_link_libraries(Sandbox ${GTEST_LIBRARIES} pthread m)
