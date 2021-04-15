@@ -96,12 +96,12 @@ void ListFiles()
 void TestingPointers(int *p, void *ptr)
 {
     //Dynamic structure initialization
-    Box *m = (int*)malloc(sizeof(Box));
+    Box *m = (Box*)malloc(sizeof(Box));
     m->count = 100.0;
     m->tax_percent = 200;
     m->tax_percent = 100;
     Box num =  { 100.0, 200,100 };// C11 struct init
-    printf("The size of the structure box = %d %d\n",sizeof(m),sizeof(num));//sizes
+    printf("The size of the structure box = %ld %ld\n",sizeof(m),sizeof(num));//sizes
     free(m);
     //------------------Ending---------------------
 	int  i = 0,a=10;
@@ -195,16 +195,16 @@ void DataTypeSizeTest()
 	long double c = 3.14;
 	struct SizeOfTypes;
 	//-------------------------------printing the variables defined above along with their sizes 
-	printf("Size of char %d\n",sizeof(b));
-	printf("Size of long int %d\n",sizeof(a));
-	printf("Size of long double %d\n", sizeof(c));
-	printf("Size of float %d\n", sizeof(x));
-	printf("Size of int %d\n", sizeof(z));
-	printf("Size of structure of data types %d\n", sizeof(TypeSize));
+	printf("Size of char %ld\n",sizeof(b));
+	printf("Size of long int %ld\n",sizeof(a));
+	printf("Size of long double %ld\n", sizeof(c));
+	printf("Size of float %ld\n", sizeof(x));
+	printf("Size of int %ld\n", sizeof(z));
+	printf("Size of structure of data types %ld\n", sizeof(TypeSize));
         printf("Value of INT_MAX %d\n", INT_MAX);
         printf("Value of INT_MIN %d\n", INT_MIN);
         printf("Value of FLT_MAX %f\n", FLT_MAX);
-        printf("Value of FLT_MIN %d\n", FLT_MIN);
+        printf("Value of FLT_MIN %f\n", FLT_MIN);
         
 }
 
