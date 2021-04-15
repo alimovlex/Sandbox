@@ -1,2 +1,2 @@
-void test_animals();
-void exception();
+void Test_Animals_Class();
+void Exception_Test();

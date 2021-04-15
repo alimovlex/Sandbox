@@ -1,3 +1,14 @@
+/*
+    Object.c
+    The module represents my demo functions from OC-GCC C Library.
+    For more, please see the OOStd.h file
+
+    Sandbox
+
+    Created by alimovlex.
+    Copyright (c) 2020 alimovlex. All rights reserved.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14,6 +25,7 @@
 #include <limits.h>
 #include <float.h>
 #include <pthread.h>
+#include <Block.h>
 #include "OOStd.h"
 //--------------------------------------------------------FIRST TUTORIAL----------------------------------------
 CLASS(Animal)
@@ -22,12 +34,12 @@ CLASS(Animal)
         STATIC(Animal);
         vFn talk;
 };
-static int Animal_load(Animal *THIS,void *name)
+static int Animal_Load(Animal *THIS,void *name)
 {
     THIS->name = name;
     return 0;
 }
-ASM(Animal, Animal_load, NULL, NULL, NULL)
+ASM(Animal, Animal_Load, NULL, NULL, NULL)
 
 CLASS_EX(Cat,Animal)
 {
@@ -64,7 +76,7 @@ static int Dog_loadSt(StAnimal *THIS, void *PARAM)
 ASM_EX(Dog, Animal, NULL, NULL, Dog_loadSt, NULL)
 
 
-void test_animals()
+void Test_Animals_Class()
 {
     Animal *animals[4];
     StAnimal *f;
@@ -85,24 +97,24 @@ void test_animals()
     }
 }
 //--------------------------------------------------------SECOND TUTORIAL----------------------------------------
-void test2()
+void Exception_Test2()
 {
     Exception *e=GET_EXCEPTION(1);
     TRY
     THROW(e);
     END_TRY
 }
-void test1()
+void Exception_Test1()
 {
     Exception e={"exception test2 has been changed!"};
     SET_EXCEPTION(1,&e);
     TRY
-    test2();
+    Exception_Test2();
     CATCH(&e)
     fprintf(stderr,"!!! exception : %s\n",e.reason);
     END_TRY
 }
-void exception()
+void Exception_Test()
 {
     Exception excp[32]={
             {"test1"},
@@ -112,7 +124,7 @@ void exception()
 
     SET_EXCEPTIONS(&excp,32);
     TRY
-    test1();
+    Exception_Test1();
     FINALLY
     fprintf(stderr,"final process\n");
     END_TRY

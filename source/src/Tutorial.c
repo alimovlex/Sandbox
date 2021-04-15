@@ -1,3 +1,12 @@
+/*
+    Tutorial.c
+    The module represents my demo functions and its assessment.
+
+    Sandbox
+
+    Created by alimovlex.
+    Copyright (c) 2020 alimovlex. All rights reserved.
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14,17 +23,20 @@
 #include <float.h>
 #include <pthread.h>
 #include <ctype.h>
+#include <Block.h>
 #include "OOStd.h"
 #include "smart_ptr.h"
 #include "Tutorial.h"
+
+//Preprocessing section-------------------------------
 #define MIN(a,b) (((a)<(b)) ? a : b)
 #define MAX(a,b) (((a)>(b)) ? a : b)
 #define MULTIPLY(a, b) a*b 
 #define merge(a, b) a##b 
 #define get(a) #a 
 #define MKSTR( x ) #x
-#define B(x) S_to_binary_(#x)
-unsigned long long S_to_binary_(const char *s)
+#define B(x) StringToBinary_(#x)
+unsigned long long StringToBinary_(const char *s)
 {
 	unsigned long long i = 0;
 	while (*s)
@@ -34,31 +46,9 @@ unsigned long long S_to_binary_(const char *s)
 	}
 	return i;
 }
+//----------------------------ENDING---------------------
 
-typedef char string;
-
-typedef struct sand
-{
-    float total;
-    int count;
-    int tax_percent;
-}box;
-
-typedef struct Data
-{
-	int i; //4 bytes
-	__int8_t k; //1 byte
-	__int16_t l; //2 byte
-	__int32_t m; //4 byte
-	__int64_t n; //8 byte
-	long int j; //8 byte
-	float f; //4 byte
-	double g; //8 byte
-	long double h; //8 byte
-	string str[0]; //1 byte
-}infa;
-
-void test()
+void CharacterSetTest()
 {
 	srand((unsigned)time(NULL));
 	int hex = rand() % 0xFFF;
@@ -87,7 +77,7 @@ void test()
 	//free(sizeof(struct numbers));
 }
 
-void listFiles()
+void ListFiles()
 {
 	DIR *dp;
 	struct dirent *ep;
@@ -103,18 +93,23 @@ void listFiles()
 		perror("Couldn't open the directory");
 }
 
-void pointers(int *p, void *ptr)
+void TestingPointers(int *p, void *ptr)
 {
-    box *m = (int*)malloc(sizeof(box)); //structure init
-    box num =  { 100.0, 200,100 };// C11 struct init
+    //Dynamic structure initialization
+    Box *m = (int*)malloc(sizeof(Box));
+    m->count = 100.0;
+    m->tax_percent = 200;
+    m->tax_percent = 100;
+    Box num =  { 100.0, 200,100 };// C11 struct init
     printf("The size of the structure box = %d %d\n",sizeof(m),sizeof(num));//sizes
     free(m);
+    //------------------Ending---------------------
 	int  i = 0,a=10;
 	float y = 5.5;
 	int **z = &p;
 	**z = 70;
 	printf("p contains address %p\n", p);
-	printf("p is pointing to the value %d\n", *p);
+	printf("p is pointing to the value %d\n", *p); //error creating threads.p is pointing to value 70
 	// (int*)ptr - does type casting of void  
 	// *((int*)ptr) dereferences the typecasted  
 	// void pointer variable. 
@@ -122,11 +117,11 @@ void pointers(int *p, void *ptr)
 	// void pointer is now float 
 	ptr = &y;
 	printf("Float variable is= %.2f\n", *((float*)ptr));
-	void(*ls_ptr)()=listFiles;  //pointer to function
+	void(*ls_ptr)()=ListFiles;  //pointer to function
 	ls_ptr();
 }
 
-void ptr_test()
+void PointersTest()
 {
 	static int sa = 10; //example of static variable (it saves its value over each function calling)
 	int j = 63, x = 4, i = 0, a = 10;
@@ -135,13 +130,13 @@ void ptr_test()
 	printf("a = %d, sa = %d\n", a, sa);
 	printf("The address of j is %p\n", &j);
 	printf("The value of j is %d\n", j);
-        printf("address of function ptr_test() is :%p\n", ptr_test);
+        printf("address of function PointersTest is :%p\n", PointersTest);
     smart int *some_int = unique_ptr(int, 1);//Using smart pointers library
     printf("%p = %d\n", some_int, *some_int);
-	pointers(&j, &x);
+	PointersTest(&j, &x);
 }
 
-void file()
+void FileTest()
 {
 	//writing to file
 	FILE *fp= fopen("test.txt", "w+");
@@ -175,7 +170,7 @@ void file()
 	*/
 }
 
-void preprocessor()
+void PreprocessingTest()
 {
 	printf("%s\n", __func__);//print the name of the function
 	printf("Minimum of 20 and 30 = %d\n", MIN(20, 30));
@@ -191,21 +186,21 @@ void preprocessor()
 	//printf("\a"); signal exclamation
 }
 
-void memory()
+void DataTypeSizeTest()
 {
 	float x = 0.1;
 	long int a = 1;
 	__int8_t z = 2;
 	char b = 'G';
 	long double c = 3.14;
-	struct Data;
+	struct SizeOfTypes;
 	//-------------------------------printing the variables defined above along with their sizes 
 	printf("Size of char %d\n",sizeof(b));
 	printf("Size of long int %d\n",sizeof(a));
 	printf("Size of long double %d\n", sizeof(c));
 	printf("Size of float %d\n", sizeof(x));
 	printf("Size of int %d\n", sizeof(z));
-	printf("Size of structure %d\n", sizeof(infa));
+	printf("Size of structure of data types %d\n", sizeof(TypeSize));
         printf("Value of INT_MAX %d\n", INT_MAX);
         printf("Value of INT_MIN %d\n", INT_MIN);
         printf("Value of FLT_MAX %f\n", FLT_MAX);
@@ -213,7 +208,7 @@ void memory()
         
 }
 
-clock_t vremya()
+clock_t TimerFunction()
 {
     clock_t t;
     t = clock();
@@ -223,7 +218,7 @@ clock_t vremya()
     return 0;
 }
 
-clock_t zeit()
+clock_t LocalTimeCheck()
 {
 	time_t t;
 	struct tm *tmp;
@@ -240,61 +235,7 @@ clock_t zeit()
 	return 0;
 }
 
-
-
-void sigintHandler(int sig_num)
-{
-		/* Reset handler to catch SIGINT next time.
-		Refer http://en.cppreference.com/w/c/program/signal */
-		signal(SIGINT, sigintHandler);
-		printf("\n Cannot be terminated using Ctrl+C \n");
-		fflush(stdout);
-}
-
-//------------------------------------------------function pointers
-enum response_type {DUMP, SECOND_CHANCE, MARRIAGE};
-
-typedef struct
-{
-    char *name;
-    enum response_type type;
-}response;
-
-void dump(response r)
-{
-    printf("Dear %s,\n",r.name);
-    printf("Unfortunately, your recent dating partner has been calling us to say that you wouldn't see him.\n");   
-}
-
-void second_chance(response r)
-{
-    printf("Dear %s,\n",r.name);
-    printf("Good news: your recent partner has asked us to set up a additional dating. Call us asap.\n");
-}
-
-void marriage(response r)
-{
-    printf("Dear %s,\n",r.name);
-    printf("Congratulations! Your recent dating partner has called us with marriage offer.\n");
-}
-
-void(*replies[])(response) = {dump, second_chance, marriage}; //an array of pointers to functions in brackets
-void func_ptr()
-{
-    response r[] = 
-    {
-        {"Mike",DUMP}, {"Louis",SECOND_CHANCE}, {"Matthew",SECOND_CHANCE}, {"William",MARRIAGE}
-    };
-    int i;
-    for(i=0;i<4;i++)
-    {
-        (replies[r[i].type])(r[i]);
-    }
-        
-}
-//-------------------------------------------------Ending
-
-void arguments(int args,...) 
+void ArgumentsTest(int args,...)
 {
     va_list ap;
     va_start(ap,args);
@@ -304,17 +245,7 @@ void arguments(int args,...)
     va_end(ap);
 }
 
-void pythonScript()
-{ 
-   char *calledPython="./calledPython.py";  
-    char *pythonArgs[]={calledPython,"a","b","c",NULL};
-    execvp(calledPython,pythonArgs);//Python script execution
-    perror("Python execution");
-}
-
-void(*func[])() = {listFiles, file, preprocessor, memory, zeit, vremya, ptr_test, test, func_ptr, pythonScript};
-
-void sandbox()
+void Sandbox()
 {
 
 }

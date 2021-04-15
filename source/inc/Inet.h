@@ -1,2 +1,2 @@
-void client();
-void server();
+void Client();
+void Server();

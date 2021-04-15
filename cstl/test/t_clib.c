@@ -56,7 +56,7 @@ void on_atexit(void) {
     MEM_CHECK_DUMP_LEAKS();
 }
 
-void stl_test()
+void STL_Test()
 {
     clock_t t = clock();
     size_t i = 0;

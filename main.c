@@ -1,3 +1,11 @@
+/*
+    main.c
+    Sandbox
+
+    Created by alimovlex.
+    Copyright (c) 2020 alimovlex. All rights reserved.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -5,6 +13,7 @@
 #include <stdarg.h>
 #include <pthread.h>
 #include <unistd.h>
+#include <Block.h> //lambda functions Apple extension
 #include "Object.h"
 #include "Tutorial.h"
 #include "List.h"
@@ -19,38 +28,42 @@
 #include "Data_Test.h"
 #include "t_clib.h"
 #include "c_lib.h"
-void testings();
+//Test of starting myStartupFun function before main
+void myStartupFun (void) __attribute__ ((constructor));
+/* Apply the destructor attribute to myCleanupFun() so that it is executed after main() */
+void myCleanupFun (void) __attribute__ ((destructor));
+/* implementation of myStartupFun */
+void myStartupFun (void) //make it multithreaded
+{
+    printf ("startup testing function before main()\n");
+    massiv(3);
+    matrix(3, 3);
+    queue(6);
+    massiv(4);
+    SGLIB_Data_Structures_Test();
+}
+/* implementation of myCleanupFun */
+void myCleanupFun (void)
+{
+    printf ("\ncleanup code after main()\n");
+}
+
 
 int main(int argc, char *argv[])
 {
-    void(*func)()=ptr_test;
+    //Multithreaded_Data_Structures_Test();
+    void(*func)()=Multithreaded_Tutorial_Functions_Test;
     func();
     //stl_int_array();
     //stl_dynamic_array();
     //stl_strings_array();
-    //testings();
     return 0;
-}
-
-void testings()
-{
-    void(*functions[])() = {listFiles, file, preprocessor, memory, zeit, vremya, ptr_test, test, func_ptr, pythonScript};
-    massiv(3);
-    matrix(3, 3);
-    circuitList();
-    list();
-    dual_list();
-    stack();
-    queue(6);
-    warteschlange();
-    massiv(4);
-    data_test();
-    stl_test();
 }
 //-----
 //switch((int)(n1 > n2))  
 //case 1 ... 5:
 //while(1)
+//void(*functions[])() = {listFiles, file, preprocessor, memory, zeit, vremya, ptr_test, test, func_ptr};
 /*
 
 */

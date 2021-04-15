@@ -1,3 +1,13 @@
+/*
+    Multithread.c
+    The module represents my demo functions in parallel multithreaded programming method.
+
+    Sandbox
+
+    Created by alimovlex.
+    Copyright (c) 2020 alimovlex. All rights reserved.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,114 +18,99 @@
 #include <pthread.h>
 #include <unistd.h>
 #include "Tutorial.h"
-void myStartupFun (void) __attribute__ ((constructor));
-/* Apply the destructor attribute to myCleanupFun() so that it is executed after main() */
-void myCleanupFun (void) __attribute__ ((destructor));
-/* implementation of myStartupFun */
-void myStartupFun (void)
-{
-    printf ("startup code before main()\n");
-    unsigned int i = 1;
-    char *c = (char*)&i;
-    if (*c)
-        printf("Little endian\n");
-    else
-        printf("Big endian\n");
-}
-/* implementation of myCleanupFun */
-void myCleanupFun (void)
-{
-    printf ("\ncleanup code after main()\n");
-}
-
-enum response_type {NO, YES};
-void* does_not(void *a)
-{
-    int i=0;
-    for(i=0;i<5;i++)
-    {
-        sleep(1);
-        puts("No!\n");
-    }
-    return NULL;
-}
-
-void* does_too(void *a)
-{
-    int i=0;
-    for(i=0;i<5;i++)
-    {
-        sleep(1);
-        puts("Yes!\n");
-    }
-    return NULL;
-}
-
-void error(char *msg)
-{
-    fprintf(stderr,"%s: %s\n",msg,strerror(errno));
-    exit(1);
-}
-void(*functions[])(void *a) = {does_not, does_too};
-void potock()
-{
-    pthread_t t0;
-    pthread_t t1;
-    if(pthread_create(&t0,NULL,does_not,NULL)==-1)
-        error("Unable to create a thread t0\n");
-    if(pthread_create(&t1,NULL,does_too,NULL)==-1)
-        error("Unable to create a thread t1\n");
-    void *result;
-    if(pthread_join(t0,&result)==-1)
-        error("Can't join thread t0\n");
-    if(pthread_join(t1,&result)==-1)
-        error("Can't join thread t1\n");
-}
-int beers = 2000000;
-
-pthread_mutex_t beers_lock = PTHREAD_MUTEX_INITIALIZER; 
-void* drink_lots(void *a)
-{
- int i;
- pthread_mutex_lock(&beers_lock);
- for (i = 0; i < 100000; i++) {
- beers = beers - 1;
- }
- pthread_mutex_unlock(&beers_lock);
- printf("beers = %i\n", beers);
- return NULL;
-}
-void piwo()
-{
-    pthread_t threads[20];
-    int t;
-    printf("%d bottles of beer are on the wall, %d bottles of beer\n",beers,beers);
-    for(t=0;t<20;t++)
-    {
-        pthread_create(&threads[t],NULL,drink_lots,NULL);
-    }
-    void *result;
-    for(t=0;t<20;t++)
-    {
-        pthread_join(threads[t],&result);
-    }
-    printf("Now %d bottles of beers are left on the wall\n",beers);
-}
+#include "List.h"
+#include "Circuit_List.h"
+#include "DuoList.h"
+#include "Matrix.h"
+#include "Stack.h"
+#include "Queue.h"
+#include "Dynamic_Queue.h"
+#include "Inet.h"
+#include "Multithread.h"
+#include "Data_Test.h"
+#include "t_clib.h"
 
 //WORK ON THREADS IS IN PROGRESS
-void multithreading()
+void Multithreaded_Tutorial_Functions_Test()
 {
+    pthread_t t0, t1, t2, t3, t4, t5, t6, t7;
+    if(pthread_create(&t0,NULL,ListFiles,NULL)==-1)
+        perror("Unable to create a thread for ListFiles function\n");
+    else if(pthread_create(&t1,NULL,FileTest,NULL)==-1)
+        perror("Unable to create a thread for FileTest function\n");
+    else if(pthread_create(&t2,NULL,PreprocessingTest,NULL)==-1)
+        perror("Unable to create a thread for Preprocessing function\n");
+    else if(pthread_create(&t3,NULL,DataTypeSizeTest,NULL)==-1)
+        perror("Unable to create a thread for DataTypeSizeTest function\n");
+    else if(pthread_create(&t4,NULL,LocalTimeCheck,NULL)==-1)
+        perror("Unable to create a thread for LocalTimeChech function\n");
+    else if(pthread_create(&t5,NULL,TimerFunction,NULL)==-1)
+        perror("Unable to create a thread for TimerFunction function\n");
+    else if(pthread_create(&t6,NULL,CharacterSetTest,NULL)==-1)
+        perror("Unable to create a thread for CharacterSetTest function\n");
+    else if(pthread_create(&t7,NULL,PointersTest,NULL)==-1)
+        perror("Unable to create a thread for PointerTest function\n");
+    else
+        printf("Error creating threads.");
 
-    pthread_t t0;
-    pthread_t t1;
-    if(pthread_create(&t0,NULL,test,NULL)==-1)
-        perror("Unable to create a thread t0\n");
-    if(pthread_create(&t1,NULL,ptr_test,NULL)==-1)
-        perror("Unable to create a thread t1\n");
     void *result;
     if(pthread_join(t0,&result)==-1)
         perror("Can't join thread t0\n");
-    if(pthread_join(t1,&result)==-1)
-        perror("Can't join thread t1\n");
+    if(pthread_create(&t0,NULL,ListFiles,NULL)==-1)
+        perror("Unable to create a thread for ListFiles function\n");
+    else if(pthread_create(&t1,NULL,FileTest,NULL)==-1)
+        perror("Unable to create a thread for FileTest function\n");
+    else if(pthread_create(&t2,NULL,PreprocessingTest,NULL)==-1)
+        perror("Unable to create a thread for Preprocessing function\n");
+    else if(pthread_create(&t3,NULL,DataTypeSizeTest,NULL)==-1)
+        perror("Unable to create a thread for DataTypeSizeTest function\n");
+    else if(pthread_create(&t4,NULL,LocalTimeCheck,NULL)==-1)
+        perror("Unable to create a thread for LocalTimeCheck function\n");
+    else if(pthread_create(&t5,NULL,TimerFunction,NULL)==-1)
+        perror("Unable to create a thread for TimerFunction function\n");
+    else if(pthread_create(&t6,NULL,CharacterSetTest,NULL)==-1)
+        perror("Unable to create a thread for CharacterSetTest function\n");
+    else if(pthread_create(&t7,NULL,PointersTest,NULL)==-1)
+        perror("Unable to create a thread for PointersTest function\n");
+    else
+        printf("Error creating threads.");
+    pthread_exit(NULL);
+}
 
+void Multithreaded_Data_Structures_Test()
+{
+    pthread_t t0, t1, t2, t3, t4, t5, t6;
+    if(pthread_create(&t0,NULL,circuitList,NULL)==-1)
+        perror("Unable to create a thread for circuitList function\n");
+    else if(pthread_create(&t1,NULL,list,NULL)==-1)
+        perror("Unable to create a thread for list function\n");
+    else if(pthread_create(&t2,NULL,dual_list,NULL)==-1)
+        perror("Unable to create a thread for dual_list function\n");
+    else if(pthread_create(&t3,NULL,stack,NULL)==-1)
+        perror("Unable to create a thread for stack function\n");
+    else if(pthread_create(&t4,NULL,STL_Test,NULL)==-1)
+        perror("Unable to create a thread for STL_Test function\n");
+    else if(pthread_create(&t5,NULL,warteschlange,NULL)==-1)
+        perror("Unable to create a thread for warteschlange function\n");
+    else
+        printf("Error creating threads.");
+
+    void *result;
+    if(pthread_join(t0,&result)==-1)
+        perror("Can't join thread t0\n");
+    if(pthread_create(&t0,NULL,circuitList,NULL)==-1)
+        perror("Unable to create a thread for circuitList function\n");
+    else if(pthread_create(&t1,NULL,list,NULL)==-1)
+        perror("Unable to create a thread for list function\n");
+    else if(pthread_create(&t2,NULL,dual_list,NULL)==-1)
+        perror("Unable to create a thread for dual_list function\n");
+    else if(pthread_create(&t3,NULL,stack,NULL)==-1)
+        perror("Unable to create a thread for stack function\n");
+    else if(pthread_create(&t4,NULL,STL_Test,NULL)==-1)
+        perror("Unable to create a thread for STL_Test function\n");
+    else if(pthread_create(&t5,NULL,warteschlange,NULL)==-1)
+        perror("Unable to create a thread for warteschlange function\n");
+    else
+        printf("Error creating threads.");
+    pthread_exit(NULL);
 }

@@ -1,1 +1,1 @@
-void data_test();
+void SGLIB_Data_Structures_Test();
