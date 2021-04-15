@@ -6,14 +6,10 @@
 #include <math.h>
 #include <time.h>
 #include "sglib.h"
+#include "List.h"
 #define NODE_COMPARATOR(e1, e2) (e1->data - e2->data)
-struct Node
-{
-	int data;
-	struct Node *next;
-};
-
 /* Function to create a new node with given data */
+
 struct Node *newNode(int data)
 {
 	struct Node *new_node = (struct Node *) malloc(sizeof(struct Node));
@@ -24,7 +20,7 @@ struct Node *newNode(int data)
 
 /* Function to swap nodes x and y in linked list by
 changing links */
-void swapNodes(struct Node **head_ref, int x, int y)
+void SwapNodesLinkedList(struct Node **head_ref, int x, int y)
 {
 	// Nothing to do if x and y are same 
 	if (x == y) return;
@@ -67,7 +63,7 @@ void swapNodes(struct Node **head_ref, int x, int y)
 	currX->next = temp;
 }
 
-void rotate(struct Node **head_ref, int k)
+void RotateLinkedList(struct Node **head_ref, int k)
 {
 	if (k == 0)
 		return;
@@ -113,7 +109,7 @@ void rotate(struct Node **head_ref, int k)
 }
 
 /* Function to reverse the linked list */
-void reverse(struct Node** head_ref)
+void ReverseLinkedList(struct Node** head_ref)
 {
 	struct Node* prev = NULL;
 	struct Node* current = *head_ref;
@@ -133,7 +129,7 @@ void reverse(struct Node** head_ref)
 	*head_ref = prev;
 }
 
-void push(struct Node** head_ref, int new_data)
+void PushLinkedList(struct Node** head_ref, int new_data)
 {
 	struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
 	new_node->data = new_data;
@@ -144,7 +140,7 @@ void push(struct Node** head_ref, int new_data)
 
 /* Given a reference (pointer to pointer) to the head of a list
 and a position, deletes the node at the given position */
-void deleteNode(struct Node **head_ref, int position)
+void DeleteNodeLinkedList(struct Node **head_ref, int position)
 {
 	// If linked list is empty 
 	if (*head_ref == NULL)
@@ -180,7 +176,7 @@ void deleteNode(struct Node **head_ref, int position)
 }
 
 
-void printList(struct Node *n)
+void PrintLinkedList(struct Node *n)
 {
 	while (n != NULL)
 	{
@@ -190,7 +186,7 @@ void printList(struct Node *n)
 	printf("\n");
 }
 
-void deleteList(struct Node** head_ref)
+void DeleteLinkedList(struct Node** head_ref)
 {
 	/* deref head_ref to get the real head */
 	struct Node* current = *head_ref;
@@ -209,7 +205,7 @@ void deleteList(struct Node** head_ref)
 }
 
 /* Counts no. of nodes in linked list */
-int getCount(struct Node* head)
+int NodesCountLinkedList(struct Node* head)
 {
 	int count = 0;  // Initialize count 
 	struct Node* current = head;  // Initialize current 
@@ -268,68 +264,68 @@ struct Node* addTwoLists(struct Node* first, struct Node* second)
 }
 
 
-void list()
+void LinkedListTest()
 {
 	struct Node* head = NULL;
-	struct Node* zweite = NULL;
+	struct Node* second = NULL;
 	struct Node* third = NULL;
 	struct Node* first = NULL;
 
 	// allocate 3 nodes in the heap
 	head = (struct Node*)malloc(sizeof(struct Node));
-	zweite = (struct Node*)malloc(sizeof(struct Node));
+	second = (struct Node*)malloc(sizeof(struct Node));
 	third = (struct Node*)malloc(sizeof(struct Node));
 	//Manual addition to the linked list
 	head->data = 3;
-	head->next=zweite;
-	zweite->data = 4;
-	zweite->next=third;
+	head->next=second;
+	second->data = 4;
+	second->next=third;
 	third->data = 5;
 	third->next = NULL;//The end of the manual addition
 	//Addition from the beginning of the list
-	push(&head, 7);
-	push(&head, 1);
-	push(&head, 3);
-	push(&head, 2);
+	PushLinkedList(&head, 7);
+	PushLinkedList(&head, 1);
+	PushLinkedList(&head, 3);
+	PushLinkedList(&head, 2);
 	//End of the addition
 	//circular(head);
 	printf("Printing linked list:\n");
-	printList(head);
-	printf("count of nodes is %d\n", getCount(head));
-	deleteNode(&head, 4);
+	PrintLinkedList(head);
+	printf("count of nodes is %d\n", NodesCountLinkedList(head));
+	DeleteNodeLinkedList(&head, 4);
 	printf("Linked List after Deletion at position 4: ");
-	printList(head);
-	printf("count of nodes is %d\n", getCount(head));
+	PrintLinkedList(head);
+	printf("count of nodes is %d\n", NodesCountLinkedList(head));
 	printf("Linked list before calling swapNodes() \n");
-	printList(head);
-	swapNodes(&head, 2, 5);
+	PrintLinkedList(head);
+	SwapNodesLinkedList(&head, 2, 5);
 	printf("Linked list after calling swapNodes() \n");
-	printList(head);
-	reverse(&head);
+	PrintLinkedList(head);
+	ReverseLinkedList(&head);
 	printf("Reversed Linked list \n");
-	printList(head);
-	rotate(&head, 4);
+	PrintLinkedList(head);
+	RotateLinkedList(&head, 4);
 	printf("Rotated Linked list \n");
-	printList(head);
+	PrintLinkedList(head);
 
 	//detectloop(head);
 	// create first list 7->5->9->4->6 
-	push(&first, 6);
-	push(&first, 4);
-	push(&first, 9);
-	push(&first, 5);
-	push(&first, 7);
+	PushLinkedList(&first, 6);
+	PushLinkedList(&first, 4);
+    PushLinkedList(&first, 9);
+	PushLinkedList(&first, 5);
+	PushLinkedList(&first, 7);
 	printf("First List is ");
-    printList(first);
+    PrintLinkedList(first);
     printf("First Reversed List is ");
     SGLIB_LIST_REVERSE(struct Node, first, next);
-	printList(first);
+	PrintLinkedList(first);
     printf("First Sorted List is ");
     SGLIB_LIST_SORT(struct Node, first, NODE_COMPARATOR, next);
-    printList(first);
+    PrintLinkedList(first);
 	printf("Deleting linked list\n");
-	deleteList(&head);
-	deleteList(&first);
+	DeleteLinkedList(&head);
+	DeleteLinkedList(&first);
 	printf("Linked list deleted\n");
 }
 

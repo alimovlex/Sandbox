@@ -79,10 +79,10 @@ void Multithreaded_Tutorial_Functions_Test()
 
 void Multithreaded_Data_Structures_Test()
 {
-    pthread_t t0, t1, t2, t3, t4, t5, t6;
-    if(pthread_create(&t0,NULL,circuitList,NULL)==-1)
+    pthread_t t0, t1, t2, t3, t4, t5;
+    if(pthread_create(&t0,NULL,CircuitListTest,NULL)==-1)
         perror("Unable to create a thread for circuitList function\n");
-    else if(pthread_create(&t1,NULL,list,NULL)==-1)
+    else if(pthread_create(&t1,NULL,LinkedListTest,NULL)==-1)
         perror("Unable to create a thread for list function\n");
     else if(pthread_create(&t2,NULL,dual_list,NULL)==-1)
         perror("Unable to create a thread for dual_list function\n");
@@ -98,9 +98,9 @@ void Multithreaded_Data_Structures_Test()
     void *result;
     if(pthread_join(t0,&result)==-1)
         perror("Can't join thread t0\n");
-    if(pthread_create(&t0,NULL,circuitList,NULL)==-1)
+    if(pthread_create(&t0,NULL,CircuitListTest,NULL)==-1)
         perror("Unable to create a thread for circuitList function\n");
-    else if(pthread_create(&t1,NULL,list,NULL)==-1)
+    else if(pthread_create(&t1,NULL,LinkedListTest,NULL)==-1)
         perror("Unable to create a thread for list function\n");
     else if(pthread_create(&t2,NULL,dual_list,NULL)==-1)
         perror("Unable to create a thread for dual_list function\n");
