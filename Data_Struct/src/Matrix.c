@@ -6,7 +6,7 @@
 #include <math.h>
 #include <time.h>
 #include "sglib.h"
-#include "DuoList.h"
+#include "List.h"
 #include "c_lib.h"
 SGLIB_DEFINE_ARRAY_SORTING_FUNCTIONS(int, SGLIB_NUMERIC_COMPARATOR)
 void massiv(int size)

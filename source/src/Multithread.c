@@ -18,9 +18,9 @@
 #include <pthread.h>
 #include <unistd.h>
 #include "Tutorial.h"
-#include "List.h"
+#include "ForwardList.h"
 #include "Circuit_List.h"
-#include "DuoList.h"
+#include "List.h"
 #include "Matrix.h"
 #include "Stack.h"
 #include "Queue.h"
@@ -34,21 +34,21 @@
 void Multithreaded_Tutorial_Functions_Test()
 {
     pthread_t t0, t1, t2, t3, t4, t5, t6, t7;
-    if(pthread_create(&t0,NULL,ListFiles,NULL)==-1)
+    if(pthread_create(&t0,NULL,listFiles,NULL)==-1)
         perror("Unable to create a thread for ListFiles function\n");
-    else if(pthread_create(&t1,NULL,FileTest,NULL)==-1)
+    else if(pthread_create(&t1,NULL,fileTest,NULL)==-1)
         perror("Unable to create a thread for FileTest function\n");
-    else if(pthread_create(&t2,NULL,PreprocessingTest,NULL)==-1)
+    else if(pthread_create(&t2,NULL,preprocessingTest,NULL)==-1)
         perror("Unable to create a thread for Preprocessing function\n");
-    else if(pthread_create(&t3,NULL,DataTypeSizeTest,NULL)==-1)
+    else if(pthread_create(&t3,NULL,dataTypeSizeTest,NULL)==-1)
         perror("Unable to create a thread for DataTypeSizeTest function\n");
-    else if(pthread_create(&t4,NULL,LocalTimeCheck,NULL)==-1)
+    else if(pthread_create(&t4,NULL,localTimeCheck,NULL)==-1)
         perror("Unable to create a thread for LocalTimeChech function\n");
-    else if(pthread_create(&t5,NULL,TimerFunction,NULL)==-1)
+    else if(pthread_create(&t5,NULL,timerFunction,NULL)==-1)
         perror("Unable to create a thread for TimerFunction function\n");
-    else if(pthread_create(&t6,NULL,CharacterSetTest,NULL)==-1)
+    else if(pthread_create(&t6,NULL,characterSetTest,NULL)==-1)
         perror("Unable to create a thread for CharacterSetTest function\n");
-    else if(pthread_create(&t7,NULL,PointersTest,NULL)==-1)
+    else if(pthread_create(&t7,NULL,pointersTest,NULL)==-1)
         perror("Unable to create a thread for PointerTest function\n");
     else
         printf("Error creating threads.");
@@ -56,21 +56,21 @@ void Multithreaded_Tutorial_Functions_Test()
     void *result;
     if(pthread_join(t0,&result)==-1)
         perror("Can't join thread t0\n");
-    if(pthread_create(&t0,NULL,ListFiles,NULL)==-1)
+    if(pthread_create(&t0,NULL,listFiles,NULL)==-1)
         perror("Unable to create a thread for ListFiles function\n");
-    else if(pthread_create(&t1,NULL,FileTest,NULL)==-1)
+    else if(pthread_create(&t1,NULL,fileTest,NULL)==-1)
         perror("Unable to create a thread for FileTest function\n");
-    else if(pthread_create(&t2,NULL,PreprocessingTest,NULL)==-1)
+    else if(pthread_create(&t2,NULL,preprocessingTest,NULL)==-1) //Error creating threads.preprocessingTest
         perror("Unable to create a thread for Preprocessing function\n");
-    else if(pthread_create(&t3,NULL,DataTypeSizeTest,NULL)==-1)
+    else if(pthread_create(&t3,NULL,dataTypeSizeTest,NULL)==-1)
         perror("Unable to create a thread for DataTypeSizeTest function\n");
-    else if(pthread_create(&t4,NULL,LocalTimeCheck,NULL)==-1)
+    else if(pthread_create(&t4,NULL,localTimeCheck,NULL)==-1)
         perror("Unable to create a thread for LocalTimeCheck function\n");
-    else if(pthread_create(&t5,NULL,TimerFunction,NULL)==-1)
+    else if(pthread_create(&t5,NULL,timerFunction,NULL)==-1)
         perror("Unable to create a thread for TimerFunction function\n");
-    else if(pthread_create(&t6,NULL,CharacterSetTest,NULL)==-1)
+    else if(pthread_create(&t6,NULL,characterSetTest,NULL)==-1)
         perror("Unable to create a thread for CharacterSetTest function\n");
-    else if(pthread_create(&t7,NULL,PointersTest,NULL)==-1)
+    else if(pthread_create(&t7,NULL,pointersTest,NULL)==-1)
         perror("Unable to create a thread for PointersTest function\n");
     else
         printf("Error creating threads.");
@@ -80,15 +80,15 @@ void Multithreaded_Tutorial_Functions_Test()
 void Multithreaded_Data_Structures_Test()
 {
     pthread_t t0, t1, t2, t3, t4, t5;
-    if(pthread_create(&t0,NULL,CircuitListTest,NULL)==-1)
-        perror("Unable to create a thread for circuitList function\n");
-    else if(pthread_create(&t1,NULL,LinkedListTest,NULL)==-1)
-        perror("Unable to create a thread for list function\n");
-    else if(pthread_create(&t2,NULL,dual_list,NULL)==-1)
-        perror("Unable to create a thread for dual_list function\n");
+    if(pthread_create(&t0,NULL,circuitListTest,NULL)==-1)
+        perror("Unable to create a thread for circuitListTest function\n");
+    else if(pthread_create(&t1,NULL,forwardListTest,NULL)==-1)
+        perror("Unable to create a thread for forwardListTest function\n");
+    else if(pthread_create(&t2,NULL,listTest,NULL)==-1)
+        perror("Unable to create a thread for listTest function\n");
     else if(pthread_create(&t3,NULL,stack,NULL)==-1)
         perror("Unable to create a thread for stack function\n");
-    else if(pthread_create(&t4,NULL,STL_Test,NULL)==-1)
+    else if(pthread_create(&t4,NULL,SGLIB_Data_Structures_Test,NULL)==-1)
         perror("Unable to create a thread for STL_Test function\n");
     else if(pthread_create(&t5,NULL,warteschlange,NULL)==-1)
         perror("Unable to create a thread for warteschlange function\n");
@@ -98,15 +98,15 @@ void Multithreaded_Data_Structures_Test()
     void *result;
     if(pthread_join(t0,&result)==-1)
         perror("Can't join thread t0\n");
-    if(pthread_create(&t0,NULL,CircuitListTest,NULL)==-1)
-        perror("Unable to create a thread for circuitList function\n");
-    else if(pthread_create(&t1,NULL,LinkedListTest,NULL)==-1)
-        perror("Unable to create a thread for list function\n");
-    else if(pthread_create(&t2,NULL,dual_list,NULL)==-1)
-        perror("Unable to create a thread for dual_list function\n");
+    if(pthread_create(&t0,NULL,circuitListTest,NULL)==-1)
+        perror("Unable to create a thread for circuitListTest function\n");
+    else if(pthread_create(&t1,NULL,forwardListTest,NULL)==-1)
+        perror("Unable to create a thread for forwardListTest function\n");
+    else if(pthread_create(&t2,NULL,listTest,NULL)==-1)
+        perror("Unable to create a thread for listTest function\n");
     else if(pthread_create(&t3,NULL,stack,NULL)==-1)
         perror("Unable to create a thread for stack function\n");
-    else if(pthread_create(&t4,NULL,STL_Test,NULL)==-1)
+    else if(pthread_create(&t4,NULL,SGLIB_Data_Structures_Test,NULL)==-1)
         perror("Unable to create a thread for STL_Test function\n");
     else if(pthread_create(&t5,NULL,warteschlange,NULL)==-1)
         perror("Unable to create a thread for warteschlange function\n");

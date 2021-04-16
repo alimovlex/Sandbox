@@ -48,7 +48,7 @@ unsigned long long StringToBinary_(const char *s)
 }
 //----------------------------ENDING---------------------
 
-void CharacterSetTest()
+void characterSetTest()
 {
 	srand((unsigned)time(NULL));
 	int hex = rand() % 0xFFF;
@@ -77,7 +77,7 @@ void CharacterSetTest()
 	//free(sizeof(struct numbers));
 }
 
-void ListFiles()
+void listFiles()
 {
 	DIR *dp;
 	struct dirent *ep;
@@ -93,7 +93,7 @@ void ListFiles()
 		perror("Couldn't open the directory");
 }
 
-void TestingPointers(int *p, void *ptr)
+void testingPointers(int *p, void *ptr)
 {
     //Dynamic structure initialization
     Box *m = (Box*)malloc(sizeof(Box));
@@ -117,11 +117,11 @@ void TestingPointers(int *p, void *ptr)
 	// void pointer is now float 
 	ptr = &y;
 	printf("Float variable is= %.2f\n", *((float*)ptr));
-	void(*ls_ptr)()=ListFiles;  //pointer to function
+	void(*ls_ptr)()=listFiles;  //pointer to function
 	ls_ptr();
 }
 
-void PointersTest()
+void pointersTest()
 {
 	static int sa = 10; //example of static variable (it saves its value over each function calling)
 	int j = 63, x = 4, i = 0, a = 10;
@@ -130,13 +130,13 @@ void PointersTest()
 	printf("a = %d, sa = %d\n", a, sa);
 	printf("The address of j is %p\n", &j);
 	printf("The value of j is %d\n", j);
-        printf("address of function PointersTest is :%p\n", PointersTest);
+        printf("address of function pointersTest is :%p\n", pointersTest);
     smart int *some_int = unique_ptr(int, 1);//Using smart pointers library
     printf("%p = %d\n", some_int, *some_int);
-	PointersTest(&j, &x);
+	testingPointers(&j, &x);
 }
 
-void FileTest()
+void fileTest()
 {
 	//writing to file
 	FILE *fp= fopen("test.txt", "w+");
@@ -170,7 +170,7 @@ void FileTest()
 	*/
 }
 
-void PreprocessingTest()
+void preprocessingTest()
 {
 	printf("%s\n", __func__);//print the name of the function
 	printf("Minimum of 20 and 30 = %d\n", MIN(20, 30));
@@ -186,7 +186,7 @@ void PreprocessingTest()
 	//printf("\a"); signal exclamation
 }
 
-void DataTypeSizeTest()
+void dataTypeSizeTest()
 {
 	float x = 0.1;
 	long int a = 1;
@@ -208,7 +208,7 @@ void DataTypeSizeTest()
         
 }
 
-clock_t TimerFunction()
+clock_t timerFunction()
 {
     clock_t t;
     t = clock();
@@ -218,7 +218,7 @@ clock_t TimerFunction()
     return 0;
 }
 
-clock_t LocalTimeCheck()
+clock_t localTimeCheck()
 {
 	time_t t;
 	struct tm *tmp;
@@ -235,7 +235,7 @@ clock_t LocalTimeCheck()
 	return 0;
 }
 
-void ArgumentsTest(int args,...)
+void argumentsTest(int args,...)
 {
     va_list ap;
     va_start(ap,args);
@@ -245,7 +245,7 @@ void ArgumentsTest(int args,...)
     va_end(ap);
 }
 
-void Sandbox()
+void sandbox()
 {
 
 }

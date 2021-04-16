@@ -1,4 +1,4 @@
-void CircuitListTest();
+void circuitListTest();
 
 
 

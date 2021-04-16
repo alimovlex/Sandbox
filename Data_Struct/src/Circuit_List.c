@@ -7,7 +7,7 @@
 #include <time.h>
 #include "List.h"
 
-void PrintCircuitList(struct Node *head)
+void printCircuitList(struct Node *head)
 {
 	struct Node *temp = head;
 	if (head != NULL)
@@ -23,7 +23,7 @@ void PrintCircuitList(struct Node *head)
 
 /* Function to insert a node at the beginning of a Circular
 linked list */
-void PushCircleList(struct Node **head_ref, int data)
+void pushCircleList(struct Node **head_ref, int data)
 {
 	struct Node *ptr1 = (struct Node *)malloc(sizeof(struct Node));
 	struct Node *temp = *head_ref;
@@ -43,7 +43,7 @@ void PushCircleList(struct Node **head_ref, int data)
 	*head_ref = ptr1;
 }
 
-void SplitCircleList(struct Node *head, struct Node **head1_ref, struct Node **head2_ref)
+void splitCircleList(struct Node *head, struct Node **head1_ref, struct Node **head2_ref)
 {
 	struct Node *slow_ptr = head;
 	struct Node *fast_ptr = head;
@@ -96,25 +96,25 @@ struct Node *exchangeNodes(struct Node *head)
 	return head;
 }
 
-void CircuitListTest()
+void circuitListTest()
 {
 	/* Initialize lists as empty */
 	struct Node *head = NULL;
 	struct Node *head1 = NULL;
 	struct Node *head2 = NULL;
 	/* Created linked list will be 11->2->56->12 */
-	PushCircleList(&head, 12);
-	PushCircleList(&head, 56);
-	PushCircleList(&head, 2);
-	PushCircleList(&head, 11);
+	pushCircleList(&head, 12);
+	pushCircleList(&head, 56);
+	pushCircleList(&head, 2);
+	pushCircleList(&head, 11);
 	exchangeNodes(head);
 	printf("Contents of Circular Linked List\n");
-	PrintCircuitList(head);
+	printCircuitList(head);
 	/* Split the list */
-	SplitCircleList(head, &head1, &head2);
+	splitCircleList(head, &head1, &head2);
 	printf("First Circular Linked List\n");
-	PrintCircuitList(head1);
+	printCircuitList(head1);
 	printf("Second Circular Linked List\n");
-	PrintCircuitList(head2);
+	printCircuitList(head2);
 	//deleteList(&head);
 }

@@ -8,16 +8,16 @@ include_directories(Data_Struct/inc)
 include_directories(ooc/inc)
 include_directories(cstl/inc)
 include_directories(csptr/inc)
-find_package(GTest REQUIRED)
+#find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 add_executable(Sandbox
         main.c
         Data_Struct/inc/Matrix.h
         Data_Struct/inc/Circuit_List.h
-        Data_Struct/inc/DuoList.h
+        Data_Struct/inc/List.h
         Data_Struct/inc/Dynamic_Queue.h
         source/inc/Inet.h
-        Data_Struct/inc/List.h
+        Data_Struct/inc/ForwardList.h
         source/inc/Multithread.h
         Data_Struct/inc/Queue.h
         Data_Struct/inc/Stack.h
@@ -29,11 +29,11 @@ add_executable(Sandbox
         ooc/inc/OOStd.h
         Data_Struct/src/Matrix.c
         Data_Struct/src/Circuit_List.c
-        Data_Struct/src/DuoList.c
+        Data_Struct/src/List.c
         Data_Struct/src/Dynamic_Queue.c
         source/src/Inet.c
         Data_Struct/src/Data_Test.c
-        Data_Struct/src/List.c
+        Data_Struct/src/ForwardList.c
         source/src/Multithread.c
         Data_Struct/src/Queue.c
         Data_Struct/src/Stack.c

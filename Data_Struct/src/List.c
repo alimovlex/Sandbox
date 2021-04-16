@@ -5,327 +5,203 @@
 #include <errno.h>
 #include <math.h>
 #include <time.h>
-#include "sglib.h"
 #include "List.h"
-#define NODE_COMPARATOR(e1, e2) (e1->data - e2->data)
-/* Function to create a new node with given data */
+/* Node of a doubly linked list */
+/* Function to reverse a Doubly Linked List */
 
-struct Node *newNode(int data)
+void reverseList(struct Node **head_ref)
 {
-	struct Node *new_node = (struct Node *) malloc(sizeof(struct Node));
-	new_node->data = data;
-	new_node->next = NULL;
-	return new_node;
-}
+	struct Node *temp = NULL;
+	struct Node *current = *head_ref;
 
-/* Function to swap nodes x and y in linked list by
-changing links */
-void SwapNodesLinkedList(struct Node **head_ref, int x, int y)
-{
-	// Nothing to do if x and y are same 
-	if (x == y) return;
-
-	// Search for x (keep track of prevX and CurrX 
-	struct Node *prevX = NULL, *currX = *head_ref;
-	while (currX && currX->data != x)
-	{
-		prevX = currX;
-		currX = currX->next;
-	}
-
-	// Search for y (keep track of prevY and CurrY 
-	struct Node *prevY = NULL, *currY = *head_ref;
-	while (currY && currY->data != y)
-	{
-		prevY = currY;
-		currY = currY->next;
-	}
-
-	// If either x or y is not present, nothing to do 
-	if (currX == NULL || currY == NULL)
-		return;
-
-	// If x is not head of linked list 
-	if (prevX != NULL)
-		prevX->next = currY;
-	else // Else make y as new head 
-		*head_ref = currY;
-
-	// If y is not head of linked list 
-	if (prevY != NULL)
-		prevY->next = currX;
-	else  // Else make x as new head 
-		*head_ref = currX;
-
-	// Swap next pointers 
-	struct Node *temp = currY->next;
-	currY->next = currX->next;
-	currX->next = temp;
-}
-
-void RotateLinkedList(struct Node **head_ref, int k)
-{
-	if (k == 0)
-		return;
-
-	// Let us understand the below code for example k = 4 and 
-	// list = 10->20->30->40->50->60. 
-	struct Node* current = *head_ref;
-
-	// current will either point to kth or NULL after this loop. 
-	//  current will point to node 40 in the above example 
-	int count = 1;
-	while (count < k && current != NULL)
-	{
-		current = current->next;
-		count++;
-	}
-
-	// If current is NULL, k is greater than or equal to count 
-	// of nodes in linked list. Don't change the list in this case 
-	if (current == NULL)
-		return;
-
-	// current points to kth node. Store it in a variable. 
-	// kthNode points to node 40 in the above example 
-	struct Node *kthNode = current;
-
-	// current will point to last node after this loop 
-	// current will point to node 60 in the above example 
-	while (current->next != NULL)
-		current = current->next;
-
-	// Change next of last node to previous head 
-	// Next of 60 is now changed to node 10 
-	current->next = *head_ref;
-
-	// Change head to (k+1)th node 
-	// head is now changed to node 50 
-	*head_ref = kthNode->next;
-
-	// change next of kth node to NULL 
-	// next of 40 is now NULL 
-	kthNode->next = NULL;
-}
-
-/* Function to reverse the linked list */
-void ReverseLinkedList(struct Node** head_ref)
-{
-	struct Node* prev = NULL;
-	struct Node* current = *head_ref;
-	struct Node* next = NULL;
+	/* swap next and prev for all nodes of
+	doubly linked list */
 	while (current != NULL)
 	{
-		// Store next 
-		next = current->next;
-
-		// Reverse current node's pointer 
-		current->next = prev;
-
-		// Move pointers one position ahead. 
-		prev = current;
-		current = next;
+		temp = current->prev;
+		current->prev = current->next;
+		current->next = temp;
+		current = current->prev;
 	}
-	*head_ref = prev;
+
+	/* Before changing head, check for the cases like empty
+	list and list with only one node */
+	if (temp != NULL)
+		*head_ref = temp->prev;
 }
 
-void PushLinkedList(struct Node** head_ref, int new_data)
+/* Function to delete a node in a Doubly Linked List.
+head_ref --> pointer to head node pointer.
+del  -->  pointer to node to be deleted. */
+void eraseNodeList(struct Node** head_ref, struct Node* del)
 {
-	struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
-	new_node->data = new_data;
-	new_node->next = (*head_ref);
-	(*head_ref) = new_node;
-    //SGLIB_SORTED_LIST_ADD(struct Node, head_ref, new_node, NODE_COMPARATOR, next); bugging sorting on addition
+	/* base case */
+	if (*head_ref == NULL || del == NULL)
+		return;
+
+	/* If node to be deleted is head node */
+	if (*head_ref == del)
+		*head_ref = del->next;
+
+	/* Change next only if node to be deleted is NOT the last node */
+	if (del->next != NULL)
+		del->next->prev = del->prev;
+
+	/* Change prev only if node to be deleted is NOT the first node */
+	if (del->prev != NULL)
+		del->prev->next = del->next;
+
+	/* Finally, free the memory occupied by del*/
+	free(del);
 }
+
 
 /* Given a reference (pointer to pointer) to the head of a list
-and a position, deletes the node at the given position */
-void DeleteNodeLinkedList(struct Node **head_ref, int position)
+and an int, inserts a new node on the front of the list. */
+void pushList(struct Node** head_ref, int new_data)
 {
-	// If linked list is empty 
-	if (*head_ref == NULL)
-		return;
+	/* 1. allocate node */
+	struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+	/* 2. put in the data  */
+	new_node->data = new_data;
+	/* 3. Make next of new node as head and previous as NULL */
+	new_node->next = (*head_ref);
+	new_node->prev = NULL;
+	/* 4. change prev of head node to new node */
+	if ((*head_ref) != NULL)
+		(*head_ref)->prev = new_node;
+	/* 5. move the head to point to the new node */
+	(*head_ref) = new_node;
+}
 
-	// Store head node 
-	struct Node* temp = *head_ref;
-
-	// If head needs to be removed 
-	if (position == 0)
-	{
-		*head_ref = temp->next;   // Change head 
-		free(temp);               // free old head 
+void insertBeforeList(struct Node** head_ref, struct Node* next_node, int new_data)
+{
+	/*1. check if the given next_node is NULL */
+	if (next_node == NULL) {
+		printf("the given next node cannot be NULL");
 		return;
 	}
 
-	// Find previous node of the node to be deleted 
-	for (int i = 0; temp != NULL && i<position - 1; i++)
-		temp = temp->next;
+	/* 2. allocate new node */
+	struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
 
-	// If position is more than number of ndoes 
-	if (temp == NULL || temp->next == NULL)
-		return;
+	/* 3. put in the data */
+	new_node->data = new_data;
 
-	// Node temp->next is the node to be deleted 
-	// Store pointer to the next of node to be deleted 
-	struct Node *next = temp->next->next;
+	/* 4. Make prev of new node as prev of next_node */
+	new_node->prev = next_node->prev;
 
-	// Unlink the node from linked list 
-	free(temp->next);  // Free memory 
+	/* 5. Make the prev of next_node as new_node */
+	next_node->prev = new_node;
 
-	temp->next = next;  // Unlink the deleted node from list 
+	/* 6. Make next_node as next of new_node */
+	new_node->next = next_node;
+
+	/* 7. Change next of new_node's previous node */
+	if (new_node->prev != NULL)
+		new_node->prev->next = new_node;
+	/* 8. If the prev of new_node is NULL, it will be
+	the new head node */
+	else
+		(*head_ref) = new_node;
+
 }
 
-
-void PrintLinkedList(struct Node *n)
+/* Given a node as prev_node, insert a new node after the given node */
+void insertAfterList(struct Node* prev_node, int new_data)
 {
-	while (n != NULL)
+	/*1. check if the given prev_node is NULL */
+	if (prev_node == NULL) 
 	{
-		printf("%d ", n->data);
-		n = n->next;
+		printf("the given previous node cannot be NULL");
+		return;
+	}
+	/* 2. allocate new node */
+	struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+	/* 3. put in the data  */
+	new_node->data = new_data;
+	/* 4. Make next of new node as next of prev_node */
+	new_node->next = prev_node->next;
+	/* 5. Make the next of prev_node as new_node */
+	prev_node->next = new_node;
+	/* 6. Make prev_node as previous of new_node */
+	new_node->prev = prev_node;
+	/* 7. Change previous of new_node's next node */
+	if (new_node->next != NULL)
+		new_node->next->prev = new_node;
+}
+
+/* Given a reference (pointer to pointer) to the head
+of a DLL and an int, appends a new node at the end  */
+void appendList(struct Node** head_ref, int new_data)
+{
+	/* 1. allocate node */
+	struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+	struct Node* last = *head_ref; /* used in step 5*/
+						   /* 2. put in the data  */
+	new_node->data = new_data;
+	/* 3. This new node is going to be the last node, so
+	make next of it as NULL*/
+	new_node->next = NULL;
+	/* 4. If the Linked List is empty, then make the new
+	node as head */
+	if (*head_ref == NULL) 
+	{
+		new_node->prev = NULL;
+		*head_ref = new_node;
+		return;
+	}
+	/* 5. Else traverse till the last node */
+	while (last->next != NULL)
+		last = last->next;
+	/* 6. Change the next of last node */
+	last->next = new_node;
+	/* 7. Make last node as previous of new node */
+	new_node->prev = last;
+	return;
+}
+// This function prints contents of linked list starting from the given node 
+void printList(struct Node* node)
+{
+	struct Node* last;
+	printf("\nTraversal in forward direction \n");
+	while (node != NULL) 
+	{
+		printf(" %d ", node->data);
+		last = node;
+		node = node->next;
+	}
+	printf("\nTraversal in reverse direction \n");
+	while (last != NULL) 
+	{
+		printf(" %d ", last->data);
+		last = last->prev;
 	}
 	printf("\n");
 }
 
-void DeleteLinkedList(struct Node** head_ref)
+void listTest()
 {
-	/* deref head_ref to get the real head */
-	struct Node* current = *head_ref;
-	struct Node* next;
-
-	while (current != NULL)
-	{
-		next = current->next;
-		free(current);
-		current = next;
-	}
-
-	/* deref head_ref to affect the real head back
-	in the caller. */
-	*head_ref = NULL;
-}
-
-/* Counts no. of nodes in linked list */
-int NodesCountLinkedList(struct Node* head)
-{
-	int count = 0;  // Initialize count 
-	struct Node* current = head;  // Initialize current 
-	while (current != NULL)
-	{
-		count++;
-		current = current->next;
-	}
-	return count;
-}
-
-/* Adds contents of two linked lists and return the head node of resultant list */
-struct Node* addTwoLists(struct Node* first, struct Node* second)
-{
-	struct Node* res = NULL; // res is head node of the resultant list 
-	struct Node *temp, *prev = NULL;
-	int carry = 0, sum;
-
-	while (first != NULL || second != NULL) //while both lists exist 
-	{
-		// Calculate value of next digit in resultant list. 
-		// The next digit is sum of following things 
-		// (i)  Carry 
-		// (ii) Next digit of first list (if there is a next digit) 
-		// (ii) Next digit of second list (if there is a next digit) 
-		sum = carry + (first ? first->data : 0) + (second ? second->data : 0);
-
-		// update carry for next calulation 
-		carry = (sum >= 10) ? 1 : 0;
-
-		// update sum if it is greater than 10 
-		sum = sum % 10;
-
-		// Create a new node with sum as data 
-		temp = newNode(sum);
-
-		// if this is the first node then set it as head of the resultant list 
-		if (res == NULL)
-			res = temp;
-		else // If this is not the first node then connect it to the rest. 
-			prev->next = temp;
-
-		// Set prev for next insertion 
-		prev = temp;
-
-		// Move first and second pointers to next nodes 
-		if (first) first = first->next;
-		if (second) second = second->next;
-	}
-
-	if (carry > 0)
-		temp->next = newNode(carry);
-
-	// return head of the resultant list 
-	return res;
-}
-
-
-void LinkedListTest()
-{
+	/* Start with the empty list */
 	struct Node* head = NULL;
-	struct Node* second = NULL;
-	struct Node* third = NULL;
-	struct Node* first = NULL;
-
-	// allocate 3 nodes in the heap
-	head = (struct Node*)malloc(sizeof(struct Node));
-	second = (struct Node*)malloc(sizeof(struct Node));
-	third = (struct Node*)malloc(sizeof(struct Node));
-	//Manual addition to the linked list
-	head->data = 3;
-	head->next=second;
-	second->data = 4;
-	second->next=third;
-	third->data = 5;
-	third->next = NULL;//The end of the manual addition
-	//Addition from the beginning of the list
-	PushLinkedList(&head, 7);
-	PushLinkedList(&head, 1);
-	PushLinkedList(&head, 3);
-	PushLinkedList(&head, 2);
-	//End of the addition
-	//circular(head);
-	printf("Printing linked list:\n");
-	PrintLinkedList(head);
-	printf("count of nodes is %d\n", NodesCountLinkedList(head));
-	DeleteNodeLinkedList(&head, 4);
-	printf("Linked List after Deletion at position 4: ");
-	PrintLinkedList(head);
-	printf("count of nodes is %d\n", NodesCountLinkedList(head));
-	printf("Linked list before calling swapNodes() \n");
-	PrintLinkedList(head);
-	SwapNodesLinkedList(&head, 2, 5);
-	printf("Linked list after calling swapNodes() \n");
-	PrintLinkedList(head);
-	ReverseLinkedList(&head);
+	// Insert 7 at the beginning. So linked list becomes 7->NULL 
+	pushList(&head, 7);
+	// Insert 1 at the beginning. So linked list becomes 1->7->NULL 
+	pushList(&head, 1);
+	pushList(&head, 9);
+	// Insert 4 at the end. So linked list becomes 1->7->4->NULL 
+	appendList(&head, 4);
+	printf("Created DLL is: ");
+	printList(head);
+	reverseList(&head);
 	printf("Reversed Linked list \n");
-	PrintLinkedList(head);
-	RotateLinkedList(&head, 4);
-	printf("Rotated Linked list \n");
-	PrintLinkedList(head);
-
-	//detectloop(head);
-	// create first list 7->5->9->4->6 
-	PushLinkedList(&first, 6);
-	PushLinkedList(&first, 4);
-    PushLinkedList(&first, 9);
-	PushLinkedList(&first, 5);
-	PushLinkedList(&first, 7);
-	printf("First List is ");
-    PrintLinkedList(first);
-    printf("First Reversed List is ");
-    SGLIB_LIST_REVERSE(struct Node, first, next);
-	PrintLinkedList(first);
-    printf("First Sorted List is ");
-    SGLIB_LIST_SORT(struct Node, first, NODE_COMPARATOR, next);
-    PrintLinkedList(first);
-	printf("Deleting linked list\n");
-	DeleteLinkedList(&head);
-	DeleteLinkedList(&first);
-	printf("Linked list deleted\n");
+    printList(head);
+	/* delete nodes from the doubly linked list */
+	eraseNodeList(&head, head); /*delete first node*/
+	eraseNodeList(&head, head->next); /*delete middle node*/
+	eraseNodeList(&head, head->next); /*delete last node*/
+	/* Modified linked list will be NULL<-8->NULL */
+	printf("Modified Linked list \n");
+	printList(head);
 }
 

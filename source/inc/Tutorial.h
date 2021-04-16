@@ -1,16 +1,15 @@
-void TestingPointers(int *p, void *ptr);
-void ListFiles();
-void FileTest();
-void PreprocessingTest();
-void DataTypeSizeTest();
-clock_t LocalTimeCheck();
-void sigintHandler(int sig_num);
-clock_t TimerFunction();
-void PointersTest();
+void testingPointers(int *p, void *ptr);
+void listFiles();
+void fileTest();
+void preprocessingTest();
+void dataTypeSizeTest();
+clock_t localTimeCheck();
+clock_t timerFunction();
+void pointersTest();
 unsigned long long StringToBinary_(const char *s);
-void CharacterSetTest();
-void ArgumentsTest(int args,...);
-void Sandbox();
+void characterSetTest();
+void argumentsTest(int args,...);
+void sandbox();
 
 
 typedef char string;

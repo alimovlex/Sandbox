@@ -16,9 +16,9 @@
 #include <Block.h> //lambda functions Apple extension
 #include "Object.h"
 #include "Tutorial.h"
-#include "List.h"
+#include "ForwardList.h"
 #include "Circuit_List.h"
-#include "DuoList.h"
+#include "List.h"
 #include "Matrix.h"
 #include "Stack.h"
 #include "Queue.h"
@@ -36,10 +36,10 @@ void myCleanupFun (void) __attribute__ ((destructor));
 void myStartupFun (void) //make it multithreaded
 {
     printf ("startup testing function before main()\n");
-    massiv(3);
-    matrix(3, 3);
-    queue(6);
-    massiv(4);
+    //massiv(3);
+    //matrix(3, 3);
+    //queue(6);
+    //massiv(4);
     SGLIB_Data_Structures_Test();
 }
 /* implementation of myCleanupFun */
