@@ -241,6 +241,5 @@ void stl_strings_array()
     p_rv = (char **) cstl_array_element_at(myArray, size - 1);
     rv = *((char**)p_rv);
     assert(strcmp(rv, input_array[8]) == 0);
-
     cstl_array_delete(myArray);
 }

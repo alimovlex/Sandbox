@@ -35,11 +35,8 @@ void myCleanupFun (void) __attribute__ ((destructor));
 void myStartupFun (void) //make it multithreaded
 {
     printf ("startup testing function before main()\n");
-    //massiv(3);
-    //matrix(3, 3);
-    //queue(6);
-    //massiv(4);
-    SGLIB_Data_Structures_Test();
+    //SGLIB_Data_Structures_Test();
+    Multithreaded_Tutorial_Functions_Test();
 }
 /* implementation of myCleanupFun */
 void myCleanupFun (void)
@@ -50,20 +47,10 @@ void myCleanupFun (void)
 
 int main(int argc, char *argv[])
 {
-    Multithreaded_Data_Structures_Test();
-    void(*func)()=Multithreaded_Tutorial_Functions_Test;
+    void(*func)() = Multithreaded_Data_Structures_Test;
     func();
-    //stl_int_array();
-    //stl_dynamic_array();
-    //stl_strings_array();
     //STL_Test();
     return 0;
 }
-//-----
 //switch((int)(n1 > n2))  
 //case 1 ... 5:
-//while(1)
-//void(*functions[])() = {listFiles, file, preprocessor, memory, zeit, vremya, ptr_test, test, func_ptr};
-/*
-
-*/
