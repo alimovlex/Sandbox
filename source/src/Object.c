@@ -27,24 +27,15 @@
 #include <pthread.h>
 #include <Block.h>
 #include "OOStd.h"
+#include "Object.h"
 //--------------------------------------------------------FIRST TUTORIAL----------------------------------------
-CLASS(Animal)
-{
-        char *name;
-        STATIC(Animal);
-        vFn talk;
-};
+
 static int Animal_Load(Animal *THIS,void *name)
 {
     THIS->name = name;
     return 0;
 }
-ASM(Animal, Animal_Load, NULL, NULL, NULL)
-
-CLASS_EX(Cat,Animal)
-{
-STATIC_EX(Cat, Animal);
-};
+ASM(Animal, Animal_Load, NULL, NULL, NULL) //initializer
 static void Meow(Animal *THIS)
 {
     printf("Meow!My name is %s!\n", THIS->name);
@@ -55,14 +46,7 @@ static int Cat_loadSt(StAnimal *THIS, void *PARAM)
     THIS->talk = (void *)Meow;
     return 0;
 }
-ASM_EX(Cat,Animal, NULL, NULL, Cat_loadSt, NULL)
-
-
-CLASS_EX(Dog,Animal)
-{
-STATIC_EX(Dog, Animal);
-};
-
+ASM_EX(Cat,Animal, NULL, NULL, Cat_loadSt, NULL) //initializer
 static void Woof(Animal *THIS)
 {
     printf("Woof!My name is %s!\n", THIS->name);
@@ -74,8 +58,6 @@ static int Dog_loadSt(StAnimal *THIS, void *PARAM)
     return 0;
 }
 ASM_EX(Dog, Animal, NULL, NULL, Dog_loadSt, NULL)
-
-
 void Test_Animals_Class()
 {
     Animal *animals[4];

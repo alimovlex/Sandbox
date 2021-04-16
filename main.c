@@ -36,7 +36,9 @@ void myStartupFun (void) //make it multithreaded
 {
     printf ("startup testing function before main()\n");
     //SGLIB_Data_Structures_Test();
-    Multithreaded_Tutorial_Functions_Test();
+    //Multithreaded_Tutorial_Functions_Test();
+    Test_Animals_Class();
+    //Exception_Test();
 }
 /* implementation of myCleanupFun */
 void myCleanupFun (void)
