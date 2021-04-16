@@ -1,3 +1,12 @@
+/*
+    Stack.c
+    The module represents my demo functions in a stack data structure.
+
+    Sandbox
+
+    Created by alimovlex.
+    Copyright (c) 2020 alimovlex. All rights reserved.
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,17 +15,7 @@
 #include <math.h>
 #include <time.h>
 #include <limits.h>
-#define _STACK_ARRAY_H_
-#define SIZE_STACK_ARRAY 100
-typedef struct
-{
-	int buf[SIZE_STACK_ARRAY];						
-	unsigned uk;													
-} StackArray;
-static const int okStackArray = 0;
-static const int fullStackArray = 1;
-static const int emptyStackArray = 2;
-static int errorStackArray;
+#include "Stack.h"
 
 void initStackArray(StackArray *S) 
 {

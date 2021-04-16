@@ -1,3 +1,12 @@
+/*
+    ForwardList.c
+    The module represents my demo functions in a single linked list data structure.
+
+    Sandbox
+
+    Created by alimovlex.
+    Copyright (c) 2020 alimovlex. All rights reserved.
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -289,23 +298,23 @@ void forwardListTest()
 	pushForwardList(&head, 2);
 	//End of the addition
 	//circular(head);
-	printf("Printing linked list:\n");
+	printf("Printing ForwardList:\n");
 	printForwardList(head);
-	printf("count of nodes is %d\n", nodesCountForwardList(head));
+	printf("count of nodes in ForwardList is %d\n", nodesCountForwardList(head));
 	deleteNodeForwardList(&head, 4);
-	printf("Linked List after Deletion at position 4: ");
+	printf("ForwardList after Deletion at position 4: ");
 	printForwardList(head);
-	printf("count of nodes is %d\n", nodesCountForwardList(head));
-	printf("Linked list before calling swapNodes() \n");
+	printf("count of nodes in ForwardList is %d\n", nodesCountForwardList(head));
+	printf("ForwardList before calling swapNodes() \n");
 	printForwardList(head);
 	swapNodesForwardList(&head, 2, 5);
-	printf("Linked list after calling swapNodes() \n");
+	printf("ForwardList after calling swapNodes() \n");
 	printForwardList(head);
 	reverseForwardList(&head);
-	printf("Reversed Linked list \n");
+	printf("Reversed ForwardList \n");
 	printForwardList(head);
 	rotateForwardList(&head, 4);
-	printf("Rotated Linked list \n");
+	printf("Rotated ForwardList \n");
 	printForwardList(head);
 
 	//detectloop(head);
@@ -315,17 +324,17 @@ void forwardListTest()
     pushForwardList(&first, 9);
 	pushForwardList(&first, 5);
 	pushForwardList(&first, 7);
-	printf("First List is ");
+	printf("First ForwardList is ");
     printForwardList(first);
-    printf("First Reversed List is ");
+    printf("First Reversed ForwardList is ");
     SGLIB_LIST_REVERSE(struct Node, first, next);
 	printForwardList(first);
-    printf("First Sorted List is ");
+    printf("First Sorted ForwardList is ");
     SGLIB_LIST_SORT(struct Node, first, NODE_COMPARATOR, next);
     printForwardList(first);
-	printf("Deleting linked list\n");
+	printf("Wiping ForwardList\n");
 	deleteForwardList(&head);
 	deleteForwardList(&first);
-	printf("Linked list deleted\n");
+	printf("ForwardList deleted\n");
 }
 

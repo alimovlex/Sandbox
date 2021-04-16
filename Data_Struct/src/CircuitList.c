@@ -1,3 +1,12 @@
+/*
+    CircuitList.c
+    The module represents my demo functions in a circuit linked list data structure.
+
+    Sandbox
+
+    Created by alimovlex.
+    Copyright (c) 2020 alimovlex. All rights reserved.
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -5,7 +5,6 @@
     Created by alimovlex.
     Copyright (c) 2020 alimovlex. All rights reserved.
 */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -17,7 +16,7 @@
 #include "Object.h"
 #include "Tutorial.h"
 #include "ForwardList.h"
-#include "Circuit_List.h"
+#include "CircuitList.h"
 #include "List.h"
 #include "Matrix.h"
 #include "Stack.h"
@@ -25,7 +24,7 @@
 #include "Queue.h"
 #include "Inet.h"
 #include "Multithread.h"
-#include "Data_Test.h"
+#include "STLTest.h"
 #include "t_clib.h"
 #include "c_lib.h"
 //Test of starting myStartupFun function before main
@@ -57,6 +56,7 @@ int main(int argc, char *argv[])
     //stl_int_array();
     //stl_dynamic_array();
     //stl_strings_array();
+    //STL_Test();
     return 0;
 }
 //-----

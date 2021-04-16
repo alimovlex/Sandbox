@@ -1,3 +1,12 @@
+/*
+    List.c
+    The module represents my demo functions in a double linked list data structure.
+
+    Sandbox
+
+    Created by alimovlex.
+    Copyright (c) 2020 alimovlex. All rights reserved.
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -158,20 +167,19 @@ void appendList(struct Node** head_ref, int new_data)
 	last->next = new_node;
 	/* 7. Make last node as previous of new node */
 	new_node->prev = last;
-	return;
 }
 // This function prints contents of linked list starting from the given node 
 void printList(struct Node* node)
 {
 	struct Node* last;
-	printf("\nTraversal in forward direction \n");
+	printf("\nTraversal in List forward direction \n");
 	while (node != NULL) 
 	{
 		printf(" %d ", node->data);
 		last = node;
 		node = node->next;
 	}
-	printf("\nTraversal in reverse direction \n");
+	printf("\nTraversal in List reverse direction \n");
 	while (last != NULL) 
 	{
 		printf(" %d ", last->data);
@@ -191,17 +199,17 @@ void listTest()
 	pushList(&head, 9);
 	// Insert 4 at the end. So linked list becomes 1->7->4->NULL 
 	appendList(&head, 4);
-	printf("Created DLL is: ");
+	printf("Created List is: ");
 	printList(head);
 	reverseList(&head);
-	printf("Reversed Linked list \n");
+	printf("Reversed List \n");
     printList(head);
 	/* delete nodes from the doubly linked list */
 	eraseNodeList(&head, head); /*delete first node*/
 	eraseNodeList(&head, head->next); /*delete middle node*/
 	eraseNodeList(&head, head->next); /*delete last node*/
 	/* Modified linked list will be NULL<-8->NULL */
-	printf("Modified Linked list \n");
+	printf("Modified List \n");
 	printList(head);
 }
 

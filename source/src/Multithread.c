@@ -19,7 +19,7 @@
 #include <unistd.h>
 #include "Tutorial.h"
 #include "ForwardList.h"
-#include "Circuit_List.h"
+#include "CircuitList.h"
 #include "List.h"
 #include "Matrix.h"
 #include "Stack.h"
@@ -27,7 +27,7 @@
 #include "Queue.h"
 #include "Inet.h"
 #include "Multithread.h"
-#include "Data_Test.h"
+#include "STLTest.h"
 #include "t_clib.h"
 
 //WORK ON THREADS IS IN PROGRESS
@@ -79,7 +79,7 @@ void Multithreaded_Tutorial_Functions_Test()
 
 void Multithreaded_Data_Structures_Test()
 {
-    pthread_t t0, t1, t2, t3, t4, t5;
+    pthread_t t0, t1, t2, t3, t4, t5, t6, t7;
     if(pthread_create(&t0,NULL,circuitListTest,NULL)==-1)
         perror("Unable to create a thread for circuitListTest function\n");
     else if(pthread_create(&t1,NULL,forwardListTest,NULL)==-1)
@@ -89,9 +89,13 @@ void Multithreaded_Data_Structures_Test()
     else if(pthread_create(&t3,NULL,stackTest,NULL)==-1)
         perror("Unable to create a thread for stackTest function\n");
     else if(pthread_create(&t4,NULL,sequenceTest,NULL)==-1)
-        perror("Unable to create a thread for STL_Test function\n");
-    else if(pthread_create(&t5,NULL,warteschlange,NULL)==-1)
-        perror("Unable to create a thread for warteschlange function\n");
+        perror("Unable to create a thread for sequenceTest function\n");
+    else if(pthread_create(&t5,NULL,queueTest,NULL)==-1)
+        perror("Unable to create a thread for queueTest function\n");
+    else if(pthread_create(&t6,NULL,arrayTest,NULL)==-1)
+        perror("Unable to create a thread for arrayTest function\n");
+    else if(pthread_create(&t7,NULL,matrixTest,NULL)==-1)
+        perror("Unable to create a thread for matrixTest function\n");
     else
         printf("Error creating threads.");
 
@@ -107,9 +111,13 @@ void Multithreaded_Data_Structures_Test()
     else if(pthread_create(&t3,NULL,stackTest,NULL)==-1)
         perror("Unable to create a thread for stack function\n");
     else if(pthread_create(&t4,NULL,sequenceTest,NULL)==-1)
-        perror("Unable to create a thread for STL_Test function\n");
-    else if(pthread_create(&t5,NULL,warteschlange,NULL)==-1)
-        perror("Unable to create a thread for warteschlange function\n");
+        perror("Unable to create a thread for sequenceTest function\n");
+    else if(pthread_create(&t5,NULL,queueTest,NULL)==-1)
+        perror("Unable to create a thread for queueTest function\n");
+    else if(pthread_create(&t6,NULL,arrayTest,NULL)==-1)
+        perror("Unable to create a thread for arrayTest function\n");
+    else if(pthread_create(&t7,NULL,matrixTest,NULL)==-1)
+        perror("Unable to create a thread for matrixTest function\n");
     else
         printf("Error creating threads.");
     pthread_exit(NULL);
