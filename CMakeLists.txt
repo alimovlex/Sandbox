@@ -15,11 +15,11 @@ add_executable(Sandbox
         Data_Struct/inc/Matrix.h
         Data_Struct/inc/Circuit_List.h
         Data_Struct/inc/List.h
-        Data_Struct/inc/Dynamic_Queue.h
+        Data_Struct/inc/Queue.h
         source/inc/Inet.h
         Data_Struct/inc/ForwardList.h
         source/inc/Multithread.h
-        Data_Struct/inc/Queue.h
+        Data_Struct/inc/Sequence.h
         Data_Struct/inc/Stack.h
         source/inc/Tutorial.h
         ooc/inc/OOBase.h
@@ -30,12 +30,12 @@ add_executable(Sandbox
         Data_Struct/src/Matrix.c
         Data_Struct/src/Circuit_List.c
         Data_Struct/src/List.c
-        Data_Struct/src/Dynamic_Queue.c
+        Data_Struct/src/Queue.c
         source/src/Inet.c
         Data_Struct/src/Data_Test.c
         Data_Struct/src/ForwardList.c
         source/src/Multithread.c
-        Data_Struct/src/Queue.c
+        Data_Struct/src/Sequence.c
         Data_Struct/src/Stack.c
         Data_Struct/inc/sglib.h
         Data_Struct/inc/Data_Test.h

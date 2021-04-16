@@ -5,101 +5,89 @@
 #include <errno.h>
 #include <math.h>
 #include <time.h>
+#include <limits.h>
 
-#define QMAX 100
-struct queue
+struct Queue
 {
-	int qu[QMAX];
-	int rear, frnt;
+	int front, rear, size;
+	unsigned capacity;
+	int* array;
 };
 
-void init(struct queue *q) 
+// function to create a queue of given capacity.  
+// It initializes size of queue as 0 
+struct Queue* createQueue(unsigned capacity)
 {
-	q->frnt = 1;
-	q->rear = 0;
-	return;
+	struct Queue* queue = (struct Queue*) malloc(sizeof(struct Queue));
+	queue->capacity = capacity;
+	queue->front = queue->size = 0;
+	queue->rear = capacity - 1;  // This is important, see the enqueue 
+	queue->array = (int*)malloc(queue->capacity * sizeof(int));
+	return queue;
 }
 
-void insert(struct queue *q, int x) 
+// Queue is full when size becomes equal to the capacity  
+int isFull(struct Queue* queue)
 {
-	if (q->rear < QMAX - 1) 
-	{
-		q->rear++;
-		q->qu[q->rear] = x;
-	}
-	else
-		printf("The Queue is full!\n");
-	return;
+	return (queue->size == queue->capacity);
 }
 
-int isempty(struct queue *q) 
+// Queue is empty when size is 0 
+int isEmpty(struct Queue* queue)
 {
-	if (q->rear < q->frnt)    
-	return(1);
-	else  
-	return(0);
+	return (queue->size == 0);
 }
 
-void print(struct queue *q) 
+// Function to add an item to the queue.   
+// It changes rear and size 
+void enqueue(struct Queue* queue, int item)
 {
-	int h;
-	if (isempty(q) == 1) 
-	{
-		printf("The queue is empty!\n");
+	if (isFull(queue))
 		return;
-	}
-	for (h = q->frnt; h <= q->rear; h++)
-		printf("%d ", q->qu[h]);
-	return;
+	queue->rear = (queue->rear + 1) % queue->capacity;
+	queue->array[queue->rear] = item;
+	queue->size = queue->size + 1;
+	printf("%d enqueued to queue\n", item);
 }
 
-int erase(struct queue *q) 
+// Function to remove an item from queue.  
+// It changes front and size 
+int dequeue(struct Queue* queue)
 {
-	int x;
-	if (isempty(q) == 1) 
-	{
-		printf("The queue is empty!\n");
-		return(0);
-	}
-	x = q->qu[q->frnt];
-	q->frnt++;
-	return(x);
+	if (isEmpty(queue))
+		return INT_MIN;
+	int item = queue->array[queue->front];
+	queue->front = (queue->front + 1) % queue->capacity;
+	queue->size = queue->size - 1;
+	return item;
 }
 
-int removex(struct queue *q) 
+// Function to get front of queue 
+int front(struct Queue* queue)
 {
-	int x, h;
-	if (isempty(q) == 1) 
-	{
-		printf("The queue is empty!\n");
-		return(0);
-	}
-	x = q->qu[q->frnt];
-	for (h = q->frnt; h < q->rear; h++) 
-	{
-		q->qu[h] = q->qu[h + 1];
-	}
-	q->rear--;
-	return(x);
+	if (isEmpty(queue))
+		return INT_MIN;
+	return queue->array[queue->front];
 }
 
-void queue(int size)
+// Function to get rear of queue 
+int rear(struct Queue* queue)
 {
-	srand((unsigned)time(NULL));
-	struct queue *q=malloc(sizeof(struct queue));
-	int a;
-	init(q);
-	print(q);
-	for (int i = 0; i<size; i++) 
-	{
-		a = rand() % 10;
-		insert(q, a);
-	}
-	printf("The queue: ");
-	print(q);
-		a = remove(q);
-		printf("\n");
-		printf("Queue after removal:\n");
-	print(q);
-	printf("\n");
+	if (isEmpty(queue))
+		return INT_MIN;
+	return queue->array[queue->rear];
+}
+
+void warteschlange()
+{
+	struct Queue* queue = createQueue(1000);
+
+	enqueue(queue, 10);
+	enqueue(queue, 20);
+	enqueue(queue, 30);
+	enqueue(queue, 40);
+
+	printf("%d dequeued from queue\n\n", dequeue(queue));
+	printf("Front item is %d\n", front(queue));
+	printf("Rear item is %d\n", rear(queue));
 }

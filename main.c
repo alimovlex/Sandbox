@@ -21,8 +21,8 @@
 #include "List.h"
 #include "Matrix.h"
 #include "Stack.h"
+#include "Sequence.h"
 #include "Queue.h"
-#include "Dynamic_Queue.h"
 #include "Inet.h"
 #include "Multithread.h"
 #include "Data_Test.h"
@@ -51,7 +51,7 @@ void myCleanupFun (void)
 
 int main(int argc, char *argv[])
 {
-    //Multithreaded_Data_Structures_Test();
+    Multithreaded_Data_Structures_Test();
     void(*func)()=Multithreaded_Tutorial_Functions_Test;
     func();
     //stl_int_array();

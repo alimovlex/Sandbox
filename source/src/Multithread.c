@@ -23,8 +23,8 @@
 #include "List.h"
 #include "Matrix.h"
 #include "Stack.h"
+#include "Sequence.h"
 #include "Queue.h"
-#include "Dynamic_Queue.h"
 #include "Inet.h"
 #include "Multithread.h"
 #include "Data_Test.h"
@@ -86,9 +86,9 @@ void Multithreaded_Data_Structures_Test()
         perror("Unable to create a thread for forwardListTest function\n");
     else if(pthread_create(&t2,NULL,listTest,NULL)==-1)
         perror("Unable to create a thread for listTest function\n");
-    else if(pthread_create(&t3,NULL,stack,NULL)==-1)
-        perror("Unable to create a thread for stack function\n");
-    else if(pthread_create(&t4,NULL,SGLIB_Data_Structures_Test,NULL)==-1)
+    else if(pthread_create(&t3,NULL,stackTest,NULL)==-1)
+        perror("Unable to create a thread for stackTest function\n");
+    else if(pthread_create(&t4,NULL,sequenceTest,NULL)==-1)
         perror("Unable to create a thread for STL_Test function\n");
     else if(pthread_create(&t5,NULL,warteschlange,NULL)==-1)
         perror("Unable to create a thread for warteschlange function\n");
@@ -104,9 +104,9 @@ void Multithreaded_Data_Structures_Test()
         perror("Unable to create a thread for forwardListTest function\n");
     else if(pthread_create(&t2,NULL,listTest,NULL)==-1)
         perror("Unable to create a thread for listTest function\n");
-    else if(pthread_create(&t3,NULL,stack,NULL)==-1)
+    else if(pthread_create(&t3,NULL,stackTest,NULL)==-1)
         perror("Unable to create a thread for stack function\n");
-    else if(pthread_create(&t4,NULL,SGLIB_Data_Structures_Test,NULL)==-1)
+    else if(pthread_create(&t4,NULL,sequenceTest,NULL)==-1)
         perror("Unable to create a thread for STL_Test function\n");
     else if(pthread_create(&t5,NULL,warteschlange,NULL)==-1)
         perror("Unable to create a thread for warteschlange function\n");
