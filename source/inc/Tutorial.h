@@ -4,7 +4,7 @@ void fileTest();
 void preprocessingTest();
 void dataTypeSizeTest();
 clock_t localTimeCheck();
-clock_t timerFunction();
+clock_t timerFunction(void(*func)());
 void pointersTest();
 unsigned long long StringToBinary_(const char *s);
 void characterSetTest();
