@@ -28,12 +28,6 @@ TEST(TUTORIAL_TEST/*test case name*/, TUTORIAL_TEST_1/*test name*/)
     EXPECT_EQ(0, sandbox());
 }
 
-TEST(INTERNET_TEST/*test case name*/, INTERNET_TEST_1/*test name*/)
-{
-    EXPECT_EQ(0, serverTest());
-    EXPECT_EQ(0, clientTest());
-}
-
 TEST(OOC_TEST/*test case name*/, OOC_TEST_1/*test name*/)
 {
     EXPECT_EQ(0, test_Animals_Class());
@@ -71,5 +65,13 @@ TEST(MULTITHREADING_TEST, MULTITHREADING_TEST_1)
 {
 EXPECT_EQ(0, Multithreaded_Tutorial_Functions_Test());
 EXPECT_EQ(0, Multithreaded_Data_Structures_Test());
+}
+*/
+
+/*
+TEST(INTERNET_TEST, INTERNET_TEST_1)
+{
+    EXPECT_EQ(0, serverTest());
+    EXPECT_EQ(0, clientTest());
 }
 */

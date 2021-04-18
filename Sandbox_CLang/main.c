@@ -37,6 +37,7 @@ void myStartupFun (void) //make it multithreaded
 {
     printf ("startup testing function before main()\n");
     timerFunction(SGLIB_Data_Structures_Test);
+    //clientTest();
 }
 /* implementation of myCleanupFun */
 void myCleanupFun (void)
