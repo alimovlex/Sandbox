@@ -1,9 +1,7 @@
-void fileTest();
-void testingPointers();
-void argumentsTest(int args,...);
-void localTimeCheck();
-void dataTypeSizeTest();
-void exceptionTest();
-void exceptionTestTwo();
-void timerFunction(void(*func)());
-void preprocessingTest();
+int fileTest();
+int testingPointers();
+int argumentsTest(int args,...);
+int localTimeCheck();
+int dataTypeSizeTest();
+int timerFunction(int(func)());
+int preprocessingTest();

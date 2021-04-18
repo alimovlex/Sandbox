@@ -31,7 +31,7 @@
 
 using namespace std;
 //---------------------------------------------------------------Object Oriented Programming
-void polymorphismTest()
+int polymorphismTest()
 {
     //first approach
     auto_ptr<Base> bp (new Derived);
@@ -44,6 +44,8 @@ void polymorphismTest()
     basic->show();
     basic=&dre;
     basic->show();
+
+    return 0;
 }
 //------------------------------Template classes programming
 
@@ -67,7 +69,7 @@ void TemplateClass<T>::Print(T Data)
     cout<<"Hello from the template class! Your value is "<<Data<<endl;
 }
 
-void templateClassTest()
+int templateClassTest()
 {
     srand((unsigned)time(NULL));
     TemplateItem<int> object;
@@ -75,22 +77,8 @@ void templateClassTest()
     TemplateClass<int> car;
     car.Data =rand()%10;
     car.Print(car.Data);
-    int n;
-    cout<<"Please enter the size of the array:"<<endl;
-    cin>>n;
-    int arr[n];
-    char array[] {"Hola"};
-    cin>>array;
-    for (int i=0;i<n;i++)
-    {
 
-        arr[i]=rand()%10;
-        cout<<"\t"<<arr[i];
-    }
-    cout<<endl;
-    object.SetData(rand()%10);
-    object.array(arr,n);
-    obj.array(array,n);
+    return 0;
 }
 
 //------------------------------Template functions programming
@@ -113,7 +101,7 @@ T sum(T a, T b)
     return a+b;
 }
 
-void templateFunctionTest()
+int templateFunctionTest()
 {
     srand((unsigned)time(NULL));
     long a=rand() %10,b=rand() %20, c=sum<long>(rand() %10,rand() %10);
@@ -127,4 +115,6 @@ void templateFunctionTest()
     y+=0.55;
     cout<<"The template function summ passed by address = "<<summa(&a,&b)<<endl;
     cout<<"The template function summ passed by address = "<<summa(&x,&y)<<endl;
+
+    return 0;
 }

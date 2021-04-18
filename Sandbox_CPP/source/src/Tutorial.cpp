@@ -41,7 +41,7 @@
 using namespace std;
 using namespace chrono;
 
-void fileTest()
+int fileTest()
 {
 	fstream MyFile;
 	MyFile.open("bin.txt");
@@ -53,6 +53,7 @@ void fileTest()
 	else
 	{
 		cout << "Something went wrong"<<endl;
+        return -1;
 	}
 	MyFile.close();
 	MyFile.open("bin.txt");
@@ -67,9 +68,10 @@ void fileTest()
 		cout << endl;
 	}
 	MyFile.close();
+    return 0;
 
 }
-void testingPointers()
+int testingPointers()
 {
 	int x = 1;
 	int *pointer_to_x = &x;
@@ -101,21 +103,28 @@ void testingPointers()
 	cout << "Value of var :" << var << endl;
 	cout << "Value available at *ptr :" << *ptr << endl;
 	cout << "Value available at **pptr :" << **pptr << endl;
+
+    function<int()> fcnPtr;
+    fcnPtr = localTimeCheck;
+    fcnPtr();
+    return 0;
 	//j = *p; ERROR
 	//now x==xref==3
 }
 
-void argumentsTest(int args,...)
+int argumentsTest(int args,...)
 {
     va_list ap;
     va_start(ap,args);
-    int i;
+    int i, summ;
     for(i=0;i<args;i++)
         printf("Summ: %i\n",va_arg(ap,int));
+    summ = va_arg(ap,int);
     va_end(ap);
+    return summ;
 }
 
-void localTimeCheck()
+int localTimeCheck()
 {
 	// current date/time based on current system
 	time_t now = time(0);
@@ -129,9 +138,11 @@ void localTimeCheck()
 	tm *gmtm = gmtime(&now);
 	dt = asctime(gmtm);
 	cout << "The UTC date and time is:" << dt << endl;
+
+    return 0;
 }
 
-void dataTypeSizeTest()
+int dataTypeSizeTest()
 {
 	cout << "Size of char : " << sizeof(char) << " byte" << endl;
 	cout << "Size of int : " << sizeof(int)	<< " bytes" << endl;
@@ -142,24 +153,11 @@ void dataTypeSizeTest()
 	cout << "Size of float : " << sizeof(float)	<< " bytes" << endl;
 	cout << "Size of double : " << sizeof(double) << " bytes" << endl;
 	cout << "Size of wchar_t : " << sizeof(wchar_t)	<< " bytes" << endl;
-}
 
-void exceptionTest()
-{
-    int x;
-    try
-    {
-        throw "The division by zero occured!";
-        x/=0;
-    }
-    catch(const char *msg)
-    {
-        cerr<<msg<<endl;
-    }
-
+    return 0;
 }
 //--------------------------------time measurement functions
-void timerFunction(void(*func)())
+int timerFunction(int(func)())
 {
 	auto start = high_resolution_clock::now();
 
@@ -177,9 +175,10 @@ void timerFunction(void(*func)())
 
 	cout << "Time taken by function is : " << fixed << time_taken << setprecision(9);
 	cout << " sec" << endl;
+    return 0;
 }
 
-void preprocessingTest()
+int preprocessingTest()
 {
 	cout<<__func__<<endl;//print the name of the function
 	cout<<"Minimum of 20 and 30 = "<<MIN(20, 30)<<endl;
@@ -191,4 +190,5 @@ void preprocessingTest()
 	cout<<"Value of __TIME__ : "<< __TIME__<<endl;
 	cout<<"Multiplication = "<<MULTIPLY(20, 30)<<endl;
 	cout<<RECEIVE(GeeksQuiz)<<endl;
+    return 0;
 }

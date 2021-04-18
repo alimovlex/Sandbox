@@ -14,6 +14,8 @@
 using namespace std;
 
 int main(int argc, char **argv) {
-    containersTest();
+    timerFunction(containersTest);
+    timerFunction(algorithmsTest);
+    timerFunction(jsonRequest);
     return 0;
 }

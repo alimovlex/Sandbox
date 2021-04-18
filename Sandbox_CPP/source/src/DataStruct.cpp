@@ -31,7 +31,7 @@
 #include "STLTest.hpp"
 using namespace std;
 
-void STLCombinedArrayTest()
+int STLCombinedArrayTest()
 {
     srand((unsigned)time(NULL));
     vector <int> integers;
@@ -71,9 +71,10 @@ void STLCombinedArrayTest()
     }
     cout << endl;
 
+    return 0;
 }
 
-void matrixTest()
+int matrixTest()
 {
     cout << "Vector matrix" << endl;
     vector<vector<int> > a;
@@ -118,9 +119,7 @@ void matrixTest()
         delete[] ary[i];
     delete[] ary;
     cout << endl;
-    function<void()> fcnPtr;
-    fcnPtr = STLCombinedArrayTest;
-    fcnPtr();
+    return 0;
 }
 
 VectorSumm::VectorSumm(vector<int> &list1) :sum(1)
@@ -140,8 +139,9 @@ VectorSumm::VectorSumm(vector<int> &list1) :sum(1)
     for_each(list1.begin(),list1.end(),output);
 }
 
-void summVectorTest()
+int summVectorTest()
 {
     vector<int> list1{1,2,3,4,5};
     VectorSumm object(list1);
+    return 0;
 }

@@ -4,8 +4,9 @@
 #include <vector>
 using namespace std;
 
-void polymorphismTest();
-void templateClassTest();
+int polymorphismTest();
+int templateClassTest();
+int templateFunctionTest();
 
 class Base
 {

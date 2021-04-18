@@ -4,9 +4,9 @@
 #include <vector>
 using namespace std;
 
-void STLCombinedArrayTest();
-void matrixTest();
-void summVectorTest();
+int STLCombinedArrayTest();
+int matrixTest();
+int summVectorTest();
 
 class VectorSumm
 {
