@@ -1117,7 +1117,7 @@ void rbtree_test() {
 /////////////////////////////////////////////////////////////////////////////////////////
 
 
-void SGLIB_Data_Structures_Test() //SGLIB DataStructures test.
+int SGLIB_Data_Structures_Test() //SGLIB DataStructures test.
 {
 	int pass;
 	srandom(0);
@@ -1133,4 +1133,5 @@ void SGLIB_Data_Structures_Test() //SGLIB DataStructures test.
 		sorted_list_test();
 		rbtree_test();
 	}
+	return 0;
 }

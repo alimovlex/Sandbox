@@ -12,13 +12,13 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 
-void Server()
+int serverTest()
 {
-
+    return 0;
 }
 
-void Client()
+int clientTest()
 {
-
+    return 0;
 }
 

@@ -48,7 +48,7 @@ unsigned long long StringToBinary_(const char *s)
 }
 //----------------------------ENDING---------------------
 
-void characterSetTest()
+int characterSetTest()
 {
 	srand((unsigned)time(NULL));
 	int hex = rand() % 0xFFF;
@@ -72,12 +72,12 @@ void characterSetTest()
 		if (isgraph(i) != 0)
 			printf("%c ", i);
 	printf("\n");
-
+    return 0;
 	//Fn();
 	//free(sizeof(struct numbers));
 }
 
-void listFiles()
+int listFiles()
 {
 	DIR *dp;
 	struct dirent *ep;
@@ -89,11 +89,14 @@ void listFiles()
 			puts(ep->d_name);
 		(void)closedir(dp);
 	}
-	else
-		perror("Couldn't open the directory");
+	else {
+        perror("Couldn't open the directory");
+        return -1;
+    }
+    return 0;
 }
 
-void testingPointers(int *p, void *ptr)
+int testingPointers(int *p, void *ptr, int(funcPtr)())
 {
     //Dynamic structure initialization
     Box *m = (Box*)malloc(sizeof(Box));
@@ -101,7 +104,8 @@ void testingPointers(int *p, void *ptr)
     m->tax_percent = 200;
     m->tax_percent = 100;
     Box num =  { 100.0, 200,100 };// C11 struct init
-    printf("The size of the structure box = %ld %ld\n",sizeof(m),sizeof(num));//sizes
+    printf("The size of the structure box has on the heap %ld bytes and "
+           "%ld bytes on the stack\n",sizeof(m),sizeof(num));//sizes
     free(m);
     //------------------Ending---------------------
 	int  i = 0,a=10;
@@ -117,11 +121,11 @@ void testingPointers(int *p, void *ptr)
 	// void pointer is now float 
 	ptr = &y;
 	printf("Float variable is= %.2f\n", *((float*)ptr));
-	void(*ls_ptr)()=listFiles;  //pointer to function
-	ls_ptr();
+    printf("funcPtr contains address %p\n", funcPtr);
+    return 0;
 }
 
-void pointersTest()
+int pointersTest()
 {
 	static int sa = 10; //example of static variable (it saves its value over each function calling)
 	int j = 63, x = 4, i = 0, a = 10;
@@ -131,12 +135,14 @@ void pointersTest()
 	printf("The address of j is %p\n", &j);
 	printf("The value of j is %d\n", j);
         printf("address of function pointersTest is :%p\n", pointersTest);
-    smart int *some_int = unique_ptr(int, 1);//Using smart pointers library
-    printf("%p = %d\n", some_int, *some_int);
-	testingPointers(&j, &x);
+    smart int *some_int = unique_ptr(int, rand()%10);//Using smart pointers library
+    smart int(*func)() = unique_ptr(int, localTimeCheck()); //CHECK THIS STRING
+    printf("Smart Pointer Address %p has %d Smart Pointer value\n", some_int, *some_int);
+	testingPointers(&j, &x, func);
+    return 0;
 }
 
-void fileTest()
+int fileTest()
 {
 	//writing to file
 	FILE *fp= fopen("test.txt", "w+");
@@ -146,6 +152,7 @@ void fileTest()
 	{
 		fprintf(stderr, "\nError opend file\n");
 		fclose(fp);
+        return -1;
 	}
 	else
 	{
@@ -161,6 +168,7 @@ void fileTest()
 		printf("%s\n", buff);
 	}
 	fclose(fp);
+    return 0;
 	/*while (!feof(fp))
 	{
 	fgets(buff, 255, (FILE*)fp);
@@ -170,7 +178,7 @@ void fileTest()
 	*/
 }
 
-void preprocessingTest()
+int preprocessingTest()
 {
 	printf("%s\n", __func__);//print the name of the function
 	printf("Minimum of 20 and 30 = %d\n", MIN(20, 30));
@@ -184,9 +192,10 @@ void preprocessingTest()
 	//printf(merge("Hello ", "World\n"));
 	printf("%s\n", get(GeeksQuiz));
 	//printf("\a"); signal exclamation
+    return 0;
 }
 
-void dataTypeSizeTest()
+int dataTypeSizeTest()
 {
 	float x = 0.1;
 	long int a = 1;
@@ -205,21 +214,20 @@ void dataTypeSizeTest()
         printf("Value of INT_MIN %d\n", INT_MIN);
         printf("Value of FLT_MAX %f\n", FLT_MAX);
         printf("Value of FLT_MIN %f\n", FLT_MIN);
-        
+    return 0;
 }
 
-clock_t timerFunction(void(*func)())
+void timerFunction(int(func)())
 {
     clock_t t;
     t = clock();
     func();
     t = clock() - t;
     double time_taken = ((double)t) / CLOCKS_PER_SEC;
-    printf("function took %f seconds to execute \n", time_taken);
-    return 0;
+    printf("function %s took %f seconds to execute \n", __FUNCTION__, time_taken);
 }
 
-clock_t localTimeCheck()
+int localTimeCheck()
 {
 	time_t t;
 	struct tm *tmp;
@@ -236,14 +244,16 @@ clock_t localTimeCheck()
 	return 0;
 }
 
-void argumentsTest(int args,...)
+int argumentsTest(int args,...)
 {
     va_list ap;
     va_start(ap,args);
+    int summ = va_arg(ap,int);
     int i;
     for(i=0;i<args;i++)
-        printf("Summ: %i\n",va_arg(ap,int));
+        printf("Arguments Summ: %i\n", va_arg(ap,int));
     va_end(ap);
+    return summ;
 }
 
 int sandbox()

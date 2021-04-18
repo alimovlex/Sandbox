@@ -58,7 +58,7 @@ static int Dog_loadSt(StAnimal *THIS, void *PARAM)
     return 0;
 }
 ASM_EX(Dog, Animal, NULL, NULL, Dog_loadSt, NULL)
-void Test_Animals_Class()
+int test_Animals_Class()
 {
     Animal *animals[4];
     StAnimal *f;
@@ -77,26 +77,27 @@ void Test_Animals_Class()
     for (i=0; i<4; ++i) {
         DELETE0(animals[i]);
     }
+    return 0;
 }
 //--------------------------------------------------------SECOND TUTORIAL----------------------------------------
-void Exception_Test2()
+void exception_Test2()
 {
     Exception *e=GET_EXCEPTION(1);
     TRY
     THROW(e);
     END_TRY
 }
-void Exception_Test1()
+void exception_Test1()
 {
     Exception e={"exception test2 has been changed!"};
     SET_EXCEPTION(1,&e);
     TRY
-    Exception_Test2();
+    exception_Test2();
     CATCH(&e)
     fprintf(stderr,"!!! exception : %s\n",e.reason);
     END_TRY
 }
-void Exception_Test()
+int exception_Test()
 {
     Exception excp[32]={
             {"test1"},
@@ -106,10 +107,11 @@ void Exception_Test()
 
     SET_EXCEPTIONS(&excp,32);
     TRY
-    Exception_Test1();
+    exception_Test1();
     FINALLY
     fprintf(stderr,"final process\n");
     END_TRY
+    return 0;
 }
 
 //----------------------------------------------------------------------ENDING-----------------------------------

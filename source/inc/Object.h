@@ -1,6 +1,20 @@
 #include "OOStd.h"
-void Test_Animals_Class();
-void Exception_Test();
+
+//
+// Created by alimovlex
+//
+
+//
+#ifdef __cplusplus
+extern "C" {
+#endif
+int test_Animals_Class();
+int exception_Test();
+
+//C++ Syntax added to be referenced/built in gtest,
+#ifdef __cplusplus
+}
+#endif
 //--------------------------Animal Class initialization
 CLASS(Animal) //Definition
 {

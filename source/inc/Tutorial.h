@@ -1,4 +1,3 @@
-
 //
 // Created by alimovlex
 //
@@ -8,25 +7,22 @@
 extern "C" {
 #endif
 
-void testingPointers(int *p, void *ptr);
-void listFiles();
-void fileTest();
-void preprocessingTest();
-void dataTypeSizeTest();
-clock_t localTimeCheck();
-clock_t timerFunction(void(*func)());
-void pointersTest();
-unsigned long long StringToBinary_(const char *s);
-void characterSetTest();
-void argumentsTest(int args,...);
+int testingPointers(int *p, void *ptr, int(*funcPtr)(int));
+int listFiles();
+int fileTest();
+int preprocessingTest();
+int dataTypeSizeTest();
+int localTimeCheck();
+void timerFunction(int(func)());
+int pointersTest();
+int characterSetTest();
+int argumentsTest(int args,...);
 int sandbox();
 
 //C++ Syntax added to be referenced/built in gtest,
 #ifdef __cplusplus
 }
 #endif
-
-typedef char string;
 
 typedef struct Blank
 {
@@ -46,5 +42,5 @@ typedef struct SizeOfTypes
     float f; //4 byte
     double g; //8 byte
     long double h; //8 byte
-    string str[0]; //1 byte
+    char str[0]; //1 byte
 }TypeSize;
