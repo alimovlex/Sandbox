@@ -66,7 +66,7 @@ int isEmptyStackArray(StackArray *S)
 	}
 	return 0;
 }
-void stackTest()
+int stackTest()
 {
 	printf("Array stack\n");
 	StackArray S;
@@ -79,4 +79,5 @@ void stackTest()
 	printf("%d ", a);
 	getStackArray(&S, &a);
 	printf("%d\n", a);
+    return 0;
 }

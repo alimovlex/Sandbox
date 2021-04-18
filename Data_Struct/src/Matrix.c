@@ -53,7 +53,7 @@ void freeMatrix(int **A, size_t N)
 	free(A);
 }
 
-void matrixTest() //---------------calling matrix
+int matrixTest() //---------------calling matrix
 {
 	srand((unsigned)time(NULL));
 	size_t N = rand()%10, M = rand()%10;
@@ -71,9 +71,10 @@ void matrixTest() //---------------calling matrix
 	printMatrix(A, N, M);
 	/*memory investigation*/
 	freeMatrix(A, N);
+    return 0;
 }
 //--------------------------------dynamic array over
-void arrayTest()
+int arrayTest()
 {
     srand((unsigned)time(NULL));
     int size = rand()%3;
@@ -102,5 +103,6 @@ void arrayTest()
     for(i=0;i<size;i++)
         printf("%d\t", a[i]);
     printf("\n");
+    return 0;
 }
 

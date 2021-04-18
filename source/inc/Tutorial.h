@@ -6,8 +6,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-int testingPointers(int *p, void *ptr, int(*funcPtr)(int));
 int listFiles();
 int fileTest();
 int preprocessingTest();

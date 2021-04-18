@@ -105,7 +105,7 @@ struct Node *exchangeNodes(struct Node *head)
 	return head;
 }
 
-void circuitListTest()
+int circuitListTest()
 {
 	/* Initialize lists as empty */
 	struct Node *head = NULL;
@@ -126,4 +126,5 @@ void circuitListTest()
 	printf("Second Circular Linked List\n");
 	printCircuitList(head2);
 	//deleteList(&head);
+    return 0;
 }

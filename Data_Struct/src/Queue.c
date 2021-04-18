@@ -81,7 +81,7 @@ int rearQueue(struct Queue* queue)
 	return queue->array[queue->rear];
 }
 
-void queueTest()
+int queueTest()
 {
 	struct Queue* queue = createQueue(1000);
 
@@ -93,4 +93,5 @@ void queueTest()
 	printf("%d dequeued from queue\n\n", removeItemQueue(queue));
 	printf("Front item is %d\n", frontQueue(queue));
 	printf("Rear item is %d\n", rearQueue(queue));
+    return 0;
 }

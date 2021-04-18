@@ -188,7 +188,7 @@ void printList(struct Node* node)
 	printf("\n");
 }
 
-void listTest()
+int listTest()
 {
 	/* Start with the empty list */
 	struct Node* head = NULL;
@@ -211,5 +211,6 @@ void listTest()
 	/* Modified linked list will be NULL<-8->NULL */
 	printf("Modified List \n");
 	printList(head);
+    return 0;
 }
 

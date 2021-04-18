@@ -10,44 +10,42 @@ My tutorials in C language that contain tests on:
 **Publicly available functions list:**
 
 **Multithreading section (in progress):**
-1) void Multithreaded_Tutorial_Functions_Test();
-2) void Multithreaded_Data_Structures_Test();
+1) int Multithreaded_Tutorial_Functions_Test();
+2) int Multithreaded_Data_Structures_Test();
 
 **Object-Oriented section:**
-1) void Test_Animals_Class();
-2) void Exception_Test();
+1) int Test_Animals_Class();
+2) int Exception_Test();
 
 **Internet section (under maintenance):**
-1) void Client();
-2) void Server();
+1) int Client();
+2) int Server();
 
 **Tutorials section:**
-1) void testingPointers(int *p, void *ptr);
-2) void listFiles();
-3) void fileTest();
-4) void preprocessingTest();
-5) void dataTypeSizeTest();
-6) clock_t localTimeCheck();
-7) clock_t timerFunction();
-8) void pointersTest();
-9) unsigned long long StringToBinary_(const char *s);
-10) void characterSetTest();
-11) void argumentsTest(int args,...);
-12) void sandbox(); //Just the testing function
+1) int listFiles();
+2) int fileTest();
+3) int preprocessingTest();
+4) int dataTypeSizeTest();
+5) int localTimeCheck();
+6) void timerFunction(int(func)());
+7) int pointersTest();
+8) int characterSetTest();
+9) int argumentsTest(int args,...);
+10) int sandbox(); //Just the testing function
 
 **Data Structures section:**
-1) void circuitListTest();
-2) void forwardListTest();
-3) void listTest();
-4) void arrayTest();
-5) void matrixTest();
-6) void queueTest();
-7) void sequenceTest();
-8) void stackTest();
+1) int circuitListTest();
+2) int forwardListTest();
+3) int listTest();
+4) int arrayTest();
+5) int matrixTest();
+6) int queueTest();
+7) int sequenceTest();
+8) int stackTest();
 
 **STL SGLib section:**
-1) void stl_strings_array();
-2) void stl_dynamic_array();
-3) void stl_int_array();
-4) void SGLIB_Data_Structures_Test();
-5) void STL_Test(); //CSTL library test
+1) int stl_strings_array();
+2) int stl_dynamic_array();
+3) int stl_int_array();
+4) int SGLIB_Data_Structures_Test();
+5) int STL_Test(); //CSTL library test

@@ -83,7 +83,7 @@ int removeSequence(struct Sequence *q)
 	return(x);
 }
 
-void sequenceTest()
+int sequenceTest()
 {
 
 	srand((unsigned)time(NULL));
@@ -104,4 +104,5 @@ void sequenceTest()
 		printf("Sequence after removal:\n");
 	printSequence(q);
 	printf("\n");
+    return 0;
 }

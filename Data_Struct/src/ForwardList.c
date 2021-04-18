@@ -273,7 +273,7 @@ struct Node* addTwoForwardLists(struct Node* first, struct Node* second)
 }
 
 
-void forwardListTest()
+int forwardListTest()
 {
 	struct Node* head = NULL;
 	struct Node* second = NULL;
@@ -336,5 +336,6 @@ void forwardListTest()
 	deleteForwardList(&head);
 	deleteForwardList(&first);
 	printf("ForwardList deleted\n");
+    return 0;
 }
 

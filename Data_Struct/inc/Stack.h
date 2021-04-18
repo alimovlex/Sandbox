@@ -1,6 +1,18 @@
+//
+// Created by alimovlex
+//
+
+//
 #define _STACK_ARRAY_H_
 #define SIZE_STACK_ARRAY 100
-void stackTest();
+#ifdef __cplusplus
+extern "C" {
+#endif
+int stackTest();
+//C++ Syntax added to be referenced/built in gtest,
+#ifdef __cplusplus
+}
+#endif
 typedef struct
 {
     int buf[SIZE_STACK_ARRAY];

@@ -50,14 +50,15 @@ free_e(void* ptr) {
     }
 }
 //STL function to print elements
-static void print_e(int *ptr) {
+static void print_e(void *ptr) {
     if (ptr) {
-        printf("%d\n", *(int*)ptr);
+        printf("%d\t", *(int*)ptr);
     }
 }
 
-void stl_int_array()
+int stl_int_array()
 {
+    printf("CSTL INTEGER ARRAY:   ");
     size_t size = 10;
     int i = 0;
     int *p_rv = (int *)0;
@@ -118,11 +119,12 @@ void stl_int_array()
         p_rv = (int *) cstl_array_element_at(myArray, (size_t)i);
         print_e(p_rv);
     }
-
+    printf("\n");
     cstl_array_delete(myArray);
+    return 0;
 }
 
-void stl_dynamic_array()
+int stl_dynamic_array()
 {
     size_t size = 10;
     int i = 0;
@@ -176,9 +178,10 @@ void stl_dynamic_array()
     assert(*rv == 8);
 
     cstl_array_delete(myArray);
+    return 0;
 }
 
-void stl_strings_array()
+int stl_strings_array()
 {
     size_t size = 10;
     char *input_array[11];
@@ -241,5 +244,8 @@ void stl_strings_array()
     p_rv = (char **) cstl_array_element_at(myArray, size - 1);
     rv = *((char**)p_rv);
     assert(strcmp(rv, input_array[8]) == 0);
+
     cstl_array_delete(myArray);
+
+    return 0;
 }

@@ -27,6 +27,7 @@
 #include "STLTest.h"
 #include "t_clib.h"
 #include "c_lib.h"
+#include "STLArray.h"
 //Test of starting myStartupFun function before main
 void myStartupFun (void) __attribute__ ((constructor));
 /* Apply the destructor attribute to myCleanupFun() so that it is executed after main() */
