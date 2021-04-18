@@ -27,24 +27,6 @@
 #include "STLTest.h"
 #include "t_clib.h"
 #include "c_lib.h"
-//Test of starting myStartupFun function before main
-void myStartupFun (void) __attribute__ ((constructor));
-/* Apply the destructor attribute to myCleanupFun() so that it is executed after main() */
-void myCleanupFun (void) __attribute__ ((destructor));
-/* implementation of myStartupFun */
-void myStartupFun (void) //make it multithreaded
-{
-    printf ("startup testing function before main()\n");
-    //SGLIB_Data_Structures_Test();
-    //Multithreaded_Tutorial_Functions_Test();
-    Test_Animals_Class();
-    //Exception_Test();
-}
-/* implementation of myCleanupFun */
-void myCleanupFun (void)
-{
-    printf ("\ncleanup code after main()\n");
-}
 
 
 int main(int argc, char *argv[])

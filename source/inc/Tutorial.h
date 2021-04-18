@@ -1,3 +1,13 @@
+
+//
+// Created by alimovlex
+//
+
+//
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void testingPointers(int *p, void *ptr);
 void listFiles();
 void fileTest();
@@ -9,8 +19,12 @@ void pointersTest();
 unsigned long long StringToBinary_(const char *s);
 void characterSetTest();
 void argumentsTest(int args,...);
-void sandbox();
+int sandbox();
 
+//C++ Syntax added to be referenced/built in gtest,
+#ifdef __cplusplus
+}
+#endif
 
 typedef char string;
 

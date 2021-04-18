@@ -1,83 +1,58 @@
-cmake_minimum_required(VERSION 3.14)
-project(Sandbox C)
 
-set(CMAKE_C_STANDARD 11)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pthread")
+cmake_minimum_required(VERSION 3.13)  # Automatically generated syntax
+
+# project(Sandbox) --> When CLion project is created, it is automatically created if it is created as c project,
+# Because of this, the C++ gtest is not built.
+# Therefore, remove c as below.
+project(Sandbox)
+
+set(CMAKE_C_STANDARD 11) # Automatic generation syntax when creating a C project
+file(GLOB SANDBOX "source/inc/*.h" "source/src/*.c")
+file(GLOB OOC "ooc/inc/*.h" "ooc/src/*.c")
+file(GLOB DATASTRUCT "Data_Struct/inc/*.h" "Data_Struct/src/*.c")
+file(GLOB CSTL "cstl/inc/*.h" "cstl/src/*.c" "cstl/test/*.c")
+file(GLOB CSPTR "csptr/inc/*.h" "csptr/src/*.c")
+# Build my library to support the Sandbox function (C code)
+add_library(libSandbox SHARED ${SANDBOX})
+add_library(libOOC SHARED ${OOC})
+add_library(libDataStruct SHARED ${DATASTRUCT})
+add_library(libCSTL SHARED ${CSTL})
+add_library(libCSPTR SHARED ${CSPTR})
+
+# Build an executable program using the plus library (C code)
+# It is not used when performing only tests, so there is no need to build.
 include_directories(source/inc)
 include_directories(Data_Struct/inc)
 include_directories(ooc/inc)
 include_directories(cstl/inc)
 include_directories(csptr/inc)
-#find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
-add_executable(Sandbox
-        main.c
-        Data_Struct/inc/Matrix.h
-        Data_Struct/inc/CircuitList.h
-        Data_Struct/inc/List.h
-        Data_Struct/inc/Queue.h
-        source/inc/Inet.h
-        Data_Struct/inc/ForwardList.h
-        source/inc/Multithread.h
-        Data_Struct/inc/Sequence.h
-        Data_Struct/inc/Stack.h
-        source/inc/Tutorial.h
-        ooc/inc/OOBase.h
-        ooc/inc/OOCfg.h
-        ooc/inc/OOCore.h
-        ooc/inc/OODbg.h
-        ooc/inc/OOStd.h
-        Data_Struct/src/Matrix.c
-        Data_Struct/src/CircuitList.c
-        Data_Struct/src/List.c
-        Data_Struct/src/Queue.c
-        source/src/Inet.c
-        Data_Struct/src/STLTest.c
-        Data_Struct/src/ForwardList.c
-        source/src/Multithread.c
-        Data_Struct/src/Sequence.c
-        Data_Struct/src/Stack.c
-        Data_Struct/inc/sglib.h
-        Data_Struct/inc/STLTest.h
-        Data_Struct/src/STLArray.c
-        Data_Struct/inc/STLArray.h
-        source/src/Tutorial.c
-        ooc/src/OODbg.c
-        source/src/Object.c
-        source/inc/Object.h
-        cstl/inc/c_algorithms.h
-        cstl/inc/c_array.h
-        cstl/inc/c_deque.h
-        cstl/inc/c_errors.h
-        cstl/inc/c_iterator.h
-        cstl/inc/c_lib.h
-        cstl/inc/c_list.h
-        cstl/inc/c_map.h
-        cstl/inc/c_rb.h
-        cstl/inc/c_set.h
-        cstl/src/c_algorithms.c
-        cstl/src/c_array.c
-        cstl/src/c_deque.c
-        cstl/src/c_list.c
-        cstl/src/c_map.c
-        cstl/src/c_rb.c
-        cstl/src/c_set.c
-        cstl/src/c_util.c
-        cstl/test/t_c_algorithms.c
-        cstl/test/t_c_array.c
-        cstl/test/t_c_deque.c
-        cstl/test/t_c_map.c
-        cstl/test/t_c_rb.c
-        cstl/test/t_c_set.c
-        cstl/test/t_c_slist.c
-        cstl/test/t_clib.c
-        cstl/inc/t_clib.h
-        csptr/inc/array.h
-        csptr/inc/common.h
-        csptr/inc/config.h
-        csptr/inc/smalloc.h
-        csptr/inc/smart_ptr.h
-        csptr/inc/mman.h
-        csptr/src/array.c
-        csptr/src/mman.c)
-target_link_libraries(Sandbox ${GTEST_LIBRARIES} pthread m)
+add_executable(Sandbox main.c)
+target_link_libraries(Sandbox libSandbox libOOC libDataStruct libCSTL libCSPTR pthread)
+
+# build gtest (C++ code)
+find_package(GTest REQUIRED)
+find_package(Threads REQUIRED)
+enable_testing()
+
+
+# Build test program (C++ code)
+#include_directories(source/inc)
+#include_directories(Data_Struct/inc)
+#include_directories(ooc/inc)
+#include_directories(cstl/inc)
+#include_directories(csptr/inc)
+include_directories(${GTEST_SOURCE_DIR}/include ${GTEST_SOURCE_DIR})
+add_executable(SandboxTests test/SandboxTest.cpp)
+target_link_libraries(SandboxTests gtest gtest_main libSandbox libOOC libDataStruct libCSTL libCSPTR pthread)
+
+# Not used (written for testing in the middle stage)
+##set(CMAKE_CXX_STANDARD 11)
+##set(CMAKE_C_COMPILER g++)
+##set(CMAKE_CXX_LINK_EXECUTABLE cxx)
+#add_subdirectory(googletest-release-1.8.1)
+#set(gtest_SRC_DIR googletest-release-1.8.1)
+#include_directories(${gtest_SRC_DIR}/googletest/include ${gtest_SRC_DIR}/googletest)
+#add_executable(runSumTests main.cc sum_test.cc)
+##set_target_properties(runSumTests PROPERTIES LINKER_LANGUAGE CXX)
+#target_link_libraries(runSumTests gtest gtest_main)
+#target_link_libraries(runSumTests libsum)

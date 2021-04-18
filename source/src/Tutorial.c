@@ -246,9 +246,9 @@ void argumentsTest(int args,...)
     va_end(ap);
 }
 
-void sandbox()
+int sandbox()
 {
-
+    return 0;
 }
 
 
