@@ -1,9 +1,9 @@
 /*
-    tests.cpp
+    SandboxCPPTest.cpp
 
     This file contains tests on GRE Vocabulary game that uses google test framework.
 
-    Sandbox2
+    Sandbox
 
     Created by alimovlex.
     Copyright (c) 2020 alimovlex. All rights reserved.

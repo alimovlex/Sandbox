@@ -1,6 +1,13 @@
-//
-// Created by alimovlex.
-//
+/*
+    SandboxCLangTest.cpp
+
+    This file contains tests on GRE Vocabulary game that uses google test framework.
+
+    Sandbox
+
+    Created by alimovlex.
+    Copyright (c) 2020 alimovlex. All rights reserved.
+*/
 #include <gtest/gtest.h>
 #include "Tutorial.h"
 #include "Multithread.h"

@@ -2,7 +2,7 @@
     Internet.cpp
     The module represents my demo functions that interacts with internet.
 
-    Sandbox2
+    Sandbox
 
     Created by alimovlex.
     Copyright (c) 2020 alimovlex. All rights reserved.

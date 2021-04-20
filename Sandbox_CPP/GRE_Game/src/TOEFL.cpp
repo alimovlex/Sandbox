@@ -2,7 +2,7 @@
     TOEFL.cpp
     The module represents my words shuffle game from the TOEFL Magoosh Application.
 
-    Sandbox2
+    Sandbox
 
     Created by alimovlex.
     Copyright (c) 2020 alimovlex. All rights reserved.

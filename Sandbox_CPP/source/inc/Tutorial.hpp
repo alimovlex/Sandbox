@@ -1,3 +1,8 @@
+//
+// Created by alimovlex
+//
+
+//
 int fileTest();
 int testingPointers();
 int argumentsTest(int args,...);

@@ -2,7 +2,7 @@
     Tutorial.cpp
     The module represents my demo functions and its assessment.
 
-    Sandbox2
+    Sandbox
 
     Created by alimovlex.
     Copyright (c) 2020 alimovlex. All rights reserved.

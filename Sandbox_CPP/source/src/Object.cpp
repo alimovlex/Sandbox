@@ -2,7 +2,7 @@
     Object.cpp
     The module represents my demo functions on object-oriented approach.
 
-    Sandbox2
+    Sandbox
 
     Created by alimovlex.
     Copyright (c) 2020 alimovlex. All rights reserved.
