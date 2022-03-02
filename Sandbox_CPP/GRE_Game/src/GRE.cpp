@@ -324,6 +324,95 @@ void advanced_words(int number)
     }
 }
 
+void extra_words(int number) {
+    vector<string> extra_first{"Peroration", "Pertinacious", "Pied", "Pleonasm", "Potentate",
+                               "Prolix", "Propinquity", "Purlieus", "Pusillanimous", "Putative",
+                               "Erstwhile", "Exculpate", "Exiguous", "Extemporaneous", "Extirpate",
+                               "Fey", "Foudroyant", "Frowzy", "Hale", "Harridan",
+                               "Insuperable", "Legerdemain", "Limn", "Éclat", "Daedalean"};
+
+    vector<string> extra_second{"Aegis", "Appellation", "Blandish", "Bricolage", "Captious",
+                                "Cavil", "Cloying", "Coeval", "Coterie", "Cynosure",
+                                "Desuetude", "Distaff", "Dysphemism", "Abatement", "Paternalistic",
+                                "Contravene", "Cessation", "Sequestered", "Paltry", "Scanty",
+                                "Insouciant", "Diurnal", "Dilated", "Alleviate", "Benevolent"};
+
+    vector<string> extra_third{"Nostrum", "Dementia", "Delusion", "Dismissed", "Stern",
+                               "Ruminate", "Aver", "Contortion", "Leniency", "Deluge",
+                               "Preposterous", "Renowned", "Addled", "Superstitious", "Fleeting",
+                               "Akimbo", "Subservient", "Mercenary", "Demarcate", "Dumbfound",
+                               "Addlepated", "Emblematic", "Cajole", "Panned", "Sparing",
+                               "Blacklist", "Homily", "Shrewd", "Simpatico", "Effusive",
+                               "Syncopated", "Stanza", "Depredate", "Autodidact", "Myrmidon",
+                               "Defer", "Presage", "Unbeknownst", "Abhorrent", "Deft",
+                               "Consanguineous", "Coltish", "Beguile", "Repulse", "Sentries",
+                               "Forebear", "Omnipotent", "Discount", "Recant", "Herald"};
+
+    vector<string> extra_fourth{"Attest", "Desolate", "Lapse", "Steward", "Penitent",
+                                "Heterodox", "Entitlement", "Somber", "Curt", "Finesse",
+                                "Adversary", "Forgo", "Dystopian", "Medley", "Sobriety",
+                                "Manacle", "Shun", "Mélange", "Flabbergast", "Wry",
+                                "Feasible", "Eloquent", "Foreshadow", "Elated", "Concur",
+                                "Hearken", "Fringe", "Forfeit", "Eulogy", "Gawky",
+                                "Surmise", "Incendiary", "Trifling", "Impair", "Judicious",
+                                "Recluse", "Zeal", "Juncture", "Lull", "Unearth",
+                                "Sap", "Predisposed", "Abridge", "Remedial", "Defamatory",
+                                "Offset", "Preamble", "Ingrained", "Supplicate"};
+
+    vector<string> extra_fifth{"Penumbra", "Overrun", "Outdone", "Blithe", "Incendiary",
+                               "Odious", "Potable", "Cursory", "Verdant", "Depose",
+                               "Squalid", "Motley", "Variegated", "Mirth", "Garland",
+                               "Pulchritude", "Lisp", "Repel", "Volatile", "Unstrung",
+                               "Caned", "Lacunae", "Antediluvian", "Stasis", "Conjure",
+                               "Seraph", "Curb", "Effacement", "Candor", "Banter",
+                               "Recede", "Prudent", "Parlous", "Semiotics", "Careen",
+                               "Trundle", "Tarry", "Vainglorious", "Inconsolable", "Apposed",
+                               "Eremitic", "Bleat", "Rectitude", "Stopgap", "Mores",
+                               "Amity", "Solace", "Bedizen", "Arcadian"};
+
+    vector<string> extra_sixth{"Notoriety", "Extraterrestrial", "Inconsequential", "Render", "Adhere",
+                               "Sentient", "Torrid", "Pervasive", "Aggrandize", "Libertine",
+                               "Conversant", "Profound", "Obviate", "Implode", "Rife",
+                               "Phony", "Spate", "Entreaty", "Ubiquitous", "Reap",
+                               "Makeshift", "Inform", "Levy", "Subside", "Precursor",
+                               "Adverse", "Onerous", "Condone", "Stingy", "Trifle",
+                               "Stark", "Incipient", "Abdicate", "Secular", "Landmark",
+                               "Deference", "Reimburse", "Belabor", "Posthumous", "Mutiny",
+                               "Disjointed", "Tacit", "Penchant", "Precept", "Quibble",
+                               "Plummet", "Distill", "Wily"};
+
+    vector<string> extra_seventh{""};
+
+
+    switch (number)
+    {
+        case 1:
+            current = extra_first;
+            break;
+        case 2:
+            current = extra_second;
+            break;
+        case 3:
+            current = extra_third;
+            break;
+        case 4:
+            current = extra_fourth;
+            break;
+        case 5:
+            current = extra_fifth;
+            break;
+        case 6:
+            current = extra_sixth;
+            break;
+        case 7:
+            current = extra_seventh;
+            break;
+        default:
+            cout<<"The choice is incorrect. Terminating the program."<<endl;
+            exit(EXIT_FAILURE);
+    }
+}
+
 int gre_vocabulary()
 {
     //---------------------------the vocabulary list---------------------------------------------
@@ -362,6 +451,12 @@ int gre_vocabulary()
         cout<<"Please provide the number of part from 1 to 7 of the vocabulary list:"<<endl;
         cin>>number;
         advanced_words(number);
+    }
+    else if((choice == "extra") || (choice == "EXTRA") || (choice == "Extra"))
+    {
+        cout<<"Please provide the number of part from 1 to 7 of the vocabulary list:"<<endl;
+        cin>>number;
+        extra_words(number);
     }
     else
     {
