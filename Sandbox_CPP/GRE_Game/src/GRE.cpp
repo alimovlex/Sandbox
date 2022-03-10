@@ -44,6 +44,7 @@ void common_words(int number)
                                 "Equivocal", "Amorphous", "Amenable", "Belie", "Gregarious",
                                 "Parochial", "Prevaricate", "Enervate", "Commensurate", "Anomalous",
                                 "Ingenuous", "Frugal", "Upbraid", "Artful", "Prodigal"};
+
     vector<string> common_second{"Eschew", "Mitigate", "Prescience", "Perfidy", "Concede",
                                  "Vociferous", "Volubility", "Recondite", "Mawkish", "Frivolous",
                                  "Rustic", "Gainsay", "Obscure", "Incisive", "Reticent",
@@ -54,6 +55,7 @@ void common_words(int number)
                                  "Inexorable", "Diffident", "Exacerbate", "Bucolic", "Chortle",
                                  "Deferential", "Gall", "Cryptic", "Culminate", "Platitude",
                                  "Torpor", "Lambast", "Aesthetic", "Conspicuous", "Culpability"};
+
     vector<string> common_third{"Abstain", "Ameliorate", "Apathy", "Ascetic", "Avaricious",
                                 "Belligerent", "Circumvent", "Contrive", "Delineate", "Derivative",
                                 "Derive", "Disaffected", "Eclectic", "Elucidate", "Eminent",
@@ -64,6 +66,7 @@ void common_words(int number)
                                 "Quotidian", "Refractory", "Spurious", "Staunch", "Subsume",
                                 "Supplant", "Tantamount", "Tenacious", "Travesty", "Treacherous",
                                 "Vehemence", "Vilify", "Rudimentary", "Unequivocal", "Denote"};
+
     vector<string> common_fourth{"Aberrant", "Abstruse", "Acerbic", "Adamant", "Admonitory",
                                  "Apocryphal", "Blatant", "Bumbling", "Burgeon", "Confound",
                                  "Construe", "Contingent", "Copious", "Decorum", "Denigrate",
@@ -74,6 +77,7 @@ void common_words(int number)
                                  "Laudable", "Myopic", "Opaque", "Ostentatious", "Pedantic",
                                  "Pragmatic", "Provincial", "Reconcile", "Soporific", "Temperance",
                                  "Tortuous", "Underscore", "Unscrupulous", "Refute", "Petulant"};
+
     vector<string> common_fifth{"Accolade", "Admonish", "Antithetical", "Arcane", "Audacity",
                                 "Brazen", "Constituent", "Dilettante", "Foment", "Garrulous",
                                 "Haphazard", "Hegemony", "Inimical", "Inscrutable", "Insolent",
@@ -84,6 +88,7 @@ void common_words(int number)
                                 "Tempered", "Trite", "Winsome", "Reverent", "Vacillate",
                                 "Austere", "Gauche", "Taciturn", "Arbitrary", "Myriad",
                                 "Lionize", "Sanction", "Circumscribe", "Prodigious", "Tractable"};
+
     vector<string> common_sixth{"Arduous", "Askance", "Bolster", "Clumsy", "Contrition",
                                 "Craven", "Deleterious", "Duress", "Edifying", "Efficacious",
                                 "Elicit", "Flux", "Harried", "Ignominious", "Maladroit",
@@ -133,6 +138,7 @@ void basic_words(int number)
                                "Mesmerize", "Miser", "Underwrite", "Indigenous", "Err",
                                "Retiring", "Hound", "Demean", "Telltale", "Thoroughgoing",
                                "Spendthrift", "Tirade", "Censor", "Affluent", "Zenith"};
+
     vector<string> basic_second{"Start", "Sanctimonious", "Avarice", "Catalyst", "Unconscionable",
                                 "Misanthrope", "Stem", "Aboveboard", "Heyday", "Immaterial",
                                 "Scintillating", "Badger", "Chauvinist", "Apex", "Corroborate",
@@ -143,6 +149,7 @@ void basic_words(int number)
                                 "Flush", "Replete", "Vicarious", "Powwow", "Contrite",
                                 "Beatific", "Preemptive", "Sanguine", "Cadaverous", "Disparate",
                                 "Raft", "Wax", "Extenuating", "Fleece", "Paucity"};
+
     vector<string> basic_third{"Advocate", "Deter", "Thwart", "Boon", "Transitory",
                                "Apprehension", "Renege", "Jocular", "Inclement", "Patronize",
                                "Guffaw", "Avid", "Dearth", "Consummate", "Obdurate",
@@ -153,6 +160,7 @@ void basic_words(int number)
                                "Pithy", "Meander", "Morose", "Flounder", "Elusive",
                                "Autonomously", "Quandary", "Fete", "Ingenuity", "Proponent",
                                "Malleable", "Degrade", "Disenfranchise", "Snide", "Entice"};
+
     vector<string> basic_fourth{"Altruism", "Genial", "Egotist", "Irresolute", "Pristine",
                                 "Contemptuous", "Perpetuate", "Jargon", "Spurn", "Precedent",
                                 "Impeccable", "Inadvertent", "Cornucopia", "Detrimental", "Fickle",
@@ -163,6 +171,7 @@ void basic_words(int number)
                                 "Banish", "Genteel", "Surly", "Assail", "Empathetic",
                                 "Uncompromising", "Rankle", "Whimsical", "Euphoria", "Tawdry",
                                 "Augment", "Facetious", "Tumult", "Credence", "Derisive"};
+
     vector<string> basic_fifth{"Retract", "Irk", "Presumption", "Foible", "Credulity",
                                "Impending", "Tact", "Discord", "Brusquely", "Placid",
                                "Destitute", "Tarnish", "Complacent", "Tout", "Connive",
@@ -173,6 +182,7 @@ void basic_words(int number)
                                "Peevish", "Unseemly", "Serene", "Squander", "Unprecedented",
                                "Impregnable", "Maxim", "Malevolent", "Steadfast", "Ploy",
                                "Diligent", "Exasperate", "Perturb", "Reservation", "Taxing"};
+
     vector<string> basic_sixth{"Redress", "Docile", "Incense", "Humdrum", "Eccentric",
                                "Fawn", "Coalesce", "Preempt", "Ascribe", "Implicate",
                                "Foolhardy", "Consecrate", "Veneer", "Evenhanded", "Tribulation",
@@ -183,6 +193,7 @@ void basic_words(int number)
                                "Profusion", "Delegate", "Industrious", "Cerebral", "Precarious",
                                "Prevail", "Deride", "Avert", "Uncanny", "Glean",
                                "Melancholy", "Belittle", "Intermittent", "Piquant", "Irascible"};
+
     vector<string> basic_seventh{"Discreet", "Hamper", "Dilapidated", "Laborious", "Cumbersome",
                                  "Miscreant", "Besiege", "Debunk", "Enumerate", "Abysmal",
                                  "Evasive", "Compound", "Antiquated", "Malodorous", "Complementary",
@@ -235,6 +246,7 @@ void advanced_words(int number)
                                   "Imbibe", "Untoward", "Exegesis", "Saturnine", "Insufferable",
                                   "Ponderous", "Perfunctory", "Arrant", "Factious", "Truculent",
                                   "Feckless", "Expunge", "Defray", "Overweening", "Precipitate"};
+
     vector<string> advanced_second{"Jaundiced", "Phantasmagorical", "Blinkered", "Tendentious", "Sybarite",
                                    "Gerrymander", "Invective", "Apotheosis", "Excoriate", "Malapropism",
                                    "Schadenfreude", "Benighted", "Parvenu", "Sartorial", "Histrionic",
@@ -245,6 +257,7 @@ void advanced_words(int number)
                                    "Bilious", "Jejune", "Mulct", "Protean", "Disabuse",
                                    "Palimpsest", "Curmudgeon", "Pollyannaish", "Quixotic", "Mettlesome",
                                    "Picayune", "Pyrrhic", "Expurgate", "Limpid", "Factitious"};
+
     vector<string> advanced_third{"Perspicacious", "Litany", "Prolixity", "Solecism", "Semblance",
                                   "Importune", "Probity", "Vitriolic", "Plucky", "Bowdlerize",
                                   "Punctilious", "Quail", "Unforthcoming", "Umbrage", "Enthrall",
@@ -255,6 +268,7 @@ void advanced_words(int number)
                                   "Sinecure", "Temerity", "Insouciance", "Derelict", "Approbatory",
                                   "Recapitulation", "Anemic", "Provident", "Hail", "Impute",
                                   "Flummox", "Prognostication", "Sagacious", "Primacy", "Illustrious"};
+
     vector<string> advanced_fourth{"Lacerate", "Subterfuge", "Unpropitious", "Stalwart", "Nonchalant",
                                    "Inviolate", "Peripatetic", "Rarefied", "Puissant", "Flippant",
                                    "Encumber", "Incontrovertible", "Hobble", "Patent", "Invidious",
@@ -265,6 +279,7 @@ void advanced_words(int number)
                                    "Cosseted", "Decry", "Unflappable", "Magisterial", "Asperity",
                                    "Crestfallen", "Immure", "Crystallize", "Untenable", "Recrimination",
                                    "Celerity", "Tempestuous", "Improvident", "Corollary", "Intimation"};
+
     vector<string> advanced_fifth{"Browbeat", "Inanity", "Effervescent", "Ersatz", "Apothegm",
                                   "Arrogate", "Atavism", "Vitriol", "Unprepossessing", "Besotted",
                                   "Artifice", "Hoary", "Meteoric", "Reprisal", "Empiricism",
@@ -275,6 +290,7 @@ void advanced_words(int number)
                                   "Languish", "Baleful", "Recrudesce", "Objurgate", "Unstinting",
                                   "Debonair", "Antic", "Embryonic", "Nettlesome", "Broadside",
                                   "Rapprochement", "Brook", "Bristle", "Chagrin", "Chimera"};
+
     vector<string> advanced_sixth{"Panegyric", "Gumption", "Bromide", "Coterminous", "Enormity",
                                   "Pontificate", "Transmute", "Bridle", "Impervious", "Ethereal",
                                   "Inviolable", "Vaunted", "Inequity", "Autocratic", "Tyro",
@@ -285,6 +301,7 @@ void advanced_words(int number)
                                   "Obtuse", "Desiccated", "Appropriate", "Fecund", "Aplomb",
                                   "Conflagration", "Hauteur", "Unassailable", "Mendicant", "Doughty",
                                   "Proselytize", "Solicitous", "Palatable", "Self-effacing", "Turgid"};
+
     vector<string> advanced_seventh{"Trenchant", "Extrapolate", "Evanescent", "Row", "Exiguity",
                                     "Obtain", "Bastardization", "Concomitant", "Modicum", "Veritable",
                                     "Pillory", "Bereft", "Enamored", "Halcyon", "Capitulate",
@@ -324,7 +341,9 @@ void advanced_words(int number)
     }
 }
 
-void extra_words(int number) {
+void extra_words(int number)
+{
+    
     vector<string> extra_first{"Peroration", "Pertinacious", "Pied", "Pleonasm", "Potentate",
                                "Prolix", "Propinquity", "Purlieus", "Pusillanimous", "Putative",
                                "Erstwhile", "Exculpate", "Exiguous", "Extemporaneous", "Extirpate",
@@ -381,9 +400,6 @@ void extra_words(int number) {
                                "Disjointed", "Tacit", "Penchant", "Precept", "Quibble",
                                "Plummet", "Distill", "Wily"};
 
-    vector<string> extra_seventh{""};
-
-
     switch (number)
     {
         case 1:
@@ -404,16 +420,111 @@ void extra_words(int number) {
         case 6:
             current = extra_sixth;
             break;
-        case 7:
-            current = extra_seventh;
-            break;
         default:
             cout<<"The choice is incorrect. Terminating the program."<<endl;
             exit(EXIT_FAILURE);
     }
 }
 
-int gre_vocabulary()
+void optional_words(int number)
+{
+
+    vector<string> optional_first{"Militant", "Rend", "Revel", "Rifle", "Rue",
+                                  "Servile", "Shirk", "Sidle", "Simper", "Sober",
+                                  "Sophomoric", "Stoic", "Strait", "Suffuse", "Tenuous",
+                                  "Verbose", "Wean", "Wizened", "Aboriginal", "Abreast",
+                                  "Botch", "Console", "Emasculate", "Extol", "Festoon",
+                                  "Fetid", "Harp", "Rein", "Tenet", "Underpin",
+                                  "Unilateral", "Vernacular", "Vestige", "Volition", "Windfall",
+                                  "Luminous", "Per se", "Perjury", "Perplex", "Personable",
+                                  "Posterity", "Pretext", "Privation", "Protracted", "Purported",
+                                  "Recalcitrant", "Reciprocal", "Rectify"};
+
+    vector<string> optional_second{"Egress", "Euphemism", "Exhume", "Extort", "Fetters",
+                                   "Hapless", "Harrowing", "Ilk", "Imbue", "Inept",
+                                   "Layman", "Linchpin", "Lavish", "Nefarious", "Obliquity",
+                                   "Reverie", "Overture", "Pall", "Parable", "Parry",
+                                   "Peddle", "Perforce", "Portend", "Prelate"};
+
+    vector<string> optional_third{"Prepossessing", "Priggish", "Reel", "Requisite", "Luxuriant",
+                                  "Parity", "Nebulous", "Mire", "Marginal", "Tangible",
+                                  "Minuscule", "Onus", "Mar", "Niche", "Milieu",
+                                  "Nemesis", "Resolute", "Revile", "Secede", "Scathe",
+                                  "Lucrative", "Slew", "Subvert", "Scourge", "Subdue"};
+
+    vector<string> optional_fourth{"Reprieve", "Shore", "Tenable", "Retrograde", "Risible",
+                                   "Sacrosanct", "Sanguinary", "Serpentine", "Skinflint", "Slaver",
+                                   "Sleight", "Soluble", "Sundry", "Supine", "Uncouth",
+                                   "Venal", "Viscid", "Waffle", "Wheedle", "Immolate",
+                                   "Licentious", "Lieutenant", "Masticate", "Mettle", "Miasma"};
+
+    vector<string> optional_fifth{"Mien", "Misappropriation", "Missive", "Nonpareil", "Obeisance",
+                                  "Oblation", "Opine", "Outre", "Sate", "Lurid",
+                                  "Ouster", "Palliate", "Panoply", "Parlay", "Piecemeal",
+                                  "Plumb", "Plutocrat", "Polity", "Proliferate", "Punitive",
+                                  "Quorum", "Requite", "Salient", "Prate", "Prestidigitator"};
+
+    vector<string> optional_sixth{"Permutation", "Preternatural", "Precis", "Quarry", "Quiescent",
+                                  "Redolent", "Execrable", "Ontology", "Sedition", "Wastrel",
+                                  "Seminal", "Stigma", "Stratify", "Waylay", "Winnow",
+                                  "Lithe", "Livid", "Maelstrom", "Manifold", "Marshal",
+                                  "Minute", "Minutiae", "Misbegotten", "Mogul", "Morass"};
+
+    vector<string> optional_seventh{"Nascent", "Nexus", "Nondescript", "Conscientious", "Welter",
+                                   "Echelon", "Effete", "Effigy", "Excise", "Exigency",
+                                   "Lax", "Liaison", "Listless", "Scarify", "Sylph",
+                                   "Sylvan", "Synod", "Synoptic", "Tenebrous", "Terpsichorean",
+                                   "Unctuous", "Vitiate", "Volant", "Votary", "Waggish"};
+
+    vector<string> optional_eigth{"Rapacious", "Pasquinade", "Rejoinder", "Repine", "Retrench",
+                                  "Rout", "Rubicund", "Ruck", "Salubrious", "Salvo",
+                                  "Sapid", "Sapient", "Lissome", "Loquacious", "Minatory",
+                                  "Misnomer", "Modish", "Metier", "Nicety", "Nugatory",
+                                  "Obloquy", "Occlude", "Opprobrious", "Oppugn", "Orotund"};
+
+    vector<string> optional_ninth{"Otiose", "Outstrip", "Paean", "Quiddity", "Scurrilous",
+                                  "Sinistral", "Skullduggery", "Sobriquet", "Sodality", "Solstice",
+                                  "Somnolent", "Sophistry", "Stentorian", "Supererogatory", "Supervene",
+                                  "Susurrant", "Passim", "Patois", "Peculate", "Peregrination"};
+
+    switch (number)
+    {
+        case 1:
+            current = optional_first;
+            break;
+        case 2:
+            current = optional_second;
+            break;
+        case 3:
+            current = optional_third;
+            break;
+        case 4:
+            current = optional_fourth;
+            break;
+        case 5:
+            current = optional_fifth;
+            break;
+        case 6:
+            current = optional_sixth;
+            break;
+        case 7:
+            current = optional_seventh;
+            break;
+        case 8:
+            current = optional_eigth;
+            break;
+        case 9:
+            current = optional_ninth;
+            break;
+        default:
+            cout<<"The choice is incorrect. Terminating the program."<<endl;
+            exit(EXIT_FAILURE);
+    }
+
+
+}
+
+void gre_vocabulary()
 {
     //---------------------------the vocabulary list---------------------------------------------
     vector <string> :: iterator itr;
@@ -454,9 +565,15 @@ int gre_vocabulary()
     }
     else if((choice == "extra") || (choice == "EXTRA") || (choice == "Extra"))
     {
-        cout<<"Please provide the number of part from 1 to 7 of the vocabulary list:"<<endl;
+        cout<<"Please provide the number of part from 1 to 6 of the vocabulary list:"<<endl;
         cin>>number;
         extra_words(number);
+    }
+    else if((choice == "optional") || (choice == "OPTIONAL") || (choice == "Optional"))
+    {
+        cout<<"Please provide the number of part from 1 to 9 of the vocabulary list:"<<endl;
+        cin>>number;
+        optional_words(number);
     }
     else
     {
@@ -464,7 +581,7 @@ int gre_vocabulary()
     goto chapter;
     }
 //---------------------------the shuffle section ---------------------------------------------
-    static int a=1;
+    int a=1;
         for(;;)
         {
             srand((unsigned) time(NULL));
@@ -476,10 +593,13 @@ int gre_vocabulary()
                 a++;
                 cin.get();
             }
-            if (a>=50)
-                break;
+            goto chapter;
+
+            //CHANGE THIS LINE!!! THE WORST HARDCODED CODE!!!
+            //if (a>=50)
+              //  break;
         }
-        return a;
+
 }
 
 

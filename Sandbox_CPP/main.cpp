@@ -17,5 +17,6 @@ int main(int argc, char **argv) {
     timerFunction(containersTest);
     timerFunction(algorithmsTest);
     timerFunction(jsonRequest);
+    gre_vocabulary();
     return 0;
 }
