@@ -22,37 +22,43 @@
 #include "Stack.h"
 #include "Sequence.h"
 #include "Queue.h"
-#include "Inet.h"
+#include "tcp_server.h"
+#include "tcp_client.h"
+#include "bluetooth-test.h"
 #include "Multithread.h"
 #include "STLTest.h"
 #include "t_clib.h"
 #include "c_lib.h"
 #include "STLArray.h"
-//Test of starting myStartupFun function before main
+
+
+int main(int argc, char *argv[])
+{   /*
+    int(*func)() = Multithreaded_Data_Structures_Test;
+    timerFunction(func);
+    func = Multithreaded_Tutorial_Functions_Test;
+    timerFunction(func);
+    */
+    //system("systemctl status bluetooth | grep -oh \"active\"");
+    list_bluetooth_devices();
+    //STL_Test();
+    return 0;
+}
+//switch((int)(n1 > n2))  
+//case 1 ... 5:
+
+/*
+ //Test of starting myStartupFun function before main
 void myStartupFun (void) __attribute__ ((constructor));
-/* Apply the destructor attribute to myCleanupFun() so that it is executed after main() */
 void myCleanupFun (void) __attribute__ ((destructor));
-/* implementation of myStartupFun */
 void myStartupFun (void) //make it multithreaded
 {
     printf ("startup testing function before main()\n");
     timerFunction(SGLIB_Data_Structures_Test);
     //clientTest();
 }
-/* implementation of myCleanupFun */
 void myCleanupFun (void)
 {
     printf ("\ncleanup code after main()\n");
 }
-
-int main(int argc, char *argv[])
-{
-    int(*func)() = Multithreaded_Data_Structures_Test;
-    timerFunction(func);
-    func = Multithreaded_Tutorial_Functions_Test;
-    timerFunction(func);
-    //STL_Test();
-    return 0;
-}
-//switch((int)(n1 > n2))  
-//case 1 ... 5:
+ */

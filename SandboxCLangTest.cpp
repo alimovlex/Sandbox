@@ -11,7 +11,7 @@
 #include <gtest/gtest.h>
 #include "Tutorial.h"
 #include "Multithread.h"
-#include "Inet.h"
+#include "tcp_server.h"
 #include "Object.h"
 #include "STLArray.h"
 #include "STLTest.h"
