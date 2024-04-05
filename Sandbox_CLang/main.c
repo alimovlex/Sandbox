@@ -23,15 +23,16 @@
 #include "t_clib.h"
 #include "c_lib.h"
 #include "STLArray.h"
+#include "ngfetch.h"
 
 //Test of starting myStartupFun function before main
 void myStartupFun (void) __attribute__ ((constructor));
 void myCleanupFun (void) __attribute__ ((destructor));
 void myStartupFun (void) //make it multithreaded
 {
-    printf ("startup testing function before main()\n");
-    timerFunction(SGLIB_Data_Structures_Test);
-    //clientTest();
+    printf ("Fetching system information:\n");
+    fetch_system_info();
+
 }
 void myCleanupFun (void)
 {
@@ -41,14 +42,17 @@ void myCleanupFun (void)
 
 int main(int argc, char *argv[])
 {
+    /*
     int(*func)() = Multithreaded_Data_Structures_Test;
     timerFunction(func);
     func = Multithreaded_Tutorial_Functions_Test;
     timerFunction(func);
-
-    //system("systemctl status bluetooth | grep -oh \"active\"");
-    //list_bluetooth_devices();
-    //STL_Test();
+    timerFunction(SGLIB_Data_Structures_Test);
+    clientTest();
+    system("systemctl status bluetooth | grep -oh \"active\"");
+    list_bluetooth_devices();
+    STL_Test();
+    */
     return 0;
 }
 //switch((int)(n1 > n2))  
