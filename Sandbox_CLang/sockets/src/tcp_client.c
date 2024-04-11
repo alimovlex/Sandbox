@@ -1,6 +1,10 @@
-//
-// Created by robot on 18/11/22.
-//
+/*
+    tcp_client.c
+    Sandbox
+
+    Created by alimovlex.
+    Copyright (c) 2020 alimovlex. All rights reserved.
+*/
 
 #include <stdio.h>
 #include <stdlib.h>

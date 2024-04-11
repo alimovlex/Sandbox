@@ -8,14 +8,14 @@
     Copyright (c) 2020 alimovlex. All rights reserved.
 */
 #include <curl/curl.h>
-#include <jsoncpp/json/json.h>
+#include <json/json.h>
 #include <sstream>
 #include <stdexcept>
 #include <cstdint>
 #include <iostream>
 #include <memory>
 #include <string>
-#include "Internet.hpp"
+#include "IP_Address_Info.hpp"
 using namespace std;
 using namespace Json;
 
@@ -62,7 +62,7 @@ vector<char> download(string url, long* responseCode)
 
 int jsonRequest()
 {
-    const string url("http://api.openweathermap.org/data/2.5/weather?lat=52&lon=86&appid=542ffd081e67f4512b705f89d2a611b2");
+    const string url("http://ip-api.com/json");
 
     CURL* curl = curl_easy_init();
 
@@ -97,7 +97,7 @@ int jsonRequest()
 
     if (httpCode == 200)
     {
-        cout << "\nGot successful response from " << url << endl;
+        //cout << "\nGot successful response from " << url << endl;
 
         // Response looks good - done using Curl now.  Try to parse the results
         // and print them out.
@@ -107,19 +107,30 @@ int jsonRequest()
         if (jsonReader.parse(*httpData.get(), jsonData))
         {
             cout << "Successfully parsed JSON data" << endl;
-            cout << "\nJSON data received:" << endl;
-            cout << jsonData.toStyledString() << endl;
+            //cout << "\nJSON data received:" << endl;
+            //cout << jsonData.toStyledString() << endl;
 
-            const string dateString(jsonData["date"].asString());
-            const size_t unixTimeMs(
-                    jsonData["milliseconds_since_epoch"].asUInt64());
-            const string timeString(jsonData["time"].asString());
+            const string PUBLIC_IP(jsonData["query"].asString());
+            const string ISP(jsonData["isp"].asString());
+            const string TIMEZONE(jsonData["timezone"].asString());
+            const string COUNTRY(jsonData["country"].asString());
+            const string REGION(jsonData["regionName"].asString());
+            const string CITY(jsonData["timezone"].asString());
+            const string ZIP(jsonData["zip"].asString());
+            //const size_t unixTimeMs(jsonData["milliseconds_since_epoch"].asUInt64());
+            //const string timeString(jsonData["time"].asString());
 
-            cout << "Natively parsed:" << std::endl;
-            cout << "\tDate string: " << dateString << endl;
-            cout << "\tUnix timeMs: " << unixTimeMs << endl;
-            cout << "\tTime string: " << timeString << endl;
-            cout << endl;
+            //cout << "Natively parsed:" << endl;
+            cout << "\tPublic IP address: " << PUBLIC_IP << endl;
+            cout << "\tISP: " << ISP << endl;
+            cout << "\tTimezone: " << TIMEZONE << endl;
+            cout << "\tCountry: " << COUNTRY << endl;
+            cout << "\tRegion: " << REGION << endl;
+            cout << "\tCity: " << CITY << endl;
+            cout << "\tZIP: " << ZIP << endl;
+            //cout << "\tUnix timeMs: " << unixTimeMs << endl;
+            //cout << "\tTime string: " << timeString << endl;
+
             return 0;
         }
         else

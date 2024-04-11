@@ -24,6 +24,7 @@
 #include "c_lib.h"
 #include "STLArray.h"
 #include "ngfetch.h"
+#include "ip_address_info.h"
 
 //Test of starting myStartupFun function before main
 void myStartupFun (void) __attribute__ ((constructor));
@@ -32,7 +33,6 @@ void myStartupFun (void) //make it multithreaded
 {
     printf ("Fetching system information:\n");
     fetch_system_info();
-
 }
 void myCleanupFun (void)
 {
@@ -42,7 +42,13 @@ void myCleanupFun (void)
 
 int main(int argc, char *argv[])
 {
-    /*
+    get_public_ip_info();
+    return 0;
+}
+//switch((int)(n1 > n2))  
+//case 1 ... 5:
+
+/*
     int(*func)() = Multithreaded_Data_Structures_Test;
     timerFunction(func);
     func = Multithreaded_Tutorial_Functions_Test;
@@ -52,11 +58,5 @@ int main(int argc, char *argv[])
     system("systemctl status bluetooth | grep -oh \"active\"");
     list_bluetooth_devices();
     STL_Test();
-    */
-    return 0;
-}
-//switch((int)(n1 > n2))  
-//case 1 ... 5:
-
-
+*/
 

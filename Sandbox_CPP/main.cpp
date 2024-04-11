@@ -9,14 +9,15 @@
 #include "Tutorial.hpp"
 #include "STLTest.hpp"
 #include "Algorithms.hpp"
-#include "Internet.hpp"
+#include "IP_Address_Info.hpp"
 
 using namespace std;
 
 int main(int argc, char **argv) {
-    timerFunction(containersTest);
-    timerFunction(algorithmsTest);
-    timerFunction(jsonRequest);
-    gre_vocabulary();
+    jsonRequest();
+    //timerFunction(containersTest);
+    //timerFunction(algorithmsTest);
+    //timerFunction(jsonRequest);
+    //gre_vocabulary();
     return 0;
 }

@@ -14,7 +14,7 @@
 #include "Tutorial.hpp"
 #include "STLTest.hpp"
 #include "Algorithms.hpp"
-#include "Internet.hpp"
+#include "IP_Address_Info.hpp"
 #include "STLTest.hpp"
 #include "Object.hpp"
 #include "DataStruct.hpp"
