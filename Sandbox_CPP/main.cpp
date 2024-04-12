@@ -10,13 +10,13 @@
 #include "STLTest.hpp"
 #include "Algorithms.hpp"
 #include "IP_Address_Info.hpp"
-#include "ndk_sandbox.h"
+#include "ndk_sandbox.hpp"
 
 using namespace std;
 
 int main(int argc, char **argv) {
     ip_address_info();
-    //test_jvm();
+    test_jvm();
     //timerFunction(containersTest);
     //timerFunction(algorithmsTest);
     //timerFunction(ip_address_info);
