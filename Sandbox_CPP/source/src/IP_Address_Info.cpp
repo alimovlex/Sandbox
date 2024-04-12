@@ -60,7 +60,7 @@ vector<char> download(string url, long* responseCode)
     return data;
 }
 
-int jsonRequest()
+int ip_address_info()
 {
     const string url("http://ip-api.com/json");
 

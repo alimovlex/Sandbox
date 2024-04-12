@@ -10,7 +10,7 @@
 using namespace std;
 
 vector<char> download(string url, long* responseCode);
-int jsonRequest();
+int ip_address_info();
 namespace
 {
     size_t callBack(

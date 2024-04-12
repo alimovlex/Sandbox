@@ -19,7 +19,7 @@ My tutorials in C++ language that contain tests on:
 3) int templateFunctionTest();
 
 **Internet section (under maintenance):**
-1) int jsonRequest();
+1) int ip_address_info();
 
 **Tutorials section:**
 1) int fileTest();

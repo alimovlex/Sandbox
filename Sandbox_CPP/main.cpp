@@ -14,10 +14,10 @@
 using namespace std;
 
 int main(int argc, char **argv) {
-    jsonRequest();
+    ip_address_info();
     //timerFunction(containersTest);
     //timerFunction(algorithmsTest);
-    //timerFunction(jsonRequest);
+    //timerFunction(ip_address_info);
     //gre_vocabulary();
     return 0;
 }

@@ -98,6 +98,15 @@ CURLcode curl_fetch_url(CURL *ch, const char *url, struct curl_fetch_st *fetch) 
     return rcode;
 }
 
+void parse_json(json_object *json, char* key) {
+    struct json_object *json_value;
+    const char *value;
+    json_value = json_object_object_get(json, key);
+    value = json_object_get_string(json_value);
+    strcmp(key, "query") ? printf("%s: %s\n",key, value) : printf("Public IP: %s\n", value);
+
+}
+
 int get_public_ip_info() {
     CURL *ch;                                               /* curl handle */
     CURLcode rcode;                                         /* curl result code */
@@ -109,8 +118,9 @@ int get_public_ip_info() {
     struct curl_fetch_st *cf = &curl_fetch;                 /* pointer to fetch struct */
     struct curl_slist *headers = NULL;                      /* http headers to send with request */
 
+
     /* url to test site */
-    char *url = "http://ip-api.com";
+    char *url = "http://ip-api.com/json";
 
     /* init curl handle */
     if ((ch = curl_easy_init()) == NULL) {
@@ -135,9 +145,10 @@ int get_public_ip_info() {
     /* check payload */
     if (cf->payload != NULL) {
         /* print result */
-        printf("CURL Returned: \n%s\n", cf->payload);
+        //printf("CURL Returned: \n%s\n", cf->payload);
         /* parse return */
         json = json_tokener_parse_verbose(cf->payload, &jerr);
+
         /* free payload */
         free(cf->payload);
     } else {
@@ -148,6 +159,14 @@ int get_public_ip_info() {
         /* return */
         return 1;
     }
+
+    parse_json(json ,"query");
+    parse_json(json ,"isp");
+    parse_json(json ,"timezone");
+    parse_json(json ,"country");
+    parse_json(json ,"regionName");
+    parse_json(json ,"timezone");
+    parse_json(json ,"zip");
 
     return 0;
 }
