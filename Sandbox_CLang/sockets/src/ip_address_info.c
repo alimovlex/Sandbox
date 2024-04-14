@@ -127,18 +127,47 @@ void parse_json(json_object *json, char* key) {
 }
 
 int get_local_ip_info() {
-    int fd;
-    struct ifreq ifr;
-    fd = socket(AF_INET, SOCK_DGRAM, 0);
-    /* I want to get an IPv4 IP address */
-    ifr.ifr_addr.sa_family = AF_INET;
-    /* I want IP address attached to "eth0" */
-    strncpy(ifr.ifr_name, "eth0", IFNAMSIZ-1);
-    ioctl(fd, SIOCGIFADDR, &ifr);
-    close(fd);
-    /* display result */
-    char *ip = inet_ntoa(((struct sockaddr_in *)&ifr.ifr_addr)->sin_addr);
-    printf("Local IP: %s\n", ip);
+    char          buf[1024];
+    struct ifconf ifc;
+    struct ifreq *ifr;
+    int           sck;
+    int           nInterfaces;
+    int           i;
+
+/* Get a socket handle. */
+    sck = socket(AF_INET, SOCK_DGRAM, 0);
+    if(sck < 0)
+    {
+        perror("socket");
+        return 1;
+    }
+
+/* Query available interfaces. */
+    ifc.ifc_len = sizeof(buf);
+    ifc.ifc_buf = buf;
+    if(ioctl(sck, SIOCGIFCONF, &ifc) < 0)
+    {
+        perror("ioctl(SIOCGIFCONF)");
+        return 1;
+    }
+
+/* Iterate through the list of interfaces. */
+    ifr         = ifc.ifc_req;
+    nInterfaces = ifc.ifc_len / sizeof(struct ifreq);
+    for(i = 0; i < nInterfaces; i++)
+    {
+        struct ifreq *item = &ifr[i];
+
+        /* Show the device name and IP address */
+        printf("Interface: %s -> %s", item->ifr_name, inet_ntoa(((struct sockaddr_in *)&item->ifr_addr)->sin_addr));
+
+        /* Get the broadcast address (added by Eric)
+        if(ioctl(sck, SIOCGIFBRDADDR, item) >= 0)
+        printf(", BROADCAST %s", inet_ntoa(((struct sockaddr_in *)&item->ifr_broadaddr)->sin_addr));
+        */
+        printf("\n");
+    }
+
     return 0;
 }
 
@@ -204,8 +233,6 @@ int get_public_ip_info() {
     parse_json(json ,"regionName");
     parse_json(json ,"timezone");
     parse_json(json ,"zip");
-
-    get_local_ip_info();
 
     return 0;
 }

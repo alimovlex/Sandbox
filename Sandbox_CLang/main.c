@@ -43,6 +43,7 @@ void myCleanupFun (void)
 int main(int argc, char *argv[])
 {
     get_public_ip_info();
+    get_local_ip_info();
     return 0;
 }
 //switch((int)(n1 > n2))  
