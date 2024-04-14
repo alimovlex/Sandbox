@@ -12,6 +12,14 @@
 #include <json-c/json.h>
 #include <curl/curl.h>
 
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <sys/ioctl.h>
+#include <netinet/in.h>
+#include <net/if.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+
 /* holder for curl fetch */
 struct curl_fetch_st {
     char *payload;
@@ -103,8 +111,35 @@ void parse_json(json_object *json, char* key) {
     const char *value;
     json_value = json_object_object_get(json, key);
     value = json_object_get_string(json_value);
-    strcmp(key, "query") ? printf("%s: %s\n",key, value) : printf("Public IP: %s\n", value);
 
+    if (strcmp(key, "query") == 0)
+    {
+        printf("Public IP: %s\n", value);
+
+        // do something
+    } else if (strlen(value) == 0) {
+        return;
+    } else {
+        printf("%s: %s\n",key, value);
+    }
+
+
+}
+
+int get_local_ip_info() {
+    int fd;
+    struct ifreq ifr;
+    fd = socket(AF_INET, SOCK_DGRAM, 0);
+    /* I want to get an IPv4 IP address */
+    ifr.ifr_addr.sa_family = AF_INET;
+    /* I want IP address attached to "eth0" */
+    strncpy(ifr.ifr_name, "eth0", IFNAMSIZ-1);
+    ioctl(fd, SIOCGIFADDR, &ifr);
+    close(fd);
+    /* display result */
+    char *ip = inet_ntoa(((struct sockaddr_in *)&ifr.ifr_addr)->sin_addr);
+    printf("Local IP: %s\n", ip);
+    return 0;
 }
 
 int get_public_ip_info() {
@@ -161,12 +196,16 @@ int get_public_ip_info() {
     }
 
     parse_json(json ,"query");
-    parse_json(json ,"isp");
+    //parse_json(json ,"isp");
+    parse_json(json, "as");
+    parse_json(json, "org");
     parse_json(json ,"timezone");
     parse_json(json ,"country");
     parse_json(json ,"regionName");
     parse_json(json ,"timezone");
     parse_json(json ,"zip");
+
+    get_local_ip_info();
 
     return 0;
 }

@@ -7,10 +7,10 @@
 #include <cstdio>
 #include <iostream>
 #include <vector>
+
 using namespace std;
 
 vector<char> download(string url, long* responseCode);
-int ip_address_info();
 namespace
 {
     size_t callBack(
@@ -25,3 +25,5 @@ namespace
     }
 }
 
+int get_public_ip_info();
+int get_local_ip_info();

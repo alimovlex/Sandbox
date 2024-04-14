@@ -15,6 +15,14 @@
 #include <iostream>
 #include <memory>
 #include <string>
+
+#include <sysexits.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <net/if.h>
+#include <ifaddrs.h>
+#include <arpa/inet.h>
+
 #include "IP_Address_Info.hpp"
 using namespace std;
 using namespace Json;
@@ -60,7 +68,99 @@ vector<char> download(string url, long* responseCode)
     return data;
 }
 
-int ip_address_info()
+int get_local_ip_info() {
+    struct ifaddrs* ptr_ifaddrs = nullptr;
+
+    auto result = getifaddrs(&ptr_ifaddrs);
+    if( result != 0 ){
+        cout << "`getifaddrs()` failed: " << strerror(errno) << endl;
+
+        return EX_OSERR;
+    }
+
+    for(
+            struct ifaddrs* ptr_entry = ptr_ifaddrs;
+            ptr_entry != nullptr;
+            ptr_entry = ptr_entry->ifa_next
+            ){
+        string ipaddress_human_readable_form;
+        string netmask_human_readable_form;
+
+        string interface_name = string(ptr_entry->ifa_name);
+        sa_family_t address_family = ptr_entry->ifa_addr->sa_family;
+        if( address_family == AF_INET ){
+            // IPv4
+
+            // Be aware that the `ifa_addr`, `ifa_netmask` and `ifa_data` fields might contain nullptr.
+            // Dereferencing nullptr causes "Undefined behavior" problems.
+            // So it is need to check these fields before dereferencing.
+            if( ptr_entry->ifa_addr != nullptr ){
+                char buffer[INET_ADDRSTRLEN] = {0, };
+                inet_ntop(
+                        address_family,
+                        &((struct sockaddr_in*)(ptr_entry->ifa_addr))->sin_addr,
+                        buffer,
+                        INET_ADDRSTRLEN
+                );
+
+                ipaddress_human_readable_form = string(buffer);
+            }
+
+            if( ptr_entry->ifa_netmask != nullptr ){
+                char buffer[INET_ADDRSTRLEN] = {0, };
+                inet_ntop(
+                        address_family,
+                        &((struct sockaddr_in*)(ptr_entry->ifa_netmask))->sin_addr,
+                        buffer,
+                        INET_ADDRSTRLEN
+                );
+
+                netmask_human_readable_form = string(buffer);
+            }
+
+            cout << interface_name << ": IP address = " << ipaddress_human_readable_form << ", netmask = " << netmask_human_readable_form << endl;
+        }
+        else if( address_family == AF_INET6 ){
+            // IPv6
+            uint32_t scope_id = 0;
+            if( ptr_entry->ifa_addr != nullptr ){
+                char buffer[INET6_ADDRSTRLEN] = {0, };
+                inet_ntop(
+                        address_family,
+                        &((struct sockaddr_in6*)(ptr_entry->ifa_addr))->sin6_addr,
+                        buffer,
+                        INET6_ADDRSTRLEN
+                );
+
+                ipaddress_human_readable_form = string(buffer);
+                scope_id = ((struct sockaddr_in6*)(ptr_entry->ifa_addr))->sin6_scope_id;
+            }
+
+            if( ptr_entry->ifa_netmask != nullptr ){
+                char buffer[INET6_ADDRSTRLEN] = {0, };
+                inet_ntop(
+                        address_family,
+                        &((struct sockaddr_in6*)(ptr_entry->ifa_netmask))->sin6_addr,
+                        buffer,
+                        INET6_ADDRSTRLEN
+                );
+
+                netmask_human_readable_form = string(buffer);
+            }
+
+            cout << interface_name << ": IP address = " << ipaddress_human_readable_form << ", netmask = " << netmask_human_readable_form << ", Scope-ID = " << scope_id << endl;
+        }
+        else {
+            // AF_UNIX, AF_UNSPEC, AF_PACKET etc.
+            // If ignored, delete this section.
+        }
+    }
+
+    freeifaddrs(ptr_ifaddrs);
+    return 0;
+}
+
+int get_public_ip_info()
 {
     const string url("http://ip-api.com/json");
 
@@ -145,6 +245,8 @@ int ip_address_info()
         cout << "Couldn't GET from " << url << " - exiting" << endl;
         return 1;
     }
+
+
 }
 
 
