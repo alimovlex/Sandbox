@@ -21,7 +21,7 @@
 
 TEST(JSON_Test, JSON_JS_Test)
 {
-    ASSERT_EQ(0, ip_address_info());
+    ASSERT_EQ(0, get_public_ip_info());
 }
 
 TEST(STL_Test, STL_Containers_Test)

@@ -9,6 +9,7 @@
 #include <sys/utsname.h>
 #include <unistd.h>
 #include <sys/sysinfo.h>
+#include "ip_address_info.h"
 
 #ifndef HOST_NAME_MAX
 #define HOST_NAME_MAX 255
@@ -95,5 +96,7 @@ int fetch_system_info()
     gethostname(host, sizeof(host));
     get_utsname();
     get_sysinfo();
+    get_public_ip_info();
+    get_local_ip_info();
     return 0;
 }

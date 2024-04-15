@@ -24,7 +24,6 @@
 #include "c_lib.h"
 #include "STLArray.h"
 #include "ngfetch.h"
-#include "ip_address_info.h"
 
 //Test of starting myStartupFun function before main
 void myStartupFun (void) __attribute__ ((constructor));
@@ -42,8 +41,7 @@ void myCleanupFun (void)
 
 int main(int argc, char *argv[])
 {
-    get_public_ip_info();
-    get_local_ip_info();
+
     return 0;
 }
 //switch((int)(n1 > n2))  

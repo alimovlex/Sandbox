@@ -23,7 +23,7 @@
 #include <ifaddrs.h>
 #include <arpa/inet.h>
 
-#include "IP_Address_Info.hpp"
+#include "Ngfetch.hpp"
 using namespace std;
 using namespace Json;
 

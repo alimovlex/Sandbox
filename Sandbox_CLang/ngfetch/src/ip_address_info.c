@@ -123,7 +123,6 @@ void parse_json(json_object *json, char* key) {
         printf("%s: %s\n",key, value);
     }
 
-
 }
 
 int get_local_ip_info() {
