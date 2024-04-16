@@ -27,8 +27,6 @@
 #include <iomanip>
 #include <memory>
 #include <cstdarg>
-#include "Tutorial.hpp"
-#include "STLTest.hpp"
 //----------------------------------------MACROSES
 #define MIN(a,b) (((a)<(b)) ? a : b)
 #define MAX(a,b) (((a)>(b)) ? a : b)
@@ -44,7 +42,8 @@ using namespace chrono;
 int fileTest()
 {
 	fstream MyFile;
-	MyFile.open("bin.txt");
+    const string fileName = "test.txt";
+	MyFile.open(fileName, ios::out);
 	MyFile << "Hello" << endl;
 	if (MyFile.is_open()) 
 	{
@@ -56,7 +55,7 @@ int fileTest()
         return -1;
 	}
 	MyFile.close();
-	MyFile.open("bin.txt");
+	MyFile.open(fileName);
 	if (MyFile.is_open())
 	{
 		string line;
@@ -69,8 +68,26 @@ int fileTest()
 	}
 	MyFile.close();
     return 0;
-
 }
+
+int localTimeCheck()
+{
+    // current date/time based on current system
+    time_t now = time(0);
+
+    // convert now to string form
+    char* dt = ctime(&now);
+
+    cout << "The local date and time is: " << dt << endl;
+
+    // convert now to tm struct for UTC
+    tm *gmtm = gmtime(&now);
+    dt = asctime(gmtm);
+    cout << "The UTC date and time is:" << dt << endl;
+
+    return 0;
+}
+
 int testingPointers()
 {
 	int x = 1;
@@ -122,24 +139,6 @@ int argumentsTest(int args,...)
     summ = va_arg(ap,int);
     va_end(ap);
     return summ;
-}
-
-int localTimeCheck()
-{
-	// current date/time based on current system
-	time_t now = time(0);
-
-	// convert now to string form
-	char* dt = ctime(&now);
-
-	cout << "The local date and time is: " << dt << endl;
-
-	// convert now to tm struct for UTC
-	tm *gmtm = gmtime(&now);
-	dt = asctime(gmtm);
-	cout << "The UTC date and time is:" << dt << endl;
-
-    return 0;
 }
 
 int dataTypeSizeTest()

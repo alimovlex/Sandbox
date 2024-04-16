@@ -49,7 +49,7 @@ int test_webrtc_connection(int argc, char **argv) try {
 
     rtc::Configuration config;
 
-    std::string stunServer = "";
+    std::string stunServer = "stun:recompile.me:3478";
     if (params.noStun()) {
         std::cout
                 << "No STUN server is configured. Only local hosts and public IP addresses supported."
@@ -125,7 +125,7 @@ int test_webrtc_connection(int argc, char **argv) try {
     });
 
     //const std::string wsPrefix = params.webSocketServer().find("://") == std::string::npos ? "ws://" : "recompile.me:8080";
-    const std::string url = ""; //wsPrefix + params.webSocketServer() + ":" + //std::to_string(params.webSocketPort()) + "/" + localId;
+    const std::string url = "ws://recompile.me:8080"; //wsPrefix + params.webSocketServer() + ":" + //std::to_string(params.webSocketPort()) + "/" + localId;
 
     std::cout << "WebSocket URL is " << url << std::endl;
     ws->open(url);
