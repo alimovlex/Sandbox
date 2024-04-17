@@ -41,7 +41,7 @@ void myCleanupFun (void)
 
 int main(int argc, char *argv[])
 {
-
+    fileTest();
     return 0;
 }
 //switch((int)(n1 > n2))  
