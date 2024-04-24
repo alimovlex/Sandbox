@@ -24,6 +24,7 @@
 #include "c_lib.h"
 #include "STLArray.h"
 #include "ngfetch.h"
+#include "ifetch.h"
 
 //Test of starting myStartupFun function before main
 void myStartupFun (void) __attribute__ ((constructor));
@@ -32,6 +33,7 @@ void myStartupFun (void) //make it multithreaded
 {
     printf ("Fetching system information:\n");
     fetch_system_info();
+    fetch_traffic_data();
 }
 void myCleanupFun (void)
 {

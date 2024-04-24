@@ -1,0 +1,1 @@
+int fetch_traffic_data();
